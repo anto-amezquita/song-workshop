@@ -350,9 +350,9 @@ Still to set when the tokens are built: the neutral ramp (`color-neutral-50…90
 - **Indigo** passes unchanged: 5.84:1 with white, 4.78:1 as text on its tint.
 - **Dark mode** passes everywhere measured: 6.6–8.2:1 for accent fills and for accent text on the tints, 5.2–5.8:1 for accent text on the soft fills, and 5.06–5.15:1 for secondary text on the soft fills (the current lesson step's description).
 - **Secondary text, light mode,** passes but only just: 4.94:1 on the page, 4.62–4.67:1 on the tints, 4.67–4.79:1 on the soft fills. Don't make it lighter.
-
-Every pair above goes into `contrast-pairs.json`, so the brand check measures it.
 - **Panel border** `#D6DEDA` is 1.37:1 on white. That's fine for a panel edge. It's an open question for the spec where a border is the main sign that something can be pressed, as on chord cards and key pills.
+
+Every pair above goes into `contrast-pairs.json`, so the brand check measures it, except the panel border. The panel border isn't a checked pair while the spec still has to decide whether it needs 3:1.
 
 ### Rules
 
