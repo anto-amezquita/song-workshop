@@ -22,54 +22,15 @@ Its job is narrow on purpose: a session should be able to open this file and kno
 
 ## 2. Open items
 
-This project uses Linear: team Amezquita, project Song Workshop. Open work lives there. Until `backlog-sync` has run, this list is kept by hand.
+Generated from Linear project Song Workshop on 2026-11-22 by backlog-sync. Edit in Linear, not here.
 
-### Set up Song Workshop on the starter kit (AME-75)
+### Backlog
 
-- **Source:** project setup, 2026-11-22.
-- **Why it matters:** every next step follows the kit, and the decisions so far are written down.
-- **Status:** In review. The step 1 docs are corrected against the doc review, and decisions 0001–0004 are recorded.
-
-### Release the design system (AME-76)
-
-- **Source:** doc review, 2026-11-22. The brand contract, `amezquita-brand check` and `build`, and the colour-mode script came in with design-system PR #207 (AME-6), but the latest release is 1.6.7, which has none of them.
-- **Why it matters:** it blocks the port. The brand can't be checked or built until it's released.
-- **Status:** Not started (Todo in Linear), in the design-system repo.
-
-### Move Nashville Number Lab into the app (AME-78)
-
-- **Source:** project setup, 2026-11-22. The lesson is one HTML file at the repo root today.
-- **Why it matters:** it's the first lesson, and moving it sets up the shape every later lesson follows (`docs/architecture.md` §2).
-- **Status:** Waiting for the design-system release. Next: the spec, then the project and brand setup, `lib/music`, the shared lesson components, the port itself, and the side-by-side check against the original.
-
-### Bring the sliding thumb to the design system's SegmentedControl (AME-79)
-
-- **Source:** decisions/0003, 2026-11-22. The lesson's two switches slide a thumb to the chosen option; the design system's `SegmentedControl` changes its fill instead.
-- **Why it matters:** Song Workshop builds its own sliding switch to keep the thumb. Any other project that wants it would have to do the same.
-- **Status:** Not started. The work happens in the design-system repo, not here, and the issue sits in Linear's Design system project. *Proposal:* do it once the local switch has been in use for a while, so it can carry over what that teaches. When it ships, Song Workshop can swap its own switch for `SegmentedControl`.
-
-### Spec the blues lesson (AME-80)
-
-- **Source:** planned lesson, 2026-11-22.
-- **Why it matters:** *Assumption:* it's the closest to Nashville Number Lab, so it would be the first to reuse `lib/music`. It probably needs 7th chords and the 12-bar form added to `lib/music/theory/`.
-- **Status:** Spec needed.
-
-### Spec the rhythm lesson (AME-81)
-
-- **Source:** planned lesson, 2026-11-22.
-- **Why it matters:** it's the first lesson where timing has to be exact. `lib/music/transport/` will need to schedule on the audio clock instead of `setTimeout` (`docs/architecture.md` §4, Sound).
-- **Status:** Spec needed.
-
-### Spec the melody lesson (AME-82)
-
-- **Source:** planned lesson, 2026-11-22.
-- **Status:** Spec needed.
-
-### Spec the lyric-writing lesson (AME-83)
-
-- **Source:** planned lesson, 2026-11-22.
-- **Why it matters:** *Assumption:* it may be the first lesson with no sound. If so, it shows whether `components/lesson/` really works without `lib/music/`. Whether it has sound is for its spec to decide.
-- **Status:** Spec needed.
+- **[AME-78](https://linear.app/amezquita/issue/AME-78/port-nashville-number-lab-into-the-nextjs-site)** Port Nashville Number Lab into the Next.js site — Antonio Amézquita · blocked · blocked by AME-76
+- **[AME-80](https://linear.app/amezquita/issue/AME-80/spec-needed-blues-lesson)** Spec needed: blues lesson — Antonio Amézquita
+- **[AME-81](https://linear.app/amezquita/issue/AME-81/spec-needed-rhythm-lesson)** Spec needed: rhythm lesson — Antonio Amézquita
+- **[AME-82](https://linear.app/amezquita/issue/AME-82/spec-needed-melody-lesson)** Spec needed: melody lesson — Antonio Amézquita
+- **[AME-83](https://linear.app/amezquita/issue/AME-83/spec-needed-lyric-writing-lesson)** Spec needed: lyric-writing lesson — Antonio Amézquita
 
 ---
 
