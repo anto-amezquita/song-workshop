@@ -6,21 +6,23 @@ This file defines what the product is, who it serves, why it exists, and the pri
 
 It is the stable reference point for the product. When features, designs, or technical choices compete, this document should help decide what deserves to exist and what does not.
 
+> **Status (2026-11-22):** Only sections 1, 9 and 11 are filled in so far, as a draft written from the first lesson. The rest is still the template. Lines marked *Assumption* need confirming. Who the lessons are for, the principles and the goals are still open (section 11); they shouldn't be guessed.
+
 ---
 
 ## 1. Product summary
 
 ### Product name
 
-[Name]
+Song Workshop
 
 ### One-line description
 
-[What the product is, in one clear sentence.]
+Short music lessons you play with in the browser. *(Draft)*
 
 ### Longer description
 
-[Describe the product in a short paragraph. What does it help people do? What makes it useful or distinct?]
+Song Workshop is a small site of music lessons. Each lesson is one interactive page: you change something, see and usually hear the result straight away, and notice what stays the same. The first lesson, Nashville Number Lab, teaches the seven chords of a key as numbers, so a progression can move to any key. *(Draft, written from the first lesson.)*
 
 ---
 
@@ -142,13 +144,16 @@ Define the boundaries that protect the product from drift.
 
 ### In scope
 
-- [What belongs in the product]
-- [What belongs in the product]
+- Interactive lessons, one per page, each at its own address
+- Lessons, in the order they're planned:
+  - Nashville Number Lab: built, as one HTML file, now moving into the app
+  - Blues, rhythm, melody, lyric writing: planned, each needs a spec (see `docs/backlog.md`)
+- Sound made in the browser, so a lesson works without downloads or a plugin. *Assumption:* most lessons make sound, but not necessarily all of them (see section 11).
 
 ### Out of scope
 
-- [What deliberately does not belong]
-- [What deliberately does not belong]
+- Accounts, logins and saved progress. *Assumption: the first lesson has none, and nothing so far asks for them.*
+- A server or backend. *Assumption, for the same reason.*
 
 ---
 
@@ -167,6 +172,9 @@ When making product decisions, ask:
 
 ## 11. Open questions
 
-- [Question]
-- [Question]
-- [Question]
+- Who are the lessons for: complete beginners, people who play a little and want to write songs, or both? The first lesson expects you to know what a chord is.
+- English only, or Danish and Spanish too?
+- Do the lessons form a course with an order, or does each one stand alone?
+- Should a lesson remember where you got to, or always start fresh?
+- Does every lesson make sound? The lyric-writing lesson might not.
+- Is Song Workshop presented as Antonio's own project? The first lesson's footer says "A music-teaching experiment by Antonio Amézquita".

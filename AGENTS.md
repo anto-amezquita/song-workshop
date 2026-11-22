@@ -3,7 +3,7 @@
 ## Agent Quick Start
 
 - Purpose: help an AI coding agent become productive quickly in this repo.
-- Linear: team [KEY], project [Project name]. Open work lives there; `docs/backlog.md` is its snapshot. Start an issue with `/start-task [KEY-123]`, finish it with `/finish-task`. Delete this line if the project doesn't use Linear.
+- Linear: team Amezquita (AME), project Song Workshop. Open work lives there; `docs/backlog.md` is its snapshot. Start an issue with `/start-task AME-123`, finish it with `/finish-task`.
 - Read core docs first: [docs/backlog.md](docs/backlog.md) — check this first, it's the only doc here expected to change turn to turn — then [docs/product-north-star.md](docs/product-north-star.md), [docs/architecture.md](docs/architecture.md), [docs/quality.md](docs/quality.md), and the relevant file in `/specs`.
 - Skills: use the manifests under `skills/` for repeatable workflows (see `skills/README.md`).
 - Finding build/test commands: look for `package.json`, `Makefile`, or `README.md` in the repo root; if none exist, ask a human before running environment-changing commands.
