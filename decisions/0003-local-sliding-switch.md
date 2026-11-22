@@ -34,4 +34,4 @@ Proposed, not decided: a `SegmentSwitch` component in `components/lesson/`, and 
 ## Related files
 
 - `docs/architecture.md` §3 and §8 (Gaps)
-- AME-79 in Linear (Design system project): "Bring the sliding thumb to SegmentedControl", also listed in `docs/backlog.md`
+- AME-79: "Bring the sliding thumb to SegmentedControl", tracked in Linear's Design system project
