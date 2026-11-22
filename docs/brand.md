@@ -341,15 +341,14 @@ Still to set when the tokens are built: the neutral ramp (`color-neutral-50…90
 
 ### Contrast, measured 2026-11-22
 
-- **Playing chord, light mode.** A playing chord is filled with the accent, and its small labels (the secondary name and the quality) need 4.5:1. The file misses that twice over. Its green, `#178A63`, gives 4.33:1 with white. And it shows those two labels at 85% opacity, which brings them down to 3.58:1. Darkening the green alone isn't enough: at 85% opacity, even `#168660` gives only 3.75:1.
+- **Playing chord and playing slot, light mode.** A playing chord and a playing progression slot are filled with the accent, and their small labels need 4.5:1: on the chord, the secondary name and the quality; on the slot, the secondary name and "Bar n". The file misses that twice over. Its green, `#178A63`, gives 4.33:1 with white. And it shows those labels at 85% opacity, which brings them down to 3.58:1. Darkening the green alone isn't enough: at 85% opacity, even `#168660` gives only 3.75:1.
 
-  *Proposal:* two changes from the file, which together give 4.55:1. The fill becomes `#168660`, which looks almost the same. And on a playing chord, the secondary name and quality show in full `color-accent-foreground`, with no opacity. Both need your approval and a look side by side.
+  *Proposal:* two changes from the file, which together give 4.55:1. The fill becomes `#168660`, which looks almost the same. And on a playing chord and a playing slot, those labels show in full `color-accent-foreground`, with no opacity. Both need your approval and a look side by side.
 - **Major green as text, light mode.** The eyebrow sits on the tinted page, where the file's green gives 3.59:1. *Proposal:* `color-accent-text` becomes `#137453`: 4.77:1 on the tint, 5.75:1 on white. Also a change from the file.
 - **Accent text on the soft fills.** The file puts accent-coloured text on the soft fill in three places: the numbers on a chosen preset chip, the H labels in the scale, and the button of the current lesson step. In light major that's 3.68:1, which fails. With `color-accent-text` at `#137453` it's 4.89:1 (4.86:1 on the soft fill of the darker green). Minor passes unchanged at 4.84:1.
 - **Indigo** passes unchanged: 5.84:1 with white, 4.78:1 as text on its tint.
 - **Dark mode** passes everywhere measured: 6.6–8.2:1 for accent fills and for accent text on the tints, 5.2–5.8:1 for accent text on the soft fills, and 5.06–5.15:1 for secondary text on the soft fills (the current lesson step's description).
 - **Secondary text, light mode,** passes but only just: 4.94:1 on the page, 4.62–4.67:1 on the tints, 4.67–4.79:1 on the soft fills. Don't make it lighter.
-- **Playing progression slot.** It has the same 85% opacity in the file, on its secondary name and its "Bar n" label: 3.75:1 even on `#168660`. Not decided: whether it gets the same change as the playing chord. Decide in the spec.
 
 Every pair above goes into `contrast-pairs.json`, so the brand check measures it.
 - **Panel border** `#D6DEDA` is 1.37:1 on white. That's fine for a panel edge. It's an open question for the spec where a border is the main sign that something can be pressed, as on chord cards and key pills.

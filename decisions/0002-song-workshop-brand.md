@@ -32,7 +32,7 @@ Song Workshop gets its own brand, `song-workshop`, with its tokens in `tokens/br
 
 - The brand check and brand build aren't released yet (`amezquita-brand check/build` and the brand contract came in with design-system PR #207 and aren't in 1.6.7 on npm). The brand can't be built until the design system is released.
 - The brand contract has no slot for a second accent, so minor needs tokens of the brand's own and a switch on the lesson root (`docs/architecture.md` §4, Styling).
-- Some values in the file don't fit the contract as it is and need deciding. They're listed in `docs/brand.md` §11–13 as proposals: the light-mode green and the playing chord's label opacity (contrast), how the page and panel surfaces map to the contract's surface roles, accent-tinted shadows, and whether the generated font link can request Bricolage's optical-size axis.
+- Some values in the file don't fit the contract as it is and need deciding. They're listed in `docs/brand.md` §11–13 as proposals: the light-mode green and the label opacity on a playing chord and a playing slot (contrast), how the page and panel surfaces map to the contract's surface roles, accent-tinted shadows, and whether the generated font link can request Bricolage's optical-size axis.
 
 ## Related files
 
