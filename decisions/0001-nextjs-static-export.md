@@ -30,7 +30,7 @@ Build the site with Next.js, App Router, and `output: 'export'`, so the whole si
 ### Negative
 
 - No redirects, middleware or server code. If a lesson ever needs them, this decision has to be revisited.
-- Not decided yet, and written as proposals in `docs/architecture.md` §1: the exact Next version, npm as package manager, Vitest, React Testing Library, Playwright, Prettier, and leaving out Tailwind and animation libraries. Each one gets settled when the project is set up.
+- Not decided yet, and written as proposals in `docs/architecture.md` §1: the exact Next version, TypeScript strict, ESLint, plain CSS, `useReducer` for lesson state, npm as package manager, Vitest, React Testing Library, Playwright, Prettier, and leaving out Tailwind and animation libraries. Each one gets settled when the project is set up.
 
 ## Related files
 
