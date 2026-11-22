@@ -270,8 +270,8 @@ What the file uses, by face:
 | Page title, key name, chord and slot numbers | `font-weight-display` | 760 | 750, 760, 780 |
 | Panel headings, scale note names | `font-weight-heading` | 650 | 650 |
 | Lesson-path step numbers | `song-workshop-font-weight-step` | 700 | 700 |
-| Labels, secondary names, step titles, key pills | `song-workshop-font-weight-strong` | 600 | 600, in both faces |
-| Buttons and switches | `font-weight-control` | 500 | 500 |
+| Labels, secondary names, step titles, key pills, lesson-path buttons, the tempo value, scale degrees, W/H labels | `song-workshop-font-weight-strong` | 600 | 600, in both faces |
+| Switches and outline buttons | `font-weight-control` | 500 | 500 |
 | Body text, preset chips, chord qualities, "Bar n" | `font-weight-body` | 400 | 400 |
 
 The step numbers get a token of the brand's own, because the design system's `font-weight-title` means card and dialog headers.
@@ -287,7 +287,7 @@ The step numbers get a token of the brand's own, because the design system's `fo
 - Numbers that change while you watch (tempo, step counts) use tabular figures, so they don't shift sideways.
 - The fonts must load as the file loads them: Bricolage with its optical-size axis (12–96) and weights 500–800, Inter at 400, 500 and 600. Without the optical-size axis, the headings won't match the original.
 
-The font link `amezquita-brand build` would generate doesn't do this today. The design system's `brand/fonts.mjs` lists Bricolage with weight only (200–800) and no optical size, and doesn't list Inter at all, so the build would report Inter as unknown. *Proposal:* the project loads both fonts itself until the design system can request the optical-size axis. Google Fonts or self-hosted is still open (`architecture.md` §17).
+The font link `amezquita-brand build` would generate doesn't do this today. The design system's `brand/fonts.mjs` can already request extra axes (Archivo's width, Fraunces' SOFT and WONK), so the gap is two entries in its list of fonts: Bricolage's entry has a weight range (200–800) but no optical-size range, and there's no entry for Inter, so the build would report Inter as unknown. *Proposal:* the project loads both fonts itself until a design-system release has both entries. Google Fonts or self-hosted is still open (`architecture.md` §17).
 
 ---
 
@@ -348,7 +348,7 @@ Still to set when the tokens are built: the neutral ramp (`color-neutral-50…90
 - **Accent text on white panels, light mode.** The file puts the green as text on a white panel in two places: the "home" tag on a chord card, and the button of each lesson step that isn't the current one. Both give 4.33:1, which fails. With `color-accent-text` at `#137453` they give 5.75:1. Minor passes unchanged at 5.84:1.
 - **Accent text on the soft fills.** The file puts accent-coloured text on the soft fill in three places: the numbers on a chosen preset chip, the H labels in the scale, and the button of the current lesson step. In light major that's 3.68:1, which fails. With `color-accent-text` at `#137453` it's 4.89:1 (4.86:1 on the soft fill of the darker green). Minor passes unchanged at 4.84:1.
 - **Indigo** passes unchanged: 5.84:1 with white, 4.78:1 as text on its tint.
-- **Dark mode** passes everywhere measured: 6.6–8.2:1 for accent fills and for accent text on the tints, 5.2–5.8:1 for accent text on the soft fills, and 5.06–5.15:1 for secondary text on the soft fills (the current lesson step's description).
+- **Dark mode** passes everywhere measured: 6.48–8.21:1 for accent fills, for accent text on the tints, and for accent text on panels (the "home" tag and the buttons of steps that aren't current: 7.30:1 in major, 6.48:1 in minor), 5.2–5.8:1 for accent text on the soft fills, and 5.06–5.15:1 for secondary text on the soft fills (the current lesson step's description).
 - **Secondary text, light mode,** passes but only just: 4.94:1 on the page, 4.62–4.67:1 on the tints, 4.67–4.79:1 on the soft fills. Don't make it lighter.
 - **Panel border** `#D6DEDA` is 1.37:1 on white. That's fine for a panel edge. It's an open question for the spec where a border is the main sign that something can be pressed, as on chord cards and key pills.
 
@@ -447,8 +447,8 @@ All motion tokens are the brand's own (decisions/0004). The brand contract doesn
 | Token | Value | Used for | In the file now |
 |---|---|---|---|
 | `song-workshop-easing-settle` | `cubic-bezier(0.2, 0.8, 0.2, 1)` | every transition and animation | the same, except the fades listed below |
-| `song-workshop-duration-state` | 300ms | colour, border and fill changes on hover and selection, and the play icon fading | 250–350ms |
-| `song-workshop-duration-move` | 400ms | movement: chord lift, panel focus glow, scale notes lighting up, slot pop-in, play button lift, play icon turning, the lesson-path button's arrow sliding out | 300–450ms |
+| `song-workshop-duration-state` | 300ms | colour, border and fill changes on hover and selection, a scale note's colour change when it lights up, and the play icon fading | 250–350ms |
+| `song-workshop-duration-move` | 400ms | movement: chord lift, panel focus glow, a scale note's scale-up when it lights up, slot pop-in, play button lift, play icon turning, the lesson-path button's arrow sliding out | 300–450ms |
 | `song-workshop-duration-slide` | 500ms | sliding thumb, key indicator | 450–500ms |
 | `song-workshop-duration-roll` | 550ms | text rolling in | 550ms |
 | `song-workshop-duration-tonality` | 600ms | accent colour changing between major and minor | 600ms |

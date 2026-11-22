@@ -112,7 +112,7 @@ Still open, for the spec: the preset chips, Play scale, Loop, the lesson-path bu
 
 #### Don't change the design system from here
 
-This repo consumes `@amezquita/design-system`; it doesn't patch, fork or restyle its internals. A gap goes into `docs/backlog.md` as a design system item (the first: the sliding thumb in `SegmentedControl`, decisions/0003).
+This repo consumes `@amezquita/design-system`; it doesn't patch, fork or restyle its internals. A gap goes into `docs/backlog.md` as a design system item (the first: AME-79, the sliding thumb in `SegmentedControl`, decisions/0003).
 
 #### Keep music logic out of components
 
@@ -236,7 +236,7 @@ One brand, `song-workshop`, in light and dark. Tonality (major or minor) is a th
 
 ### Gaps
 
-`SegmentedControl` changes its fill instead of sliding a thumb, so the two lesson switches use a sliding switch built in this repo (decisions/0003). *Proposal:* it's called `SegmentSwitch`, and the key picker shares its `useSlidingIndicator` hook. Bringing the thumb into the design system is a backlog item for the design-system repo.
+`SegmentedControl` changes its fill instead of sliding a thumb, so the two lesson switches use a sliding switch built in this repo (decisions/0003). *Proposal:* it's called `SegmentSwitch`, and the key picker shares its `useSlidingIndicator` hook. Bringing the thumb into the design system is AME-79, for the design-system repo.
 
 ---
 
@@ -252,7 +252,7 @@ One brand, `song-workshop`, in light and dark. Tonality (major or minor) is a th
 
 ### Type safety
 
-TypeScript `strict`. Music types are unions where the set is closed (`'major' | 'minor'`, `'major' | 'minor' | 'dim'`).
+*Proposal:* TypeScript `strict`, as in §1 and decisions/0001. Music types are unions where the set is closed (`'major' | 'minor'`, `'major' | 'minor' | 'dim'`).
 
 ### Error handling
 

@@ -10,7 +10,7 @@ The lesson has two switches: major/minor and numbers/names. In both, a thumb sli
 
 ## Decision
 
-Build the sliding switch in this repo. Don't change the design system from here. A separate backlog item brings the sliding thumb to `SegmentedControl` later, in the design-system repo.
+Build the sliding switch in this repo. Don't change the design system from here. A separate issue, AME-79, brings the sliding thumb to `SegmentedControl` later, in the design-system repo.
 
 ## Alternatives considered
 
@@ -34,4 +34,4 @@ Proposed, not decided: a `SegmentSwitch` component in `components/lesson/`, and 
 ## Related files
 
 - `docs/architecture.md` §3 and §8 (Gaps)
-- `docs/backlog.md`: "Bring the sliding thumb to the design system's SegmentedControl"
+- AME-79 in Linear (Design system project): "Bring the sliding thumb to SegmentedControl", also listed in `docs/backlog.md`
