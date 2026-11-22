@@ -259,9 +259,9 @@ What the file uses, by face:
 | Bricolage | 700 | lesson-path step numbers |
 | Bricolage | 650 | panel headings, scale note names |
 | Bricolage | 600 | key pills, the chord's and slot's secondary name |
-| Inter | 600 | eyebrow and uppercase labels, the "home" tag, scale degrees and W/H labels, lesson-step titles, the tempo value, lesson-path buttons |
+| Inter | 600 | eyebrow, panel labels and the "home" tag (all uppercase), scale degrees and W/H labels, lesson-step titles, the tempo value, lesson-path buttons |
 | Inter | 500 | switches and outline buttons |
-| Inter | 400 | body text |
+| Inter | 400 | body text, preset chips, and two uppercase labels: the chord's quality and "Bar n" in the slots |
 
 *Proposal* for the tokens:
 
@@ -272,7 +272,7 @@ What the file uses, by face:
 | Lesson-path step numbers | `song-workshop-font-weight-step` | 700 | 700 |
 | Labels, secondary names, step titles, key pills | `song-workshop-font-weight-strong` | 600 | 600, in both faces |
 | Buttons and switches | `font-weight-control` | 500 | 500 |
-| Body text | `font-weight-body` | 400 | 400 |
+| Body text, preset chips, chord qualities, "Bar n" | `font-weight-body` | 400 | 400 |
 
 The step numbers get a token of the brand's own, because the design system's `font-weight-title` means card and dialog headers.
 
@@ -304,7 +304,7 @@ Light and dark are both listed. The values are the file's, except the two marked
 | Role in the file | Proposed contract token | Light | Dark |
 |---|---|---|---|
 | Panels, cards | `color-surface-primary` | `#FFFFFF` | `#161F1B` |
-| Untinted page, switch tracks, empty slots | see "Surface roles" below | `#EDF1EF` | `#0E1412` |
+| Untinted page, switch tracks, filled progression slots, W/H step labels | see "Surface roles" below | `#EDF1EF` | `#0E1412` |
 | Text | `color-text-primary` | `#13201A` | `#E5EEEA` |
 | Hints, labels, secondary text | `color-text-secondary` | `#5B6B63` | `#93A39B` |
 | Panel edges, dividers | `color-border-default` | `#D6DEDA` | `#26322D` |
@@ -314,13 +314,13 @@ Light and dark are both listed. The values are the file's, except the two marked
 
 #### Surface roles
 
-The file has two surfaces: a green-grey page, and white panels on it. Switch tracks and empty slots use the page colour. The design system's roles don't line up one to one:
+The file has two surfaces: a green-grey page, and white panels on it. Switch tracks, filled progression slots and the W/H step labels use the page colour. The empty slot doesn't: it's transparent, with a dashed border. The design system's roles don't line up one to one:
 
 - `color-surface-primary` is the page background *and* the containers that sit flat on it: cards, dialogs, menus, form fields.
 - `color-surface-secondary` is hover and selected fills (tabs, nav items).
 - `color-surface-tertiary` is switch tracks, among others.
 
-*Proposal:* panels go on `color-surface-primary`, so any design-system card or field dropped into a panel matches it. In a lesson, the page is always painted with the tonality tint, so the untinted page colour needs no contract token there. Switch tracks and empty slots go on `color-surface-tertiary` at `#EDF1EF` / `#0E1412`. That leaves `color-surface-secondary` free for hover fills. Decide before the tokens are built, because every design-system component picks up these layers.
+*Proposal:* panels go on `color-surface-primary`, so any design-system card or field dropped into a panel matches it. In a lesson, the page is always painted with the tonality tint, so the untinted page colour needs no contract token there. Switch tracks, filled slots and the W/H step labels go on `color-surface-tertiary` at `#EDF1EF` / `#0E1412`. That leaves `color-surface-secondary` free for hover fills. Decide before the tokens are built, because every design-system component picks up these layers.
 
 #### Tokens of the brand's own
 
@@ -332,20 +332,26 @@ For minor and for the tints. *Proposal* for the names.
 | Accent as text, minor | `song-workshop-minor-text` | `#4A58D0` | `#8D98FF` |
 | Page tint, major (5% accent in the page) | `song-workshop-tint-major` | `#E2ECE8` | `#101D19` |
 | Page tint, minor | `song-workshop-tint-minor` | `#E5E9ED` | `#141B1E` |
-| Soft fill, major (13% accent in a panel) | `song-workshop-soft-major` | `#E1EFEA` | `#1B342B` |
+| Soft fill, major (13% accent in a panel) | `song-workshop-soft-major` | `#E1F0EB` | `#1B342B` |
 | Soft fill, minor | `song-workshop-soft-minor` | `#E7E9F9` | `#252F39` |
 
-The file mixes the tint and soft fill at runtime with `color-mix()`. *Proposal:* work them out ahead of time as hex, because the brand check can only measure hex. The fade between major and minor still works, as a transition between two colours. The major tints above are worked out from the file's `#178A63`. If the darker green is accepted, recompute them; the difference is under one step per channel.
+The file mixes the tint and soft fill at runtime with `color-mix()`. *Proposal:* work them out ahead of time as hex, because the brand check can only measure hex. The fade between major and minor still works, as a transition between two colours. The major tints above are worked out from the file's `#178A63`. If the darker green is accepted, recompute them; the difference is under one step per channel (the soft fill becomes `#E1EFEA`).
 
 Still to set when the tokens are built: the neutral ramp (`color-neutral-50…900`) as green-greys around the values above, `color-border-strong` (needs 3:1 on both panels and page), `color-border-focus`, and the accent's hover and pressed states. The file has no darker hover on accent fills, because hover moves things instead. *Proposal:* hover and pressed are one and two steps darker than the fill. That's new, since the file has no such states.
 
 ### Contrast, measured 2026-11-22
 
-- **Major green, light mode.** The file's `#178A63` gives 4.33:1 with white text, under the 4.5:1 needed for the small quality labels on a playing chord. *Proposal:* `#168660`, which gives 4.55:1 and looks almost the same. It's a change from the file, so it needs your approval and a look side by side.
+- **Playing chord, light mode.** A playing chord is filled with the accent, and its small labels (the secondary name and the quality) need 4.5:1. The file misses that twice over. Its green, `#178A63`, gives 4.33:1 with white. And it shows those two labels at 85% opacity, which brings them down to 3.58:1. Darkening the green alone isn't enough: at 85% opacity, even `#168660` gives only 3.75:1.
+
+  *Proposal:* two changes from the file, which together give 4.55:1. The fill becomes `#168660`, which looks almost the same. And on a playing chord, the secondary name and quality show in full `color-accent-foreground`, with no opacity. Both need your approval and a look side by side.
 - **Major green as text, light mode.** The eyebrow sits on the tinted page, where the file's green gives 3.59:1. *Proposal:* `color-accent-text` becomes `#137453`: 4.77:1 on the tint, 5.75:1 on white. Also a change from the file.
+- **Accent text on the soft fills.** The file puts accent-coloured text on the soft fill in three places: the numbers on a chosen preset chip, the H labels in the scale, and the button of the current lesson step. In light major that's 3.68:1, which fails. With `color-accent-text` at `#137453` it's 4.89:1 (4.86:1 on the soft fill of the darker green). Minor passes unchanged at 4.84:1.
 - **Indigo** passes unchanged: 5.84:1 with white, 4.78:1 as text on its tint.
-- **Dark mode** passes everywhere measured, 6.5–8.2:1.
-- **Secondary text** passes but only just: 4.94:1 on the page, 4.62–4.67:1 on the tints. Don't make it lighter.
+- **Dark mode** passes everywhere measured: 6.6–8.2:1 for accent fills and for accent text on the tints, 5.2–5.8:1 for accent text on the soft fills, and 5.06–5.15:1 for secondary text on the soft fills (the current lesson step's description).
+- **Secondary text, light mode,** passes but only just: 4.94:1 on the page, 4.62–4.67:1 on the tints, 4.67–4.79:1 on the soft fills. Don't make it lighter.
+- **Playing progression slot.** It has the same 85% opacity in the file, on its secondary name and its "Bar n" label: 3.75:1 even on `#168660`. Not decided: whether it gets the same change as the playing chord. Decide in the spec.
+
+Every pair above goes into `contrast-pairs.json`, so the brand check measures it.
 - **Panel border** `#D6DEDA` is 1.37:1 on white. That's fine for a panel edge. It's an open question for the spec where a border is the main sign that something can be pressed, as on chord cards and key pills.
 
 ### Rules
@@ -441,8 +447,8 @@ All motion tokens are the brand's own (decisions/0004). The brand contract doesn
 | Token | Value | Used for | In the file now |
 |---|---|---|---|
 | `song-workshop-easing-settle` | `cubic-bezier(0.2, 0.8, 0.2, 1)` | every transition and animation | the same, except the fades listed below |
-| `song-workshop-duration-state` | 300ms | colour, border and fill changes on hover and selection | 250–350ms |
-| `song-workshop-duration-move` | 400ms | movement: chord lift, panel focus glow, scale notes lighting up, slot pop-in, play button | 300–450ms |
+| `song-workshop-duration-state` | 300ms | colour, border and fill changes on hover and selection, and the play icon fading | 250–350ms |
+| `song-workshop-duration-move` | 400ms | movement: chord lift, panel focus glow, scale notes lighting up, slot pop-in, play button lift, play icon turning, the lesson-path button's arrow sliding out | 300–450ms |
 | `song-workshop-duration-slide` | 500ms | sliding thumb, key indicator | 450–500ms |
 | `song-workshop-duration-roll` | 550ms | text rolling in | 550ms |
 | `song-workshop-duration-tonality` | 600ms | accent colour changing between major and minor | 600ms |
@@ -450,7 +456,7 @@ All motion tokens are the brand's own (decisions/0004). The brand contract doesn
 
 What this grouping changes, so the side-by-side check knows where to look:
 
-- **Timings.** Most move by up to 50ms. One moves by 100ms: the play button's lift is `.3s` in the file and would become `duration-move` at 400ms. If that feels slower, give it `duration-state` instead.
+- **Timings.** Most move by up to 50ms. Two move by 100ms, from `.3s` in the file to `duration-move` at 400ms: the play button's lift, and the lesson-path button's arrow sliding out on hover (its `gap`). If either feels slower, give it `duration-state` instead.
 - **Easing.** Seven fades in the file use the browser's default easing, not `settle`: the W/H step labels in the scale, the chord's secondary name, the chord's quality, the chip's small text, the play icon's opacity, the outline buttons, and the lesson-path button's colour. Moving them to `settle` changes how they fade.
 
 If the grouping changes the feel, the fallback is one token per timing in the file, and the file's default easing kept where it's used.

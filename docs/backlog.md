@@ -28,13 +28,13 @@ This project uses Linear: team Amezquita, project Song Workshop. Open work lives
 
 - **Source:** project setup, 2026-11-22.
 - **Why it matters:** every next step follows the kit, and the decisions so far are written down.
-- **Status:** In progress. The step 1 docs are corrected against the doc review, and decisions 0001–0004 are recorded.
+- **Status:** In review. The step 1 docs are corrected against the doc review, and decisions 0001–0004 are recorded.
 
-### Release the design system
+### Release the design system (AME-76)
 
 - **Source:** doc review, 2026-11-22. The brand contract, `amezquita-brand check` and `build`, and the colour-mode script came in with design-system PR #207 (AME-6), but the latest release is 1.6.7, which has none of them.
 - **Why it matters:** it blocks the port. The brand can't be checked or built until it's released.
-- **Status:** Separate ticket, in the design-system repo.
+- **Status:** Separate ticket, AME-76, in the design-system repo.
 
 ### Move Nashville Number Lab into the app
 

@@ -98,6 +98,7 @@ docs/ specs/ decisions/ skills/ guide/ templates/   the starter kit
 - Route files stay thin: metadata and one component.
 - A component used by one lesson lives in that lesson's folder. It moves to `components/lesson/` when a second lesson needs it, not before.
 - `reference/` is temporary. It's deleted once the port passes the spec's side-by-side check.
+- The original file is `Nashville-Number-Lab.html` at the repo root today. When the project is set up, it moves to `reference/` and is renamed `nashville-number-lab.html`.
 
 ---
 
@@ -174,7 +175,7 @@ Not applicable. The one free value, tempo, comes from a range input with a fixed
 ### Accessibility
 
 - Design system components bring their own semantics and keyboard handling.
-- Project components use native buttons. Choices of one-from-many (the key picker, `SegmentSwitch`) are radio groups with arrow-key movement. In the file today the key pills say `role="radio"` but have no arrow keys. *Proposal:* the port adds them. That's a deliberate change in behaviour, so the spec lists it and the side-by-side check expects it.
+- Project components use native buttons. Choices of one-from-many (the key picker, `SegmentSwitch`) are radio groups with arrow-key movement. In the file today the key pills and both switches (major/minor, numbers/names) say `role="radio"` but have no arrow keys. *Proposal:* the port adds them to all three. That's a deliberate change in behaviour, so the spec lists it and the side-by-side check expects it.
 - How playback is announced to screen readers is decided in the spec.
 
 ### Sound
@@ -275,7 +276,7 @@ No `innerHTML` or `dangerouslySetInnerHTML`. The one exception is the design sys
 
 ### Unit tests
 
-- `lib/music/theory/`: for all 12 keys in major and minor, the same scale spellings, chord names, qualities and numbers as the original file. The expected values are generated from `reference/nashville-number-lab.html` before it's deleted.
+- `lib/music/theory/`: for all 12 keys in major and minor, the same scale spellings, chord names, qualities and numbers as the original file. The expected values are generated from `reference/nashville-number-lab.html` (today `Nashville-Number-Lab.html` at the repo root, §2) before it's deleted.
 - `lib/music/transport/`: stepping, looping and stopping, with fake timers.
 
 ### Integration tests
