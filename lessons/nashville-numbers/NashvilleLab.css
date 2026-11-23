@@ -1,0 +1,75 @@
+/* The lesson root paints the tonality tint over the page (architecture.md §4, Tonality). */
+.nashville-lab {
+  --lesson-tint: var(--song-workshop-tint-major);
+  --lesson-soft: var(--song-workshop-soft-major);
+
+  min-height: 100svh;
+  background-color: var(--lesson-tint);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-base);
+  /* The file's body size; every text in the lesson sets its own rem size (port spec Q16). */
+  font-size: 15px;
+  line-height: 1.5;
+  transition: background-color var(--song-workshop-duration-page) var(--song-workshop-easing-settle);
+}
+
+/* Minor sets all eight, one by one: a custom property that refers to another is
+   worked out where it's declared (:root), so changing the accent here wouldn't
+   reach the hover, pressed and focus colours on its own (port spec R1). */
+.nashville-lab[data-tonality="minor"] {
+  --color-accent-default: var(--song-workshop-minor);
+  --color-accent-hover: var(--song-workshop-minor-hover);
+  --color-accent-pressed: var(--song-workshop-minor-pressed);
+  --color-accent-text: var(--song-workshop-minor-text);
+  --color-accent-text-hover: var(--song-workshop-minor-text-hover);
+  --color-border-focus: var(--song-workshop-minor);
+  --lesson-tint: var(--song-workshop-tint-minor);
+  --lesson-soft: var(--song-workshop-soft-minor);
+}
+
+.nashville-lab__wrap {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding-block: var(--space-8) 56px;
+  padding-left: max(var(--space-4), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--space-4), env(safe-area-inset-right, 0px));
+}
+
+.nashville-lab__header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: var(--space-6);
+  max-width: 62ch;
+}
+
+.nashville-lab__eyebrow {
+  font-size: var(--font-size-xs);
+  letter-spacing: var(--song-workshop-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--color-accent-text);
+  font-weight: var(--song-workshop-font-weight-strong);
+  transition: color var(--song-workshop-duration-tonality) var(--song-workshop-easing-settle);
+}
+
+.nashville-lab__title {
+  margin: 0;
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.02;
+  letter-spacing: var(--letter-spacing-heading);
+  text-wrap: balance;
+}
+
+.nashville-lab__intro {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-base);
+}
+
+.nashville-lab__footer {
+  margin-top: var(--space-8);
+  color: var(--color-text-secondary);
+  font-size: 0.8rem;
+}

@@ -1,0 +1,18 @@
+# Generated or kept as-is
+.next/
+out/
+styles/brand/
+reference/
+playwright-report/
+test-results/
+package-lock.json
+next-env.d.ts
+
+# The starter kit's docs keep their own line wrapping
+docs/
+specs/
+decisions/
+skills/
+guide/
+templates/
+*.md

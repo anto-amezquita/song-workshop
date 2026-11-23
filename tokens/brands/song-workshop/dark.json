@@ -1,0 +1,146 @@
+{
+  "color-neutral-50": {
+    "$value": "#0E1412",
+    "$type": "color"
+  },
+  "color-neutral-100": {
+    "$value": "#161F1B",
+    "$type": "color"
+  },
+  "color-neutral-200": {
+    "$value": "#26322D",
+    "$type": "color"
+  },
+  "color-neutral-300": {
+    "$value": "#36443E",
+    "$type": "color"
+  },
+  "color-neutral-400": {
+    "$value": "#66766E",
+    "$type": "color"
+  },
+  "color-neutral-500": {
+    "$value": "#7E8E86",
+    "$type": "color"
+  },
+  "color-neutral-600": {
+    "$value": "#93A39B",
+    "$type": "color"
+  },
+  "color-neutral-700": {
+    "$value": "#B9C6C0",
+    "$type": "color"
+  },
+  "color-neutral-800": {
+    "$value": "#D3DDD8",
+    "$type": "color"
+  },
+  "color-neutral-900": {
+    "$value": "#E5EEEA",
+    "$type": "color"
+  },
+  "color-surface-primary": {
+    "$value": "#161F1B",
+    "$type": "color"
+  },
+  "color-surface-secondary": {
+    "$value": "#1B2621",
+    "$type": "color"
+  },
+  "color-surface-tertiary": {
+    "$value": "#0E1412",
+    "$type": "color"
+  },
+  "color-surface-inverse": {
+    "$value": "#E5EEEA",
+    "$type": "color"
+  },
+  "color-text-primary": {
+    "$value": "#E5EEEA",
+    "$type": "color"
+  },
+  "color-text-secondary": {
+    "$value": "#93A39B",
+    "$type": "color"
+  },
+  "color-text-inverse": {
+    "$value": "#0E1412",
+    "$type": "color"
+  },
+  "color-border-default": {
+    "$value": "#26322D",
+    "$type": "color"
+  },
+  "color-border-strong": {
+    "$value": "#66766E",
+    "$type": "color"
+  },
+  "color-border-focus": {
+    "$value": "#3FBF95",
+    "$type": "color"
+  },
+  "color-accent-default": {
+    "$value": "#3FBF95",
+    "$type": "color"
+  },
+  "color-accent-hover": {
+    "$value": "#56C7A2",
+    "$type": "color"
+  },
+  "color-accent-pressed": {
+    "$value": "#6DCEAE",
+    "$type": "color"
+  },
+  "color-accent-foreground": {
+    "$value": "#0B1210",
+    "$type": "color"
+  },
+  "color-accent-text": {
+    "$value": "#3FBF95",
+    "$type": "color"
+  },
+  "color-accent-text-hover": {
+    "$value": "#56C7A2",
+    "$type": "color"
+  },
+  "song-workshop-page": {
+    "$value": "#0E1412",
+    "$type": "color"
+  },
+  "song-workshop-minor": {
+    "$value": "#8D98FF",
+    "$type": "color"
+  },
+  "song-workshop-minor-hover": {
+    "$value": "#9BA4FF",
+    "$type": "color"
+  },
+  "song-workshop-minor-pressed": {
+    "$value": "#A8B1FF",
+    "$type": "color"
+  },
+  "song-workshop-minor-text": {
+    "$value": "#8D98FF",
+    "$type": "color"
+  },
+  "song-workshop-minor-text-hover": {
+    "$value": "#9BA4FF",
+    "$type": "color"
+  },
+  "song-workshop-tint-major": {
+    "$value": "#101D19",
+    "$type": "color"
+  },
+  "song-workshop-tint-minor": {
+    "$value": "#141B1E",
+    "$type": "color"
+  },
+  "song-workshop-soft-major": {
+    "$value": "#1B342B",
+    "$type": "color"
+  },
+  "song-workshop-soft-minor": {
+    "$value": "#252F39",
+    "$type": "color"
+  }
+}

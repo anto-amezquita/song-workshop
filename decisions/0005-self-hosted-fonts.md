@@ -2,7 +2,7 @@
 
 ## Status
 
-Accepted (2026-11-23), in the Nashville Number Lab port spec (`specs/2026-11-23-nashville-number-lab-port.md`, Q2). Two things are checked when the project is set up (see Consequences).
+Accepted (2026-11-23), in the Nashville Number Lab port spec (`specs/2026-11-23-nashville-number-lab-port.md`, Q2). Both setup checks passed the same day (see Consequences).
 
 ## Context
 
@@ -32,7 +32,8 @@ Self-host both fonts from Fontsource packages, imported in the root layout. The 
 ### Negative
 
 - Two more dependencies to keep updated.
-- To check at setup: that the Bricolage package includes the optical-size axis, and that `amezquita-brand check` accepts the Fontsource family names. If either fails, the fallback is the file's Google Fonts link, unchanged, and this decision is updated.
+- Checked at setup, 2026-11-23: `@fontsource-variable/bricolage-grotesque`'s `opsz.css` carries the optical-size axis (12–96) with weights 200–800, read from the font file's own axis table, and `amezquita-brand check` accepts the Fontsource family names. `amezquita-brand build` lists both families as "load it yourself", which is what the project does. If either ever stops holding, the fallback is the file's Google Fonts link.
+- Inter comes from `@fontsource/inter` (static 400, 500, 600), not the variable package: Inter's variable font has an optical-size axis of its own, and the file loads Inter without it.
 
 ## Related files
 

@@ -226,7 +226,7 @@ Follows `architecture.md` §1–4 and §8. The proposals there are confirmed by 
 - Next.js 16, App Router, `output: 'export'`, TypeScript strict, npm, ESLint, Prettier, Vitest with React Testing Library, Playwright with `@axe-core/playwright`. Exact versions pinned. Each dependency's reason goes in the PR.
 - `@amezquita/design-system` pinned to exactly `1.7.0`. Until 2026-11-30, install with `--min-release-age=0`, because `~/.npmrc` sets 7 days.
 - `style-dictionary` pinned to the current 5.x (Q17).
-- Scripts: `brand:check`, `brand:build` (`predev` and `prebuild` run it), `test`, `test:e2e`, `typecheck`, `lint`.
+- Scripts: `brand:check`, `brand:build` (`dev` and `build` call it first), `test`, `test:e2e`, `typecheck`, `lint`. Not `predev`/`prebuild`: with `ignore-scripts=true` in `~/.npmrc`, npm skips pre- and post-scripts even for `npm run`.
 - CI: GitHub Actions with least-privilege `permissions`, third-party actions pinned to a full SHA with the version in a comment.
 - `Nashville-Number-Lab.html` moves to `reference/nashville-number-lab.html`.
 
@@ -237,7 +237,7 @@ As `architecture.md` §2, with these names confirmed: route `app/lessons/nashvil
 ### 7.3 Styling and tokens
 
 - **Load order** in `app/layout.tsx`: the design system's `base-light.css` and `base-dark.css`, then `styles/brand/song-workshop-light.css` and `-dark.css`, then `styles/global.css`.
-- **No design-system `reset.css`.** Its own header says it exists only for Storybook and that apps bring their own. `global.css` carries the small reset the file has: `box-sizing`, `button { font: inherit; color: inherit }`, no default margins. It paints `html` and `body` with `--song-workshop-page`, and sets `color-scheme` from `data-mode` so the native range input and scrollbars match (R5).
+- **No design-system `reset.css`.** Its own header says it exists only for Storybook and that apps bring their own. `global.css` carries the small reset the file has: `box-sizing`, `button { font: inherit; color: inherit }`, no default margins. It paints `html` and `body` with `--song-workshop-page` (R5). `color-scheme` comes from the brand CSS, which sets it under `[data-mode="dark"]`, so the native range input and scrollbars match.
 - **Tonality** on the lesson root, `data-tonality="major" | "minor"`. The minor rule sets eight properties (R1).
 - **Type.** Families, weights and tracking from tokens (`brand.md` §11, R6). Font sizes stay as the file's `rem` values in each component's CSS, except where a value equals a design-system token exactly (`0.75rem` → `font-size-xs`, `1rem` → `font-size-base`) (Q16).
 - **Radius** (Q11): `border-radius-component` 18px (panels), `border-radius-interactive` 12px (key pills), `border-radius-lg` 16px (chord cards), `border-radius-pill` (switches, chips, buttons, notes, step numbers), `song-workshop-radius-tile` 14px (slots, path steps). The W/H labels' 6px stays a literal in the scale's CSS.
@@ -369,7 +369,7 @@ That's the file's untinted page. The lesson root fills at least the viewport and
 | ID | Question (where) | Proposal |
 |---|---|---|
 | Q1 | Which static host? (arch §17) | Not part of this issue. A follow-up issue picks the host and sets security headers |
-| Q2 | Google Fonts or self-hosted? (arch §17, brand §11) | Self-hosted from Fontsource packages (§7.4), so no visitor IP goes to Google. **To verify at setup:** the Bricolage package's file with the optical-size axis, and that `amezquita-brand check` accepts the Fontsource family names. If either fails, the fallback is the file's Google Fonts link, unchanged. Recorded as decisions/0005 |
+| Q2 | Google Fonts or self-hosted? (arch §17, brand §11) | Self-hosted from Fontsource packages (§7.4), so no visitor IP goes to Google. Verified 2026-11-23: `@fontsource-variable/bricolage-grotesque`'s `opsz.css` carries opsz 12–96 and wght 200–800 (read from the font's fvar table), and the brand check passes with the Fontsource family names. Recorded as decisions/0005 |
 | Q3 | Shareable key and progression in the URL? (arch §4, §17) | No. New behaviour, not part of a port |
 | Q4 | Commit the built brand CSS? (arch §8, §17) | No. `styles/brand/` is gitignored and built by `predev`/`prebuild`; CI runs the check and the build |
 | Q5 | Index at `/`, or `/` as the first lesson? (arch §4, §17) | `/` renders the lesson too, with a canonical link to `/lessons/nashville-numbers`. A static export can't redirect. The index gets its own spec when the second lesson does |
@@ -397,7 +397,7 @@ That's the file's untinted page. The lesson root fills at least the viewport and
 
 ### 9.4 Assumptions
 
-- The design system's base CSS doesn't set `color-scheme`. If it does, `global.css` doesn't need to.
+- ~~The design system's base CSS doesn't set `color-scheme`.~~ Checked 2026-11-23: the base and brand dark CSS set `color-scheme: dark` under `[data-mode="dark"]`, so `global.css` doesn't.
 - `amezquita-brand build` accepts brand tokens of the brand's own for radius (`song-workshop-radius-tile`) and tracking, as it does for colour.
 
 ---

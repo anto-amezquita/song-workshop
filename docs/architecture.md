@@ -59,6 +59,7 @@ Confirmed by the port spec. Later lessons follow the same shape.
 app/
   layout.tsx                        colour-mode script, base + brand CSS, fonts
   page.tsx                          the first lesson until there's a second; then the lesson index (§4)
+  not-found.tsx                     our own 404: Next's paints body white
   lessons/
     nashville-numbers/page.tsx      metadata + <NashvilleLab />
 lessons/
@@ -87,6 +88,9 @@ styles/
   global.css                        small reset, page colour, page-level rules
 reference/
   nashville-number-lab.html         the original file, kept until the port matches it
+scripts/
+  serve-out.ts                      serves out/ for Playwright; not for production
+e2e/                                Playwright tests, run against the built out/
 docs/ specs/ decisions/ skills/ guide/ templates/   the starter kit
 ```
 
@@ -169,7 +173,7 @@ Not applicable. The one free value, tempo, comes from a range input with a fixed
 ### Styling
 
 - **Load order** in `app/layout.tsx`: the design system's `base-light.css` and `base-dark.css`, then `styles/brand/song-workshop-light.css` and `song-workshop-dark.css`, then `styles/global.css`. This is the order the brand contract sets.
-- **No design system `reset.css`:** its own header says it exists for Storybook and that apps bring their own. Loading it would paint `body` with `color-surface-primary`, the white panel colour here. `global.css` carries a small reset instead (box-sizing, buttons inherit font and colour, no default margins), paints `html` and `body` with `song-workshop-page`, and sets `color-scheme` from `data-mode`. Pages without a lesson, and the overscroll area, show the untinted page colour (port spec R5).
+- **No design system `reset.css`:** its own header says it exists for Storybook and that apps bring their own. Loading it would paint `body` with `color-surface-primary`, the white panel colour here. `global.css` carries a small reset instead (box-sizing, buttons inherit font and colour, no default margins), and paints `html` and `body` with `song-workshop-page`. `color-scheme` comes from the brand CSS. Pages without a lesson, and the overscroll area, show the untinted page colour (port spec R5).
 - **Colour mode:** follows the system setting, with no switch on the page, as in the file. The design system's `colorModeScript()` goes in `<head>` as a plain `<script>`, so dark values apply under `html[data-mode="dark"]` before first paint. A colour-mode picker or a saved preference would be new scope.
 - **Tonality:** the lesson root carries `data-tonality="major"` or `"minor"`. It can't be `data-mode`, because the design system uses that for light and dark. Under `minor`, the lesson's CSS sets eight properties to the brand's own minor tokens (port spec R1):
 
@@ -236,7 +240,7 @@ The design system's tokens come in through its CSS. The brand lives in `tokens/b
 
 - `tokens.json` (light), `dark.json`, and `contrast-pairs.json` for the brand's own colour pairs
 - checked with `npx amezquita-brand check tokens/brands/song-workshop --pairs tokens/brands/song-workshop/contrast-pairs.json`
-- built with `npx amezquita-brand build tokens/brands/song-workshop --out styles/brand`, which runs before `dev` and `build`. The built CSS isn't committed: `styles/brand/` is gitignored, and CI runs the check and the build (port spec Q4).
+- built with `npx amezquita-brand build tokens/brands/song-workshop --out styles/brand`, which `npm run dev` and `npm run build` call first. Not as `predev`/`prebuild`: with `ignore-scripts=true`, npm skips pre- and post-scripts. The built CSS isn't committed: `styles/brand/` is gitignored, and CI runs the check and the build (port spec Q4).
 
 Tokens the brand contract doesn't list are the brand's own and start with `song-workshop-`: the minor accent and its hover and pressed states, the tints and soft fills, the page colour, the motion tokens, a radius, a weight and a tracking.
 
