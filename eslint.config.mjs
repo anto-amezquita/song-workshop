@@ -9,7 +9,6 @@ export default defineConfig([
     ".next/**",
     "out/**",
     "next-env.d.ts",
-    "reference/**",
     "styles/brand/**",
     "playwright-report/**",
     "test-results/**",

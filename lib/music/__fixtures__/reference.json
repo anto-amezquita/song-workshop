@@ -1,5 +1,5 @@
 {
-  "$comment": "Generated from reference/nashville-number-lab.html by scripts/generate-music-fixtures.ts. Don't edit.",
+  "$comment": "The original Nashville-Number-Lab.html's own theory output, generated on 2026-11-23 by running its code (AME-78). The file and the script were deleted after the port passed its side-by-side check; both are in git history, last in commit 77df135. Don't edit.",
   "keys": [
     "C",
     "G",

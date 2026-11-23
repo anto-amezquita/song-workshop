@@ -13,7 +13,7 @@ import {
   type Tonality,
 } from "./index";
 
-// Every case was computed by the original file's own code (scripts/generate-music-fixtures.ts).
+// Every case was computed by the original lesson file's own code (see the fixture's $comment).
 type Case = (typeof reference.cases)[number] & { key: Key; mode: Tonality };
 const cases = reference.cases as Case[];
 

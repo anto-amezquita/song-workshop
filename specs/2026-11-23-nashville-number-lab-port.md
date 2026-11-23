@@ -1,6 +1,6 @@
 # Nashville Number Lab, ported to the Next.js site
 
-> **Status (2026-11-23): approved by Antonio, with every proposal as written.** Issue: AME-78.
+> **Status (2026-11-23): built, in review.** Approved by Antonio with every proposal as written. All six phases are done: the side-by-side check passed, with Antonio checking sound and motion by ear and eye and keeping every timing, and `reference/` and the test-value script are deleted. Issue: AME-78.
 >
 > - **Facts** are what `Nashville-Number-Lab.html` does today, or what `@amezquita/design-system` 1.7.0 ships. They're written plainly.
 > - **Decisions** have an ID: `R1`–`R6` resolve the AME-75 review findings (§9.1), `Q1`–`Q20` answer the open questions in the docs (§9.2), and `C-01`–`C-16` are deliberate changes from the file (§3.4). C-14, C-15 and C-16 were added during the build (phases 4–6) and approved on 2026-11-23.

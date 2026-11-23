@@ -2,7 +2,6 @@
 .next/
 out/
 styles/brand/
-reference/
 playwright-report/
 test-results/
 package-lock.json
@@ -17,5 +16,5 @@ guide/
 templates/
 *.md
 
-# Generated from reference/ by scripts/generate-music-fixtures.ts
+# The original lesson file's own output, generated once for the port (AME-78)
 lib/music/__fixtures__/
