@@ -66,8 +66,10 @@ lessons/
   registry.ts                       one entry per lesson: slug, title, eyebrow, summary
   nashville-numbers/
     NashvilleLab.tsx                'use client'. The lesson root: tonality, panels, live region
+    panels.tsx                      the four panels, memoised, each given only what it shows
     useNashvilleLab.ts              creates the store, engine and controller once
     model.ts                        state, the pure reducer, and the store around it
+    lights.ts                       useLit: a card, note or slot reads its own lit state
     controller.ts                   what people do: dispatches, plays, keeps time. No React
     copy.ts                         the lesson's words, built from lib/music where they depend on the key
     presets.ts                      named progressions per tonality
@@ -154,7 +156,7 @@ Static prerendering. The page shell and the lesson's first state (C major, the f
 
 ### State management
 
-- **Lesson state:** a pure reducer, kept in a small store the lesson's top component creates (`lessons/<slug>/model.ts`). Not plain `useReducer`: the transport calls back on its own timer, between renders, and has to read the latest state, which `useReducer` only hands to the next render. React reads the store through `useSyncExternalStore`. A controller (`controller.ts`, no React) runs what people do: it dispatches, and drives the audio engine and the transport. For Nashville Number Lab that's key, tonality, label mode, progression, chosen preset, building mode, playing, current playback step, loop, tempo, and the lesson path's current step. Steps before the current one show as done, as in the file.
+- **Lesson state:** a pure reducer, kept in a small store the lesson's top component creates (`lessons/<slug>/model.ts`). Not plain `useReducer`: the transport calls back on its own timer, between renders, and has to read the latest state, which `useReducer` only hands to the next render. React reads the store through `useSyncExternalStore`, in two parts, so a playback step doesn't re-render the lesson (§12): the lesson root reads the view, which is the state without what's lit and stays the same object while only the lights change, and each chord card, scale note and slot reads whether it's lit itself (`useLit`). A controller (`controller.ts`, no React) runs what people do: it dispatches, and drives the audio engine and the transport. For Nashville Number Lab that's key, tonality, label mode, progression, chosen preset, building mode, playing, current playback step, loop, tempo, and the lesson path's current step. Steps before the current one show as done, as in the file.
 - **URL state:** none. A shareable key and progression would be new behaviour (port spec Q3).
 - **Persisted state:** none. Lessons remember nothing between visits, and colour mode follows the system setting, as in the file. *Assumption: nothing asks for saved progress yet.*
 

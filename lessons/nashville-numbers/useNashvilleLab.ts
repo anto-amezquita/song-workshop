@@ -13,7 +13,9 @@ import { createLabStore } from "./model";
  * The state lives in a small store around the pure reducer (model.ts), so the
  * controller always sees the latest state, even from the transport's timer
  * between renders. React reads it with useSyncExternalStore
- * (architecture.md §4, State management).
+ * (architecture.md §4, State management): this hook reads the view, the state
+ * without the lights, so a playback step doesn't re-render the lesson. The
+ * store is returned too, for the parts that read the lights (lights.ts).
  */
 export function useNashvilleLab() {
   // Live-region messages. A new id per message makes a repeat announce again.
@@ -36,7 +38,7 @@ export function useNashvilleLab() {
     return { store, engine, controller };
   });
 
-  const state = useSyncExternalStore(lab.store.subscribe, lab.store.getState, lab.store.getState);
+  const view = useSyncExternalStore(lab.store.subscribe, lab.store.getView, lab.store.getView);
 
   const [audioStatus, setAudioStatus] = useState<AudioStatus>("idle");
   useEffect(
@@ -50,5 +52,13 @@ export function useNashvilleLab() {
 
   useEffect(() => () => lab.controller.dispose(), [lab]);
 
-  return { state, controller: lab.controller, audioStatus, message, highlighted, register };
+  return {
+    store: lab.store,
+    view,
+    controller: lab.controller,
+    audioStatus,
+    message,
+    highlighted,
+    register,
+  };
 }

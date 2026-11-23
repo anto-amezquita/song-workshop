@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
-import { MAX_BARS, createLabStore, initialState, reducer, type State } from "./model";
+import { MAX_BARS, createLabStore, initialState, reducer, type Action, type State } from "./model";
 
 const building = (progression: State["progression"] = []): State => ({
   ...initialState,
@@ -87,6 +87,31 @@ describe("the reducer", () => {
     });
   });
 
+  it("unlights the playing slot whenever the slots are rebuilt, and keeps the chord and notes lit", () => {
+    const playing = (state: State): State =>
+      reducer(state, { type: "lights", lights: { chord: 4, notes: [4, 6, 1], slot: 1 } });
+    const rebuilds: [State, Action][] = [
+      [initialState, { type: "tonality", tonality: "minor" }],
+      [initialState, { type: "preset", id: "rock" }],
+      [initialState, { type: "build" }],
+      [building([0, 4]), { type: "add", degree: 5 }],
+      [building([0, 4, 5]), { type: "remove", index: 0 }],
+    ];
+    for (const [state, action] of rebuilds) {
+      expect(reducer(playing(state), action).lights, action.type).toEqual({
+        chord: 4,
+        notes: [4, 6, 1],
+        slot: null,
+      });
+    }
+  });
+
+  it("keeps the playing slot lit when nothing is rebuilt", () => {
+    const lit = reducer(initialState, { type: "lights", lights: { slot: 1 } });
+    expect(reducer(lit, { type: "key", key: "G" }).lights.slot).toBe(1);
+    expect(reducer(lit, { type: "labels", labels: "names" }).lights.slot).toBe(1);
+  });
+
   it("keeps the tempo between 60 and 150", () => {
     expect(reducer(initialState, { type: "bpm", bpm: 200 }).bpm).toBe(150);
     expect(reducer(initialState, { type: "bpm", bpm: 10 }).bpm).toBe(60);
@@ -107,5 +132,16 @@ describe("the store", () => {
     unsubscribe();
     store.dispatch({ type: "key", key: "E" });
     expect(listener).toHaveBeenCalledOnce();
+  });
+
+  it("keeps the same view through a lights change, and makes a new one for anything else", () => {
+    const store = createLabStore();
+    const first = store.getView();
+    expect(first).not.toHaveProperty("lights");
+    store.dispatch({ type: "lights", lights: { chord: 2, notes: [2, 4, 6], slot: 0 } });
+    expect(store.getView()).toBe(first);
+    store.dispatch({ type: "loop", loop: false });
+    expect(store.getView()).not.toBe(first);
+    expect(store.getView()).toMatchObject({ loop: false, key: "C" });
   });
 });

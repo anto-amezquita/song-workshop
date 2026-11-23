@@ -1,6 +1,6 @@
 "use client";
 
-import type { Ref } from "react";
+import { memo, type Ref } from "react";
 import { LessonPanel } from "./LessonPanel";
 import "./LessonPath.css";
 
@@ -21,8 +21,17 @@ type Props = {
   panelRef?: Ref<HTMLElement>;
 };
 
-/** Numbered steps through a lesson, each with a button that shows it happening. */
-export function LessonPath({ steps, current, onAction, highlighted, panelRef }: Props) {
+/**
+ * Numbered steps through a lesson, each with a button that shows it happening.
+ * Memoised: it re-renders only when its own props change, not with the lesson.
+ */
+export const LessonPath = memo(function LessonPath({
+  steps,
+  current,
+  onAction,
+  highlighted,
+  panelRef,
+}: Props) {
   return (
     <LessonPanel as="aside" label="Lesson path" highlighted={highlighted} ref={panelRef}>
       <h2 className="lesson-panel__heading">Lesson path</h2>
@@ -54,4 +63,4 @@ export function LessonPath({ steps, current, onAction, highlighted, panelRef }: 
       </ol>
     </LessonPanel>
   );
-}
+});

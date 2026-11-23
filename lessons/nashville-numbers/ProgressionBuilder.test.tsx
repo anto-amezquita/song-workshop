@@ -1,11 +1,12 @@
 // @vitest-environment jsdom
-import { cleanup, render, screen, within } from "@testing-library/react";
+import { act, cleanup, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useState } from "react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { chordsFor, scaleFor, type Degree } from "@/lib/music/theory";
 import { EMPTY_PROGRESSION } from "./copy";
 import { ProgressionBuilder } from "./ProgressionBuilder";
+import { renderWithStore } from "./renderWithStore";
 
 afterEach(cleanup);
 
@@ -27,7 +28,6 @@ function Building({ initial }: { initial: Degree[] }) {
         progression={progression}
         preset={null}
         building
-        litSlot={null}
         generation={generation}
         onPreset={() => {}}
         onBuild={() => {}}
@@ -41,12 +41,18 @@ function Building({ initial }: { initial: Degree[] }) {
   );
 }
 
+const litSlots = () =>
+  Array.from(
+    screen.getByRole("list", { name: "Progression" }).querySelectorAll(".progression__slot"),
+    (slot) => slot.hasAttribute("data-lit"),
+  );
+
 const slotButtons = () =>
   within(screen.getByRole("list", { name: "Progression" })).getAllByRole("button");
 
 describe("ProgressionBuilder", () => {
   it("shows the presets with their numbers, and the chosen one pressed", () => {
-    render(
+    renderWithStore(
       <ProgressionBuilder
         tonality="major"
         scale={scale}
@@ -55,13 +61,13 @@ describe("ProgressionBuilder", () => {
         progression={[0, 4, 5, 3]}
         preset="pop"
         building={false}
-        litSlot={1}
         generation={0}
         onPreset={() => {}}
         onBuild={() => {}}
         onRemove={() => {}}
         focusFirstChord={() => {}}
       />,
+      { slot: 1 },
     );
     const pop = screen.getByRole("button", { name: "Pop anthem 1–5–6m–4" });
     expect(pop.getAttribute("aria-pressed")).toBe("true");
@@ -72,17 +78,24 @@ describe("ProgressionBuilder", () => {
     const list = screen.getByRole("list", { name: "Progression" });
     expect(within(list).queryAllByRole("button")).toHaveLength(0);
     expect(within(list).getAllByRole("listitem")).toHaveLength(4);
-    expect(list.querySelectorAll("[data-lit]")).toHaveLength(1);
+    expect(litSlots()).toEqual([false, true, false, false]);
+  });
+
+  it("lights the slot the store says is playing", () => {
+    const { store } = renderWithStore(<Building initial={[0, 3, 4]} />);
+    expect(litSlots()).toEqual([false, false, false]);
+    act(() => store.dispatch({ type: "lights", lights: { slot: 2 } }));
+    expect(litSlots()).toEqual([false, false, true]);
   });
 
   it("shows the empty state with nothing added", () => {
-    render(<Building initial={[]} />);
+    renderWithStore(<Building initial={[]} />);
     expect(screen.getByText(EMPTY_PROGRESSION)).toBeTruthy();
     expect(screen.queryByRole("list", { name: "Progression" })).toBeNull();
   });
 
   it("names each slot's button by what it removes", () => {
-    render(<Building initial={[0, 5]} />);
+    renderWithStore(<Building initial={[0, 5]} />);
     expect(slotButtons().map((b) => b.getAttribute("aria-label"))).toEqual([
       "Remove bar 1: 1, C (C major)",
       "Remove bar 2: 6m, Am (A minor)",
@@ -90,7 +103,7 @@ describe("ProgressionBuilder", () => {
   });
 
   it("removes a bar on click, and focuses the slot that took its place", async () => {
-    render(<Building initial={[0, 3, 4]} />);
+    renderWithStore(<Building initial={[0, 3, 4]} />);
     await userEvent.click(slotButtons()[1]!);
     expect(slotButtons()).toHaveLength(2);
     expect(document.activeElement?.getAttribute("aria-label")).toBe("Remove bar 2: 5, G (G major)");
@@ -98,7 +111,7 @@ describe("ProgressionBuilder", () => {
 
   it("removes by keyboard, focusing the bar before when the last one goes", async () => {
     const user = userEvent.setup();
-    render(<Building initial={[0, 3, 4]} />);
+    renderWithStore(<Building initial={[0, 3, 4]} />);
     slotButtons()[2]!.focus();
     await user.keyboard("{Enter}");
     expect(slotButtons()).toHaveLength(2);
@@ -109,7 +122,7 @@ describe("ProgressionBuilder", () => {
 
   it("focuses the first chord card when the progression empties", async () => {
     const user = userEvent.setup();
-    render(<Building initial={[2]} />);
+    renderWithStore(<Building initial={[2]} />);
     slotButtons()[0]!.focus();
     await user.keyboard("{Enter}");
     expect(screen.getByText(EMPTY_PROGRESSION)).toBeTruthy();
@@ -119,7 +132,7 @@ describe("ProgressionBuilder", () => {
   it("calls back for presets and Build your own", async () => {
     const onPreset = vi.fn();
     const onBuild = vi.fn();
-    render(
+    renderWithStore(
       <ProgressionBuilder
         tonality="minor"
         scale={scaleFor("C", "minor")}
@@ -128,7 +141,6 @@ describe("ProgressionBuilder", () => {
         progression={[0]}
         preset="minorpop"
         building={false}
-        litSlot={null}
         generation={0}
         onPreset={onPreset}
         onBuild={onBuild}

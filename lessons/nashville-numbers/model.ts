@@ -57,6 +57,13 @@ export const initialState: State = {
   slotsGeneration: 0,
 };
 
+/**
+ * The state without what's lit. A playback step only changes the lights, so
+ * the lesson reads this and doesn't re-render on every bar; the parts that
+ * light up read the lights themselves (lights.ts, architecture.md §12).
+ */
+export type View = Omit<State, "lights">;
+
 export type Action =
   | { type: "key"; key: Key }
   | { type: "tonality"; tonality: Tonality }
@@ -71,6 +78,18 @@ export type Action =
   | { type: "bpm"; bpm: number }
   | { type: "path"; step: number };
 
+/**
+ * The file rebuilds the slot row: every slot pops in again (§3.5), and none is
+ * lit until the next bar lights one. Keeping the lit slot would light whichever
+ * chord moved into a removed bar's place.
+ */
+function rebuildSlots(state: State): Pick<State, "slotsGeneration" | "lights"> {
+  return {
+    slotsGeneration: state.slotsGeneration + 1,
+    lights: { ...state.lights, slot: null },
+  };
+}
+
 export function reducer(state: State, action: Action): State {
   switch (action.type) {
     case "key":
@@ -84,7 +103,7 @@ export function reducer(state: State, action: Action): State {
         ...state,
         tonality: action.tonality,
         ...(state.building ? {} : { preset: first.id, progression: first.degrees }),
-        slotsGeneration: state.slotsGeneration + 1,
+        ...rebuildSlots(state),
       };
     }
 
@@ -99,7 +118,7 @@ export function reducer(state: State, action: Action): State {
         preset: action.id,
         building: false,
         progression: preset.degrees,
-        slotsGeneration: state.slotsGeneration + 1,
+        ...rebuildSlots(state),
       };
     }
 
@@ -109,7 +128,7 @@ export function reducer(state: State, action: Action): State {
         building: true,
         preset: null,
         progression: [],
-        slotsGeneration: state.slotsGeneration + 1,
+        ...rebuildSlots(state),
       };
 
     case "add":
@@ -117,7 +136,7 @@ export function reducer(state: State, action: Action): State {
       return {
         ...state,
         progression: [...state.progression, action.degree],
-        slotsGeneration: state.slotsGeneration + 1,
+        ...rebuildSlots(state),
       };
 
     case "remove":
@@ -125,7 +144,7 @@ export function reducer(state: State, action: Action): State {
       return {
         ...state,
         progression: state.progression.filter((_, i) => i !== action.index),
-        slotsGeneration: state.slotsGeneration + 1,
+        ...rebuildSlots(state),
       };
 
     case "playing":
@@ -145,22 +164,38 @@ export function reducer(state: State, action: Action): State {
   }
 }
 
+function withoutLights(state: State): View {
+  const view: Partial<State> = { ...state };
+  delete view.lights;
+  return view as View;
+}
+
+/** Whether anything other than the lights differs. */
+function sameView(a: State, b: State): boolean {
+  return (Object.keys(a) as (keyof State)[]).every((k) => k === "lights" || Object.is(a[k], b[k]));
+}
+
 export type LabStore = ReturnType<typeof createLabStore>;
 
 /**
  * The lesson's state outside React: the reducer behind getState, dispatch and
  * subscribe. The controller reads the latest state from it between renders
  * (the transport calls back on its own timer); React reads it through
- * useSyncExternalStore.
+ * useSyncExternalStore: the lesson through getView, the lit parts through
+ * getState (lights.ts).
  */
 export function createLabStore(initial: State = initialState) {
   let state = initial;
+  let view = withoutLights(initial);
   const listeners = new Set<() => void>();
   return {
     getState: () => state,
+    /** The state without the lights: the same object until something else changes. */
+    getView: () => view,
     dispatch(action: Action) {
       const next = reducer(state, action);
       if (next === state) return;
+      if (!sameView(state, next)) view = withoutLights(next);
       state = next;
       listeners.forEach((listener) => listener());
     },

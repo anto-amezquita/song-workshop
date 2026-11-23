@@ -4,6 +4,7 @@ import { useLayoutEffect, useRef } from "react";
 import { RollText } from "@/components/lesson/RollText";
 import { progressionPattern, type Chord, type Degree, type Scale } from "@/lib/music/theory";
 import { EMPTY_PROGRESSION, removeBarName } from "./copy";
+import { useLit } from "./lights";
 import type { Labels } from "./model";
 import { PRESETS, type PresetId } from "./presets";
 import type { Tonality } from "@/lib/music/theory";
@@ -17,8 +18,6 @@ type Props = {
   progression: readonly Degree[];
   preset: PresetId | null;
   building: boolean;
-  /** The slot that's playing. */
-  litSlot: number | null;
   /** Changes whenever the row is rebuilt, so every slot pops in again (§3.5). */
   generation: number;
   onPreset: (id: PresetId) => void;
@@ -37,7 +36,6 @@ export function ProgressionBuilder({
   progression,
   preset,
   building,
-  litSlot,
   generation,
   onPreset,
   onBuild,
@@ -60,6 +58,11 @@ export function ProgressionBuilder({
     const buttons = slots.current?.querySelectorAll<HTMLButtonElement>("button");
     buttons?.[Math.min(index, progression.length - 1)]?.focus();
   }, [progression, focusFirstChord]);
+
+  function remove(index: number) {
+    removed.current = index;
+    onRemove(index);
+  }
 
   return (
     <>
@@ -97,49 +100,67 @@ export function ProgressionBuilder({
           aria-label="Progression"
           data-building={building || undefined}
         >
-          {progression.map((degree, i) => {
-            const chord = chords[degree]!;
-            const [primary, secondary] =
-              labels === "numbers" ? [chord.number, chord.name] : [chord.name, chord.number];
-            const content = (
-              <>
-                <span className="progression__bar">Bar {i + 1}</span>{" "}
-                <span className="progression__primary">
-                  <RollText text={primary} delay={i * 45} />
-                </span>{" "}
-                <span className="progression__secondary">
-                  <RollText text={secondary} delay={i * 45 + 40} />
-                </span>
-              </>
-            );
-            const slotProps = {
-              className: "progression__slot",
-              "data-lit": litSlot === i || undefined,
-              style: { animationDelay: `${i * 50}ms` },
-            };
-            return (
-              <li key={`${generation}-${i}`}>
-                {building ? (
-                  <button
-                    type="button"
-                    {...slotProps}
-                    title="Tap to remove"
-                    aria-label={removeBarName(i, primary, secondary, chord, scale)}
-                    onClick={() => {
-                      removed.current = i;
-                      onRemove(i);
-                    }}
-                  >
-                    {content}
-                  </button>
-                ) : (
-                  <div {...slotProps}>{content}</div>
-                )}
-              </li>
-            );
-          })}
+          {progression.map((degree, i) => (
+            <Slot
+              key={`${generation}-${i}`}
+              index={i}
+              chord={chords[degree]!}
+              scale={scale}
+              labels={labels}
+              onRemove={building ? remove : undefined}
+            />
+          ))}
         </ol>
       )}
     </>
+  );
+}
+
+type SlotProps = {
+  index: number;
+  chord: Chord;
+  scale: Scale;
+  labels: Labels;
+  /** Set in building mode, where the slot is a button that removes its bar (R3). */
+  onRemove?: (index: number) => void;
+};
+
+/** One bar. It reads its own lit state, so playing it re-renders only this slot. */
+function Slot({ index, chord, scale, labels, onRemove }: SlotProps) {
+  const lit = useLit((lights) => lights.slot === index);
+  const [primary, secondary] =
+    labels === "numbers" ? [chord.number, chord.name] : [chord.name, chord.number];
+  const content = (
+    <>
+      <span className="progression__bar">Bar {index + 1}</span>{" "}
+      <span className="progression__primary">
+        <RollText text={primary} delay={index * 45} />
+      </span>{" "}
+      <span className="progression__secondary">
+        <RollText text={secondary} delay={index * 45 + 40} />
+      </span>
+    </>
+  );
+  const slotProps = {
+    className: "progression__slot",
+    "data-lit": lit || undefined,
+    style: { animationDelay: `${index * 50}ms` },
+  };
+  return (
+    <li>
+      {onRemove ? (
+        <button
+          type="button"
+          {...slotProps}
+          title="Tap to remove"
+          aria-label={removeBarName(index, primary, secondary, chord, scale)}
+          onClick={() => onRemove(index)}
+        >
+          {content}
+        </button>
+      ) : (
+        <div {...slotProps}>{content}</div>
+      )}
+    </li>
   );
 }

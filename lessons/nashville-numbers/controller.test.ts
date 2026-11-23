@@ -12,6 +12,7 @@ function setup() {
     playChord: vi.fn(),
     playNote: vi.fn(),
     silence: vi.fn(),
+    close: vi.fn(),
     status: () => "running" as const,
     onStatusChange: () => () => {},
   } satisfies AudioEngine;
@@ -165,6 +166,48 @@ describe("tapping a chord", () => {
   });
 });
 
+describe("changing your own progression while it plays", () => {
+  it("unlights the playing slot until the next bar, as the file's rebuild does", () => {
+    const { c, engine, s } = setup();
+    c.startBuilding();
+    c.tapChord(0);
+    c.tapChord(3);
+    c.tapChord(4);
+    c.togglePlay();
+    vi.advanceTimersByTime(2400); // bar 2: chord 4 (degree 3) in slot 1
+    expect(s().lights).toMatchObject({ chord: 3, slot: 1 });
+
+    // Removing bar 1 moves chord 5 (degree 4) into slot 1. It isn't playing, so it isn't lit.
+    c.removeBar(0);
+    expect(s().progression).toEqual([3, 4]);
+    expect(s().lights).toMatchObject({ chord: 3, slot: null });
+
+    // The bar counter carries on: two bars left, so it loops to bar 1.
+    vi.advanceTimersByTime(2400);
+    expect(engine.playChord).toHaveBeenLastCalledWith(voicing("C", 3), 2.4);
+    expect(s().lights).toMatchObject({ chord: 3, slot: 0 });
+
+    // Adding a chord rebuilds the slots too.
+    c.tapChord(5);
+    expect(s().progression).toEqual([3, 4, 5]);
+    expect(s().lights.slot).toBeNull();
+    vi.advanceTimersByTime(2400);
+    expect(engine.playChord).toHaveBeenLastCalledWith(voicing("C", 4), 2.4);
+    expect(s().lights).toMatchObject({ chord: 4, slot: 1 });
+  });
+
+  it("stops by itself when the last bar is removed, with nothing lit", () => {
+    const { c, s } = setup();
+    c.startBuilding();
+    c.tapChord(2);
+    c.togglePlay();
+    c.removeBar(0);
+    vi.advanceTimersByTime(2400);
+    expect(s().playing).toBe(false);
+    expect(s().lights).toEqual({ chord: null, notes: [], slot: null });
+  });
+});
+
 describe("Play scale and Play all seven", () => {
   it("plays the eight notes 340ms apart, lighting each, then unlights", () => {
     const { c, engine, s } = setup();
@@ -266,12 +309,12 @@ describe("the lesson path", () => {
 });
 
 describe("dispose", () => {
-  it("stops every timer and sound", () => {
+  it("stops every timer and closes the audio context", () => {
     const { c, engine } = setup();
     c.togglePlay();
     c.dispose();
     vi.advanceTimersByTime(10_000);
     expect(engine.playChord).toHaveBeenCalledOnce();
-    expect(engine.silence).toHaveBeenCalled();
+    expect(engine.close).toHaveBeenCalledOnce();
   });
 });

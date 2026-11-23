@@ -15,6 +15,7 @@ export type AudioContextLike = Pick<
   | "state"
   | "destination"
   | "resume"
+  | "close"
   | "createGain"
   | "createOscillator"
   | "createBiquadFilter"
@@ -28,6 +29,11 @@ export type AudioEngine = {
   playNote(midi: number, seconds?: number, velocity?: number): void;
   /** Fades every sounding voice out. */
   silence(): void;
+  /**
+   * Closes the audio context, for when the lesson goes away, so it doesn't stay
+   * open after the page has moved on. The next sound would make a new one.
+   */
+  close(): void;
   status(): AudioStatus;
   /** Called whenever the status changes. Returns a function that stops listening. */
   onStatusChange(listener: (status: AudioStatus) => void): () => void;
@@ -78,9 +84,15 @@ export function createAudioEngine(createContext: ContextFactory = browserContext
       }
     }
     if (ctx.state === "suspended") {
-      ctx.resume().then(
-        () => setStatus("running"),
-        () => setStatus("unavailable"),
+      // A context closed in the meantime doesn't get to set the status.
+      const resuming = ctx;
+      resuming.resume().then(
+        () => {
+          if (ctx === resuming) setStatus("running");
+        },
+        () => {
+          if (ctx === resuming) setStatus("unavailable");
+        },
       );
     } else {
       setStatus("running");
@@ -161,6 +173,19 @@ export function createAudioEngine(createContext: ContextFactory = browserContext
         } catch {
           // A voice that has already ended can't be scheduled; it's silent anyway.
         }
+      });
+    },
+
+    close() {
+      const closing = ctx;
+      if (!closing) return;
+      ctx = null;
+      master = null;
+      voices.clear();
+      // Back to no context yet. "Unavailable" stays: closing doesn't bring sound back.
+      if (current === "running") setStatus("idle");
+      closing.close().catch(() => {
+        // Already closed or closing; either way it's gone.
       });
     },
 

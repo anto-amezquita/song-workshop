@@ -217,7 +217,7 @@ All in code, no persistence.
 - **Chord:** degree 0–6, quality `'major' | 'minor' | 'dim'`, number (`'6m'`), name (`'Am'`), chord tones as scale degrees.
 - **Preset:** id, name, degrees. Five major, four minor, values as in the file.
 - **Path step:** title, description, action label, action id. The lesson maps action ids to what they do.
-- **Lesson state** (a pure reducer in a small store, read with `useSyncExternalStore`; see `architecture.md` §4): key, tonality, label mode, progression (≤ 8 degrees), preset id or none, building, playing, current bar, loop, tempo, current path step or none.
+- **Lesson state** (a pure reducer in a small store, read with `useSyncExternalStore`; see `architecture.md` §4): key, tonality, label mode, progression (≤ 8 degrees), preset id or none, building, playing, current bar, loop, tempo, current path step or none. What's lit (chord, notes, slot) is read separately by the parts that light up, so a playback step doesn't re-render the lesson (§5). Rebuilding the slots unlights the playing slot until the next bar, as the file's rebuild does.
 
 ---
 
@@ -259,7 +259,7 @@ Self-hosted (Q2). Bricolage Grotesque with its optical-size axis (12–96) and w
 
 ### 7.6 Sound and time
 
-- `lib/music/audio/`: one lazy `AudioContext`, the file's chain and voices, a voice set so Stop can fade them all, disconnect on end. Exposes `playChord`, `playNote`, `silence`, and an `available` flag for Q8.
+- `lib/music/audio/`: one lazy `AudioContext`, the file's chain and voices, a voice set so Stop can fade them all, disconnect on end. Exposes `playChord`, `playNote`, `silence`, and an `available` flag for Q8. `close` shuts the context when the lesson unmounts; the next sound would make a new one.
 - `lib/music/transport/`: a bar loop on `setTimeout`, calling the lesson back with each bar index. It also runs the two one-off sequences ("Play scale", "Play all seven") so they cancel each other, as in the file.
 - The lesson's reducer never touches audio. Effects and event handlers do.
 

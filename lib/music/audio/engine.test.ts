@@ -79,6 +79,7 @@ class FakeContext {
   oscillators: FakeOscillator[] = [];
   filters: FakeFilter[] = [];
   resume = vi.fn(() => Promise.resolve());
+  close = vi.fn(() => Promise.resolve());
   createGain() {
     const g = new FakeGain();
     this.gains.push(g);
@@ -245,6 +246,47 @@ describe("the audio engine", () => {
     const before = ctx.oscillators.length;
     engine.playChord(C_MAJOR, 1);
     expect(ctx.oscillators.length).toBe(before);
+  });
+
+  it("closes the context, and makes a new one for the next sound", () => {
+    const contexts: FakeContext[] = [];
+    const engine = createAudioEngine(() => {
+      const ctx = new FakeContext();
+      contexts.push(ctx);
+      return ctx as unknown as AudioContextLike;
+    });
+    const seen: string[] = [];
+    engine.onStatusChange((s) => seen.push(s));
+    expect(() => engine.close()).not.toThrow(); // nothing to close yet
+
+    engine.playChord(C_MAJOR, 1);
+    engine.close();
+    expect(contexts[0]!.close).toHaveBeenCalledOnce();
+    expect(engine.status()).toBe("idle");
+    expect(seen).toEqual(["running", "idle"]);
+
+    engine.playNote(60);
+    expect(contexts).toHaveLength(2);
+    expect(engine.status()).toBe("running");
+  });
+
+  it("doesn't let a context closed while resuming set the status", async () => {
+    const { ctx, engine } = setup();
+    ctx.state = "suspended";
+    ctx.resume.mockImplementation(() => Promise.reject(new Error("closed")));
+    engine.playNote(60);
+    engine.close();
+    await new Promise((r) => setTimeout(r, 0));
+    expect(engine.status()).toBe("idle");
+  });
+
+  it("keeps sound unavailable after closing", () => {
+    const engine = createAudioEngine(() => {
+      throw new Error("Web Audio isn't available");
+    });
+    engine.playNote(60);
+    engine.close();
+    expect(engine.status()).toBe("unavailable");
   });
 
   it("reports sound as unavailable when there's no Web Audio, without throwing", () => {

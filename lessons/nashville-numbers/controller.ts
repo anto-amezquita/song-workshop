@@ -216,12 +216,12 @@ export function createController({ getState, dispatch, engine, highlight, say }:
       }
     },
 
-    /** Stops everything, for when the lesson unmounts. */
+    /** Stops everything and closes the audio context, for when the lesson unmounts. */
     dispose() {
       transport.stop();
       sequencer.cancel();
       clearTimeout(tapTimer);
-      engine.silence();
+      engine.close();
     },
   };
 }
