@@ -2,7 +2,7 @@
 
 ## Status
 
-Accepted (2026-11-22). The approach is decided. How the file's timings are grouped into tokens is a proposal.
+Accepted (2026-11-22). The approach is decided. The grouping of the file's timings into tokens was approved on 2026-11-23 in the port spec (`specs/2026-11-23-nashville-number-lab-port.md`, C-07).
 
 ## Context
 
@@ -26,7 +26,7 @@ Keep the lesson's current feel. Its easing and durations become motion tokens of
 ### Negative
 
 - Design-system components inside a lesson keep the design system's own motion, so they can move slightly differently from the lesson's own components.
-- Any grouping of the file's timings into fewer tokens changes some timings. `docs/brand.md` §16 lists the proposed grouping and every timing it would change, so the side-by-side check knows what to expect. Grouping nothing, one token per timing in the file, is the fallback.
+- Any grouping of the file's timings into fewer tokens changes some timings. `docs/brand.md` §16 lists the grouping and every timing it changes, so the side-by-side check knows what to expect. Grouping nothing, one token per timing in the file, is the fallback.
 
 ## Related files
 
