@@ -3,7 +3,7 @@
 > **Status (2026-11-23): approved by Antonio, with every proposal as written.** Issue: AME-78.
 >
 > - **Facts** are what `Nashville-Number-Lab.html` does today, or what `@amezquita/design-system` 1.7.0 ships. They're written plainly.
-> - **Decisions** have an ID: `R1`–`R6` resolve the AME-75 review findings (§9.1), `Q1`–`Q20` answer the open questions in the docs (§9.2), and `C-01`–`C-15` are deliberate changes from the file (§3.4). C-14 was added in phase 4 and approved on 2026-11-23. C-15 was added in phase 5 and is waiting for approval.
+> - **Decisions** have an ID: `R1`–`R6` resolve the AME-75 review findings (§9.1), `Q1`–`Q20` answer the open questions in the docs (§9.2), and `C-01`–`C-15` are deliberate changes from the file (§3.4). C-14 was added in phase 4 and approved on 2026-11-23. C-15 was added in phase 5 and approved on 2026-11-23.
 > - **Docs follow the spec.** The doc and decision changes in §12 are the first commit, before any code. The host is AME-87 (Q1).
 
 ---
