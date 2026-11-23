@@ -1,0 +1,53 @@
+.segment-switch {
+  position: relative;
+  display: inline-flex;
+  padding: var(--space-1);
+  background-color: var(--color-surface-tertiary);
+  border: var(--border-width-default) solid var(--color-border-default);
+  border-radius: var(--border-radius-pill);
+  isolation: isolate;
+}
+
+.segment-switch__option {
+  position: relative;
+  z-index: 1;
+  border: 0;
+  background: none;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--border-radius-pill);
+  font-weight: var(--font-weight-control);
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  transition: color var(--song-workshop-duration-state) var(--song-workshop-easing-settle);
+}
+
+.segment-switch[data-size="small"] .segment-switch__option {
+  padding: 6px var(--space-3);
+  font-size: 0.82rem;
+}
+
+.segment-switch__option[aria-checked="true"] {
+  color: var(--color-accent-foreground);
+}
+
+/* Until the thumb has been measured (no JavaScript yet), the chosen option fills itself. */
+.segment-switch:not([data-measured]) .segment-switch__option[aria-checked="true"] {
+  background-color: var(--color-accent-default);
+}
+
+.segment-switch__thumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  border-radius: var(--border-radius-pill);
+  background-color: var(--color-accent-default);
+  transition:
+    transform var(--song-workshop-duration-slide) var(--song-workshop-easing-settle),
+    width var(--song-workshop-duration-slide) var(--song-workshop-easing-settle),
+    background-color var(--song-workshop-duration-tonality) var(--song-workshop-easing-settle);
+}
+
+.segment-switch:not([data-measured]) .segment-switch__thumb {
+  visibility: hidden;
+}

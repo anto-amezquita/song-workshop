@@ -78,6 +78,7 @@ components/lesson/                  shared by every lesson
   SegmentSwitch                     two-to-five-way switch with a sliding thumb
 hooks/
   useSlidingIndicator.ts            measures the chosen item; moves the thumb or indicator
+  usePanelHighlight.ts              one highlighted panel at a time, scrolled into view if needed
 lib/music/
   theory/                           note spelling, scales, modes, chords
   audio/                            audio context, voices, chord voicing, silence

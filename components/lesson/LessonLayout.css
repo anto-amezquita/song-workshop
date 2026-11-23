@@ -1,0 +1,77 @@
+/* One quiet column of panels with a sticky lesson path beside it. */
+.lesson-layout {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding-block: var(--space-8) 56px;
+  padding-left: max(var(--space-4), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--space-4), env(safe-area-inset-right, 0px));
+}
+
+.lesson-layout__header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: var(--space-6);
+  max-width: 62ch;
+}
+
+.lesson-layout__eyebrow {
+  font-size: var(--font-size-xs);
+  letter-spacing: var(--song-workshop-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--color-accent-text);
+  font-weight: var(--song-workshop-font-weight-strong);
+  transition: color var(--song-workshop-duration-tonality) var(--song-workshop-easing-settle);
+}
+
+.lesson-layout__title {
+  margin: 0;
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.02;
+  letter-spacing: var(--letter-spacing-heading);
+  text-wrap: balance;
+}
+
+.lesson-layout__intro {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-base);
+}
+
+.lesson-layout__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: var(--space-5);
+  align-items: start;
+}
+
+.lesson-layout__main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.lesson-layout__aside {
+  position: sticky;
+  top: calc(env(safe-area-inset-top, 0px) + var(--space-4));
+}
+
+.lesson-layout__footer {
+  margin-top: var(--space-8);
+  color: var(--color-text-secondary);
+  font-size: 0.8rem;
+}
+
+/* The lesson path moves under the lesson and stops being sticky (architecture.md §4). */
+@media (max-width: 900px) {
+  .lesson-layout__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .lesson-layout__aside {
+    position: static;
+  }
+}

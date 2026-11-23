@@ -1,0 +1,82 @@
+.lesson-path {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  counter-reset: lesson-step;
+}
+
+.lesson-path__step {
+  counter-increment: lesson-step;
+  position: relative;
+  padding: var(--space-3) var(--space-3) var(--space-3) 46px;
+  border-radius: var(--song-workshop-radius-tile);
+  transition: background-color var(--song-workshop-duration-state)
+    var(--song-workshop-easing-settle);
+}
+
+/* The step number: an outlined circle, filled once the step is current or done. */
+.lesson-path__step::before {
+  content: counter(lesson-step);
+  position: absolute;
+  left: 10px;
+  top: var(--space-3);
+  width: 26px;
+  height: 26px;
+  border-radius: var(--border-radius-pill);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-family-heading);
+  font-weight: var(--song-workshop-font-weight-step);
+  font-size: 0.85rem;
+  border: 1.5px solid var(--color-border-default);
+  transition:
+    background-color var(--song-workshop-duration-state) var(--song-workshop-easing-settle),
+    border-color var(--song-workshop-duration-state) var(--song-workshop-easing-settle),
+    color var(--song-workshop-duration-state) var(--song-workshop-easing-settle);
+}
+
+.lesson-path__step[data-state="current"] {
+  background-color: var(--lesson-soft, var(--song-workshop-soft-major));
+}
+
+.lesson-path__step[data-state="current"]::before,
+.lesson-path__step[data-state="done"]::before {
+  background-color: var(--color-accent-default);
+  border-color: var(--color-accent-default);
+  color: var(--color-accent-foreground);
+}
+
+.lesson-path__title {
+  margin: 0 0 2px;
+  font-size: 0.95rem;
+  font-weight: var(--song-workshop-font-weight-strong);
+}
+
+.lesson-path__description {
+  margin: 0 0 var(--space-2);
+  font-size: 0.84rem;
+  color: var(--color-text-secondary);
+}
+
+/* The action: accent text with an arrow that slides out on hover. */
+.lesson-path__action {
+  border: 0;
+  background: none;
+  padding: 0;
+  color: var(--color-accent-text);
+  font-weight: var(--song-workshop-font-weight-strong);
+  font-size: 0.86rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition:
+    gap var(--song-workshop-duration-move) var(--song-workshop-easing-settle),
+    color var(--song-workshop-duration-tonality) var(--song-workshop-easing-settle);
+}
+
+.lesson-path__action:hover {
+  gap: 10px;
+}

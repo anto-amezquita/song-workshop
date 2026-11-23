@@ -3,7 +3,7 @@
 > **Status (2026-11-23): approved by Antonio, with every proposal as written.** Issue: AME-78.
 >
 > - **Facts** are what `Nashville-Number-Lab.html` does today, or what `@amezquita/design-system` 1.7.0 ships. They're written plainly.
-> - **Decisions** have an ID: `R1`–`R6` resolve the AME-75 review findings (§9.1), `Q1`–`Q20` answer the open questions in the docs (§9.2), and `C-01`–`C-13` are deliberate changes from the file (§3.4).
+> - **Decisions** have an ID: `R1`–`R6` resolve the AME-75 review findings (§9.1), `Q1`–`Q20` answer the open questions in the docs (§9.2), and `C-01`–`C-14` are deliberate changes from the file (§3.4). C-14 was added in phase 4 and is waiting for approval.
 > - **Docs follow the spec.** The doc and decision changes in §12 are the first commit, before any code. The host is AME-87 (Q1).
 
 ---
@@ -160,6 +160,7 @@ The side-by-side check expects these, and only these.
 | C-11 | Key pills get full names for screen readers ("D♭ major", "B♭ minor"); what they show doesn't change | "F♯m" reads as "F sharp m" |
 | C-12 | Uppercase labels share one tracking, 0.1em: eyebrow 0.12 → 0.1, chord quality 0.09 → 0.1, "Bar n" 0.08 → 0.1 | R6 |
 | C-13 | The lesson is also served at `/` | Q5 |
+| C-14 | On load, the switch thumbs and the key indicator appear in place. In the file they grow out of the panel's top-left corner, because the first placement animates from zero size. Before JavaScript runs, the chosen option paints itself instead | Found in phase 4: prerendered HTML has no measurements, and a grow-in after hydration would flicker |
 
 ### 3.5 Quirks carried over on purpose
 
@@ -270,8 +271,8 @@ Self-hosted (Q2). Bricolage Grotesque with its optical-size axis (12–96) and w
 | Component | Where | From | Notes |
 |---|---|---|---|
 | `LessonLayout` | `components/lesson/` | Project | Header, main column, sticky aside, footer. Lesson-agnostic |
-| `LessonPanel` | `components/lesson/` | Project | `section` with `aria-label`; highlight and scroll-into-view through a ref handle |
-| `LessonPath` | `components/lesson/` | Project | Numbered steps from data; current/done state; calls back with the step's action id |
+| `LessonPanel` | `components/lesson/` | Project | `section` or `aside` with `aria-label`; the highlight comes from `usePanelHighlight` (`hooks/`) |
+| `LessonPath` | `components/lesson/` | Project | Numbered steps from data; current/done state, with `aria-current="step"` on the current one; calls back with the step's index |
 | `RollText` | `components/lesson/` | Project | §7.7 |
 | `SegmentSwitch` | `components/lesson/` | Project | Two-to-five-way radio group with a sliding thumb (decisions/0003). Sizes `default` and `small` |
 | `useSlidingIndicator` | `hooks/` | Project | Shared by `SegmentSwitch` and `KeyPicker` |

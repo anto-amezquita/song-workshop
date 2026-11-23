@@ -1,0 +1,22 @@
+/* The parent clips the text as it rolls up into place (overflow: hidden there). */
+.roll-text {
+  display: inline-block;
+}
+
+.roll-text[data-rolling] {
+  animation: roll-text-in var(--song-workshop-duration-roll) var(--song-workshop-easing-settle) both;
+}
+
+@keyframes roll-text-in {
+  from {
+    opacity: 0;
+    transform: translateY(55%);
+    filter: blur(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
