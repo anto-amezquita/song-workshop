@@ -2,6 +2,7 @@
 
 import type { KeyboardEvent } from "react";
 import { useSlidingIndicator } from "@/hooks/useSlidingIndicator";
+import { nextRadioIndex } from "./radioKeys";
 import "./SegmentSwitch.css";
 
 export type SegmentOption<V extends string> = { value: V; label: string };
@@ -14,9 +15,6 @@ type Props<V extends string> = {
   onChange: (value: V) => void;
   size?: "default" | "small";
 };
-
-const NEXT_KEYS = new Set(["ArrowRight", "ArrowDown"]);
-const PREVIOUS_KEYS = new Set(["ArrowLeft", "ArrowUp"]);
 
 /**
  * A two-to-five-way switch whose thumb slides to the chosen option
@@ -35,10 +33,9 @@ export function SegmentSwitch<V extends string>({
   });
 
   function onKeyDown(event: KeyboardEvent<HTMLButtonElement>, index: number) {
-    const step = NEXT_KEYS.has(event.key) ? 1 : PREVIOUS_KEYS.has(event.key) ? -1 : 0;
-    if (!step) return;
+    const next = nextRadioIndex(event.key, index, options.length);
+    if (next === null) return;
     event.preventDefault();
-    const next = (index + step + options.length) % options.length;
     onChange(options[next]!.value);
     container.current?.querySelectorAll<HTMLButtonElement>('[role="radio"]')[next]?.focus();
   }

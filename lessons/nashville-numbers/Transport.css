@@ -1,0 +1,79 @@
+.transport {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.transport__play {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--border-radius-pill);
+  border: 0;
+  background-color: var(--color-accent-default);
+  color: var(--color-accent-foreground);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 10px 24px -12px var(--color-accent-default);
+  transition:
+    transform var(--song-workshop-duration-move) var(--song-workshop-easing-settle),
+    background-color var(--song-workshop-duration-tonality) var(--song-workshop-easing-settle);
+}
+
+.transport__play:hover {
+  transform: scale(1.06);
+}
+
+.transport__play:active {
+  transform: scale(0.95);
+}
+
+/* Both icons sit in the same cell; the play icon turns into the stop icon. */
+.transport__icon {
+  grid-area: 1 / 1;
+  transition:
+    opacity var(--song-workshop-duration-state) var(--song-workshop-easing-settle),
+    transform var(--song-workshop-duration-move) var(--song-workshop-easing-settle);
+}
+
+.transport__icon--stop {
+  opacity: 0;
+  transform: scale(0.6) rotate(-45deg);
+}
+
+.transport__play[data-playing] .transport__icon--play {
+  opacity: 0;
+  transform: scale(0.6) rotate(45deg);
+}
+
+.transport__play[data-playing] .transport__icon--stop {
+  opacity: 1;
+  transform: none;
+}
+
+.transport__tempo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.88rem;
+  color: var(--color-text-secondary);
+}
+
+.transport__tempo input[type="range"] {
+  accent-color: var(--color-accent-default);
+  width: 140px;
+}
+
+.transport__tempo output {
+  display: inline-block;
+  min-width: 3ch;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-primary);
+  font-weight: var(--song-workshop-font-weight-strong);
+}
+
+.transport__no-sound {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: 0.88rem;
+}

@@ -11,6 +11,11 @@ for (const path of pages) {
 
       test("passes axe", async ({ page }) => {
         await page.goto(path);
+        // The lesson rolls its labels in on load. Mid-roll, text is partly faded,
+        // which axe would measure as low contrast; check the page people settle on.
+        await page.waitForFunction(() =>
+          document.getAnimations().every((a) => a.playState === "finished"),
+        );
         const results = await new AxeBuilder({ page })
           .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"])
           .analyze();

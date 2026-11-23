@@ -1,0 +1,78 @@
+.scale-row {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: var(--space-1);
+  padding-top: 22px;
+}
+
+.scale-row__note {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.scale-row__dot {
+  width: min(52px, 100%);
+  aspect-ratio: 1;
+  max-width: 100%;
+  border-radius: var(--border-radius-pill);
+  display: grid;
+  place-items: center;
+  border: 1.5px solid var(--color-border-default);
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-heading);
+  font-size: clamp(0.85rem, 2.4vw, 1.1rem);
+  overflow: hidden;
+  transition:
+    background-color var(--song-workshop-duration-state) var(--song-workshop-easing-settle),
+    color var(--song-workshop-duration-state) var(--song-workshop-easing-settle),
+    border-color var(--song-workshop-duration-state) var(--song-workshop-easing-settle),
+    transform var(--song-workshop-duration-move) var(--song-workshop-easing-settle);
+}
+
+.scale-row__note[data-octave] .scale-row__dot {
+  border-style: dashed;
+}
+
+.scale-row__note[data-home] .scale-row__dot {
+  border-color: var(--color-accent-default);
+}
+
+.scale-row__note[data-lit] .scale-row__dot {
+  background-color: var(--color-accent-default);
+  border-color: var(--color-accent-default);
+  color: var(--color-accent-foreground);
+  transform: scale(1.08);
+}
+
+.scale-row__degree {
+  font-size: 0.78rem;
+  color: var(--color-text-secondary);
+  font-weight: var(--song-workshop-font-weight-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+/* W or H, sitting over the gap to the next note. */
+.scale-row__step {
+  position: absolute;
+  top: -22px;
+  right: 0;
+  transform: translateX(calc(50% + 2px));
+  font-size: 0.7rem;
+  font-weight: var(--song-workshop-font-weight-strong);
+  letter-spacing: 0.04em;
+  color: var(--color-text-secondary);
+  padding: 1px 6px;
+  border-radius: 6px;
+  background-color: var(--color-surface-tertiary);
+  transition:
+    color var(--song-workshop-duration-state) var(--song-workshop-easing-settle),
+    background-color var(--song-workshop-duration-state) var(--song-workshop-easing-settle);
+}
+
+.scale-row__step[data-half] {
+  color: var(--color-accent-text);
+  background-color: var(--lesson-soft);
+}

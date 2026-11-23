@@ -3,7 +3,7 @@
 > **Status (2026-11-23): approved by Antonio, with every proposal as written.** Issue: AME-78.
 >
 > - **Facts** are what `Nashville-Number-Lab.html` does today, or what `@amezquita/design-system` 1.7.0 ships. They're written plainly.
-> - **Decisions** have an ID: `R1`–`R6` resolve the AME-75 review findings (§9.1), `Q1`–`Q20` answer the open questions in the docs (§9.2), and `C-01`–`C-14` are deliberate changes from the file (§3.4). C-14 was added in phase 4 and is waiting for approval.
+> - **Decisions** have an ID: `R1`–`R6` resolve the AME-75 review findings (§9.1), `Q1`–`Q20` answer the open questions in the docs (§9.2), and `C-01`–`C-15` are deliberate changes from the file (§3.4). C-14 was added in phase 4 and approved on 2026-11-23. C-15 was added in phase 5 and is waiting for approval.
 > - **Docs follow the spec.** The doc and decision changes in §12 are the first commit, before any code. The host is AME-87 (Q1).
 
 ---
@@ -101,7 +101,7 @@ This is the behaviour to keep. Timings are the file's; §3.4 C-07 says which one
   - "Loop" toggle, on by default. With Loop off, playback stops after the last bar.
 - Hint: "Change the key while it plays. The numbers stay put and only the chord names move."
 
-**Playback.** One chord per bar, four beats at the tempo. Each bar lights its chord card, the chord's notes in the scale and its slot; a lit slot grows to 104%. Changing key, tonality or labels while it plays carries on with the new chords. Stop fades every sounding voice out and unlights everything.
+**Playback.** One chord per bar, four beats at the tempo. Each bar lights its chord card, the chord's notes in the scale and its slot. (The file's CSS also scales a lit slot to 104%, but the slot's pop-in animation holds `transform: none` after it ends, so it never shows. Measured in Chromium: neither the file nor the port grows it. See §3.5.) Changing key, tonality or labels while it plays carries on with the new chords. Stop fades every sounding voice out and unlights everything.
 
 **Lesson path.** Five numbered steps, each with a title, a description and an action button with an arrow that slides out on hover. Pressing a step's button makes that step current (soft fill, filled number) and every earlier step done (filled number), then runs its action:
 
@@ -161,6 +161,7 @@ The side-by-side check expects these, and only these.
 | C-12 | Uppercase labels share one tracking, 0.1em: eyebrow 0.12 → 0.1, chord quality 0.09 → 0.1, "Bar n" 0.08 → 0.1 | R6 |
 | C-13 | The lesson is also served at `/` | Q5 |
 | C-14 | On load, the switch thumbs and the key indicator appear in place. In the file they grow out of the panel's top-left corner, because the first placement animates from zero size. Before JavaScript runs, the chosen option paints itself instead | Found in phase 4: prerendered HTML has no measurements, and a grow-in after hydration would flicker |
+| C-15 | Chord cards and building-mode slots have accessible names that contain their visible text, in the order shown (WCAG 2.5.3, Label in Name). Numbers first, the cards keep the file's names ("Chord 6m, Am minor"); names first, they read "Chord Am, 6m minor". Slot buttons read "Remove bar 2: 6m, Am (A minor)". The visible labels get real spaces between them, which changes nothing on screen | Found in phase 5: axe fails the file's names, which don't contain what the card shows |
 
 ### 3.5 Quirks carried over on purpose
 
@@ -170,6 +171,7 @@ These behave as in the file. Each could become its own issue later, but changing
 - Changing tonality doesn't stop playback; the bar counter carries on into the new progression.
 - Tapping a chord during playback plays it over the progression.
 - Step 4 moves the key even while something else is playing, and keeps whatever is playing.
+- A playing slot doesn't grow, although the CSS asks it to: the pop-in animation's end state wins. Kept identical, so it looks the same.
 
 ---
 
@@ -194,7 +196,7 @@ These behave as in the file. Each could become its own issue later, but changing
 
 ## 5. Non-functional requirements
 
-- **Accessibility.** WCAG 2.2 AA. Usable by keyboard alone. Every text pair in `brand.md` §12 passes, in both tonalities and both modes. The focus ring is at least 3:1 on every surface it sits on: measured 3.77:1 in the worst case (light major on the tint). Panels keep their `aria-label`s; the chord cards keep their names ("Chord 6m, Am minor"). Playback isn't announced bar by bar (Q7).
+- **Accessibility.** WCAG 2.2 AA. Usable by keyboard alone. Every text pair in `brand.md` §12 passes, in both tonalities and both modes. The focus ring is at least 3:1 on every surface it sits on: measured 3.77:1 in the worst case (light major on the tint). Panels keep their `aria-label`s; the chord cards keep their names with numbers first ("Chord 6m, Am minor") and follow the visible order with names first (C-15). Playback isn't announced bar by bar (Q7).
 - **Reduced motion.** As `brand.md` §16.
 - **Responsive.** §3.2. Nothing scrolls sideways at 320px.
 - **Performance.** A tap sounds with no noticeable delay on a mid-range phone. A playback step re-renders only the lit card, notes and slot, not the whole lesson (`architecture.md` §12).
@@ -214,7 +216,7 @@ All in code, no persistence.
 - **Chord:** degree 0–6, quality `'major' | 'minor' | 'dim'`, number (`'6m'`), name (`'Am'`), chord tones as scale degrees.
 - **Preset:** id, name, degrees. Five major, four minor, values as in the file.
 - **Path step:** title, description, action label, action id. The lesson maps action ids to what they do.
-- **Lesson state** (`useReducer`): key, tonality, label mode, progression (≤ 8 degrees), preset id or none, building, playing, current bar, loop, tempo, current path step or none.
+- **Lesson state** (a pure reducer in a small store, read with `useSyncExternalStore`; see `architecture.md` §4): key, tonality, label mode, progression (≤ 8 degrees), preset id or none, building, playing, current bar, loop, tempo, current path step or none.
 
 ---
 
@@ -332,7 +334,7 @@ The "not released yet" notes in `architecture.md`, `brand.md` and decisions/0002
 
 **R3. Removing a chord by keyboard** (should fix)
 
-Slots are an `ol` labelled "Progression", one `li` per bar. Outside building mode, a slot is plain content. In building mode, each slot's content is a `<button>`. It's named "Remove bar 2: 6m, A minor" whichever label mode is on, and keeps the file's "Tap to remove" tooltip. Focus after removing follows FR-07, and the live region says "Removed bar 2." (C-09). It looks the same as the file, apart from the focus ring. Listed as C-02.
+Slots are an `ol` labelled "Progression", one `li` per bar. Outside building mode, a slot is plain content. In building mode, each slot's content is a `<button>`. It's named by what it shows, then the chord said out loud: "Remove bar 2: 6m, Am (A minor)" (C-15). It keeps the file's "Tap to remove" tooltip. Focus after removing follows FR-07, and the live region says "Removed bar 2." (C-09). It looks the same as the file, apart from the focus ring. Listed as C-02.
 
 **R4. Where the green fails** (nice to have)
 

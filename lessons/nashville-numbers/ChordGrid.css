@@ -1,0 +1,105 @@
+.chord-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 10px;
+}
+
+/* Seven columns become four at 620px and below (architecture.md §4). */
+@media (max-width: 620px) {
+  .chord-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.chord-grid__chord {
+  position: relative;
+  border: var(--border-width-default) solid var(--color-border-default);
+  background-color: var(--color-surface-primary);
+  border-radius: var(--border-radius-lg);
+  padding: var(--space-4) 6px var(--space-3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-height: 118px;
+  transition:
+    transform var(--song-workshop-duration-move) var(--song-workshop-easing-settle),
+    background-color var(--song-workshop-duration-state) var(--song-workshop-easing-settle),
+    color var(--song-workshop-duration-state) var(--song-workshop-easing-settle),
+    border-color var(--song-workshop-duration-state) var(--song-workshop-easing-settle),
+    box-shadow var(--song-workshop-duration-move) var(--song-workshop-easing-settle);
+}
+
+.chord-grid__chord:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-accent-default);
+}
+
+.chord-grid__chord:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.chord-grid__chord[data-dim] {
+  border-style: dashed;
+}
+
+.chord-grid__primary {
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-display);
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  line-height: 1.1;
+  letter-spacing: var(--letter-spacing-heading);
+  overflow: hidden;
+  padding-inline: 2px;
+}
+
+.chord-grid__secondary {
+  font-family: var(--font-family-heading);
+  font-weight: var(--song-workshop-font-weight-strong);
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  overflow: hidden;
+  transition: color var(--song-workshop-duration-state) var(--song-workshop-easing-settle);
+}
+
+.chord-grid__quality {
+  margin-top: var(--space-1);
+  font-size: 0.68rem;
+  letter-spacing: var(--song-workshop-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  transition: color var(--song-workshop-duration-state) var(--song-workshop-easing-settle);
+}
+
+/* Lit: filled with the accent, lifted, with an accent-tinted shadow (Q10). */
+.chord-grid__chord[data-lit] {
+  background-color: var(--color-accent-default);
+  border-color: var(--color-accent-default);
+  color: var(--color-accent-foreground);
+  transform: translateY(-6px);
+  box-shadow: 0 14px 30px -14px var(--color-accent-default);
+}
+
+/* Full strength, not 85% as in the file, for contrast (C-04). */
+.chord-grid__chord[data-lit] .chord-grid__secondary,
+.chord-grid__chord[data-lit] .chord-grid__quality {
+  color: var(--color-accent-foreground);
+}
+
+.chord-grid__chord[data-home]::after {
+  content: "home";
+  position: absolute;
+  top: 7px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.6rem;
+  letter-spacing: var(--song-workshop-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--color-accent-text);
+  font-weight: var(--song-workshop-font-weight-strong);
+}
+
+.chord-grid__chord[data-home][data-lit]::after {
+  color: var(--color-accent-foreground);
+}
