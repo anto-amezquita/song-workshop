@@ -59,12 +59,16 @@ export const Transport = memo(function Transport({
           Tempo{" "}
           <input
             type="range"
+            aria-label="Tempo"
+            aria-valuetext={`${bpm} BPM`}
             min={MIN_BPM}
             max={MAX_BPM}
             value={bpm}
             onChange={(event) => onBpm(Number(event.target.value))}
           />{" "}
-          <span>
+          {/* The slider announces its value, so the output is hidden from screen
+              readers; as a status region it would announce every change again (C-16). */}
+          <span aria-hidden="true">
             <output>{bpm}</output> BPM
           </span>
         </label>

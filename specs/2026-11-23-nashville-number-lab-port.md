@@ -3,7 +3,7 @@
 > **Status (2026-11-23): approved by Antonio, with every proposal as written.** Issue: AME-78.
 >
 > - **Facts** are what `Nashville-Number-Lab.html` does today, or what `@amezquita/design-system` 1.7.0 ships. They're written plainly.
-> - **Decisions** have an ID: `R1`–`R6` resolve the AME-75 review findings (§9.1), `Q1`–`Q20` answer the open questions in the docs (§9.2), and `C-01`–`C-15` are deliberate changes from the file (§3.4). C-14 was added in phase 4 and approved on 2026-11-23. C-15 was added in phase 5 and approved on 2026-11-23.
+> - **Decisions** have an ID: `R1`–`R6` resolve the AME-75 review findings (§9.1), `Q1`–`Q20` answer the open questions in the docs (§9.2), and `C-01`–`C-16` are deliberate changes from the file (§3.4). C-14, C-15 and C-16 were added during the build (phases 4–6) and approved on 2026-11-23.
 > - **Docs follow the spec.** The doc and decision changes in §12 are the first commit, before any code. The host is AME-87 (Q1).
 
 ---
@@ -162,6 +162,7 @@ The side-by-side check expects these, and only these.
 | C-13 | The lesson is also served at `/` | Q5 |
 | C-14 | On load, the switch thumbs and the key indicator appear in place. In the file they grow out of the panel's top-left corner, because the first placement animates from zero size. Before JavaScript runs, the chosen option paints itself instead | Found in phase 4: prerendered HTML has no measurements, and a grow-in after hydration would flicker |
 | C-15 | Chord cards and building-mode slots have accessible names that contain their visible text, in the order shown (WCAG 2.5.3, Label in Name). Numbers first, the cards keep the file's names ("Chord 6m, Am minor"); names first, they read "Chord Am, 6m minor". Slot buttons read "Remove bar 2: 6m, Am (A minor)". The visible labels get real spaces between them, which changes nothing on screen | Found in phase 5: axe fails the file's names, which don't contain what the card shows |
+| C-16 | Three fixes for screen readers, none visible. The "Key" label is an `h2`, styled as before, so jumping by headings reaches the key panel. The tempo slider is named "Tempo" and announces "100 BPM"; the `<output>` beside it is hidden from screen readers, because as a status region it announced every change a second time. Chord 1's name ends in ", home", since its "home" tag is CSS | Found in the phase 6 accessibility review; all three are in the file too |
 
 ### 3.5 Quirks carried over on purpose
 

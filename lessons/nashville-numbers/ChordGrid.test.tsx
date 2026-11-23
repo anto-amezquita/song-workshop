@@ -13,7 +13,7 @@ describe("ChordGrid", () => {
   it("names each card as the file does, with numbers first", () => {
     render(<ChordGrid chords={chords} labels="numbers" lit={null} onTap={() => {}} />);
     expect(screen.getAllByRole("button").map((b) => b.getAttribute("aria-label"))).toEqual([
-      "Chord 1, C major",
+      "Chord 1, C major, home",
       "Chord 2m, Dm minor",
       "Chord 3m, Em minor",
       "Chord 4, F major",

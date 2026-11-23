@@ -36,8 +36,9 @@
   letter-spacing: var(--letter-spacing-subheading);
 }
 
-/* Small uppercase label over a value ("Key"). */
+/* Small uppercase label over a value ("Key"). It can be a heading, so it sets its own margin. */
 .lesson-panel__label {
+  margin: 0;
   font-size: 0.72rem;
   letter-spacing: var(--song-workshop-letter-spacing-caps);
   text-transform: uppercase;

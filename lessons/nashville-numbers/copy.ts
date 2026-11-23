@@ -68,7 +68,9 @@ export const NO_SOUND = "Sound isn't available in this browser. Everything else 
  * name, "Chord 6m, Am minor"; with names first, "Chord Am, 6m minor".
  */
 export function chordCardName(primary: string, secondary: string, chord: Chord): string {
-  return `Chord ${primary}, ${secondary} ${chord.quality}`;
+  // Chord 1's "home" tag is CSS, so the name says it too (C-16).
+  const home = chord.degree === 0 ? ", home" : "";
+  return `Chord ${primary}, ${secondary} ${chord.quality}${home}`;
 }
 
 /** A chord said out loud: "A minor", "B diminished", "F♯ major". */

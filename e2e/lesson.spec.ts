@@ -58,7 +58,7 @@ test.describe("the lesson path", () => {
   test("2: plays all seven chords, lighting each", async ({ page }) => {
     await path(page, /Play all seven/).click();
     await expect(panel(page, "Chords")).toHaveAttribute("data-highlighted");
-    await expect(litChord(page)).toHaveAccessibleName("Chord 1, C major");
+    await expect(litChord(page)).toHaveAccessibleName("Chord 1, C major, home");
     await expect(litChord(page)).toHaveAccessibleName("Chord 2m, Dm minor");
     await expect(page.locator(".lesson-path__step").first()).toHaveAttribute("data-state", "done");
   });
@@ -140,9 +140,9 @@ test("the whole lesson works by keyboard alone", async ({ page }) => {
 
   // A chord card, by Enter.
   await page.keyboard.press("Tab");
-  expect(await focused()).toBe("Chord G, 1 major"); // names first now (C-15)
+  expect(await focused()).toBe("Chord G, 1 major, home"); // names first now (C-15)
   await page.keyboard.press("Enter");
-  await expect(litChord(page)).toHaveAccessibleName("Chord G, 1 major");
+  await expect(litChord(page)).toHaveAccessibleName("Chord G, 1 major, home");
 
   // Build your own, add two chords, remove one, all by keyboard (R3).
   await page.getByRole("button", { name: "Build your own" }).focus();
@@ -159,7 +159,7 @@ test("the whole lesson works by keyboard alone", async ({ page }) => {
   await expect(removeButtons).toHaveCount(1);
   expect(await focused()).toBe("Remove bar 1: Bm, 3m (B minor)");
   await page.keyboard.press("Enter");
-  expect(await focused()).toBe("Chord G, 1 major");
+  expect(await focused()).toBe("Chord G, 1 major, home");
 
   // Transport: play and stop, tempo, Loop.
   await page.getByRole("button", { name: /^Rock & folk/ }).focus();
@@ -232,7 +232,7 @@ for (const colorScheme of ["light", "dark"] as const) {
       await expect(litChord(page)).toHaveCount(1);
       await check(page);
       await page.getByRole("button", { name: "Build your own" }).click();
-      await page.getByRole("button", { name: "Chord 1, C major" }).click();
+      await page.getByRole("button", { name: "Chord 1, C major, home" }).click();
       await page.getByRole("button", { name: "Chord 6m, Am minor" }).click();
       await check(page);
     });
@@ -246,8 +246,26 @@ for (const colorScheme of ["light", "dark"] as const) {
       await expect(litChord(page)).toHaveCount(1);
       await check(page);
       await page.getByRole("button", { name: "Build your own" }).click();
-      await page.getByRole("button", { name: "Chord 1m, Am minor" }).click();
+      await page.getByRole("button", { name: "Chord 1m, Am minor, home" }).click();
       await check(page);
     });
   });
 }
+
+test("screen readers get a Key heading, one tempo announcement and chord 1 as home (C-16)", async ({
+  page,
+}) => {
+  await page.goto(LESSON);
+  await expect(panel(page, "Key").getByRole("heading", { level: 2, name: "Key" })).toBeVisible();
+
+  const tempo = page.getByRole("slider", { name: "Tempo" });
+  await expect(tempo).toHaveAttribute("aria-valuetext", "100 BPM");
+  await tempo.focus();
+  await page.keyboard.press("ArrowRight");
+  await expect(tempo).toHaveAttribute("aria-valuetext", "101 BPM");
+  // Only the lesson's own live region is a status now, not the tempo output.
+  await expect(page.getByRole("status")).toHaveCount(1);
+
+  await expect(page.getByRole("button", { name: "Chord 1, C major, home" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Chord 5, G major" })).toBeVisible();
+});

@@ -64,7 +64,8 @@ export function NashvilleLab() {
         <LessonPanel label="Key" ref={register("key")} highlighted={highlighted === "key"}>
           <div className="nashville-lab__key-head">
             <div>
-              <div className="lesson-panel__label">Key</div>
+              {/* A heading, so jumping by headings reaches this panel too (C-16). */}
+              <h2 className="lesson-panel__label">Key</h2>
               <div className="nashville-lab__key-name">
                 <RollText text={keyTitle(state.key, state.tonality)} />
               </div>
