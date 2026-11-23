@@ -207,7 +207,7 @@ Not applicable. The one free value, tempo, comes from a range input with a fixed
 - Design system components bring their own semantics and keyboard handling.
 - Project components use native buttons. Choices of one-from-many (the key picker, `SegmentSwitch`) are radio groups with arrow-key movement. In the file today the key pills and both switches (major/minor, numbers/names) say `role="radio"` but have no arrow keys. The port adds them to all three, with only the chosen option in the tab order (port spec C-01).
 - In building mode, progression slots are buttons, so a chord can be removed by keyboard. Focus then goes to the slot now in that place, or the one before, or the first chord card if the progression is empty (C-02).
-- Playback isn't announced bar by bar; the play button's name says whether it's playing. A hidden live region announces building changes and the no-sound message (Q7, C-09).
+- Playback isn't announced bar by bar; the play button's name says whether it's playing. A hidden live region announces building changes and the no-sound message (Q7, C-09). The tempo slider announces its own value ("100 BPM"), and the number shown beside it is hidden from screen readers so it isn't announced twice (C-16).
 
 ### Sound
 
