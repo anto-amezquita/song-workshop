@@ -16,3 +16,6 @@ skills/
 guide/
 templates/
 *.md
+
+# Generated from reference/ by scripts/generate-music-fixtures.ts
+lib/music/__fixtures__/

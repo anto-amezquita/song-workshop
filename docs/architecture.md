@@ -81,7 +81,8 @@ hooks/
 lib/music/
   theory/                           note spelling, scales, modes, chords
   audio/                            audio context, voices, chord voicing, silence
-  transport/                        tempo, bars, loop, a callback per step
+  transport/                        tempo, bars, loop, a callback per step; one-off sequences
+  __fixtures__/reference.json       the original file's own output, for the tests (generated)
 tokens/brands/song-workshop/        tokens.json, dark.json, contrast-pairs.json
 styles/
   brand/                            output of `amezquita-brand build`
@@ -90,6 +91,7 @@ reference/
   nashville-number-lab.html         the original file, kept until the port matches it
 scripts/
   serve-out.ts                      serves out/ for Playwright; not for production
+  generate-music-fixtures.ts        runs the original file's theory code; deleted with reference/
 e2e/                                Playwright tests, run against the built out/
 docs/ specs/ decisions/ skills/ guide/ templates/   the starter kit
 ```
