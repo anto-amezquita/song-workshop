@@ -31,9 +31,9 @@ Generated from Linear project Song Workshop on 2026-11-24 by backlog-sync. Edit 
 - **[AME-81](https://linear.app/amezquita/issue/AME-81/spec-needed-rhythm-lesson)** Spec needed: rhythm lesson — Antonio Amézquita
 - **[AME-82](https://linear.app/amezquita/issue/AME-82/spec-needed-melody-lesson)** Spec needed: melody lesson — Antonio Amézquita
 - **[AME-83](https://linear.app/amezquita/issue/AME-83/spec-needed-lyric-writing-lesson)** Spec needed: lyric-writing lesson — Antonio Amézquita
-- **[AME-87](https://linear.app/amezquita/issue/AME-87/choose-a-static-host-for-song-workshop-and-set-its-security-headers)** Choose a static host for Song Workshop and set its security headers — Antonio Amézquita
 - **[AME-89](https://linear.app/amezquita/issue/AME-89/clear-the-two-moderate-npm-audit-advisories-in-build-time-tools)** Clear the two moderate npm audit advisories in build-time tools — unassigned · revisit
 - **[AME-90](https://linear.app/amezquita/issue/AME-90/check-nashville-number-lab-with-voiceover)** Check Nashville Number Lab with VoiceOver — unassigned · revisit
+- **[AME-91](https://linear.app/amezquita/issue/AME-91/tighten-the-csp-with-script-hashes-generated-on-each-build)** Tighten the CSP with script hashes generated on each build — unassigned · revisit
 
 ---
 
