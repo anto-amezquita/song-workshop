@@ -42,7 +42,12 @@ Vercel hosts the site, like the portfolio. `main` deploys to production at `http
 - `'unsafe-inline'` means the CSP would not stop an injected inline script. The protection there comes from never putting user content into the page as HTML (§11).
 - Anything new the page loads (a `data:` image, a worker, a third-party script) needs the CSP changed in the same PR.
 - Vercel's preview toolbar loads from vercel.live, so the CSP blocks it on preview deployments. Production doesn't show the toolbar.
-- Checked on 2026-11-24 by serving `out/` with these headers and loading `/`, `/lessons/nashville-numbers` and a 404 in Chromium: no CSP violations, Play lights a chord, and the roll animation keeps its delays. With both `'unsafe-inline'` allowances removed, the inline scripts are blocked and Play does nothing.
+
+## Verification
+
+Checked on 2026-11-24 by serving `out/` with these headers and loading `/`, `/lessons/nashville-numbers` and a 404 in Chromium: no CSP violations, Play lights a chord, and the roll animation keeps its delays. With both `'unsafe-inline'` allowances removed, the inline scripts are blocked and Play does nothing.
+
+The e2e tests now run the same check on every CI run. `scripts/serve-out.ts` sends the headers from `vercel.json`, and `e2e/site.spec.ts` fails if the CSP header is missing or the browser reports any violation on those three pages.
 
 ## Related files
 

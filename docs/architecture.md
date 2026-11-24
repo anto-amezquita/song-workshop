@@ -339,7 +339,7 @@ Tests don't listen. They check that the audio module was asked to play the right
   - `Strict-Transport-Security: max-age=63072000; includeSubDomains`
   - `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy: strict-origin-when-cross-origin`, `Cross-Origin-Opener-Policy: same-origin`
   - `Permissions-Policy` turning off camera, microphone, geolocation, payment and USB. Web Audio needs none of them.
-- Anything new the page loads (a third-party script, a `data:` image, a worker) needs the CSP changed in the same PR, or the browser blocks it.
+- Anything new the page loads (a third-party script, a `data:` image, a worker) needs the CSP changed in the same PR, or the browser blocks it. The e2e server sends the same headers, and the e2e tests fail on any CSP violation, so CI catches it.
 
 ---
 
@@ -386,7 +386,7 @@ None for now.
 
 ### Environments
 
-- local (`next dev`, or `npm run serve` to look at a build in `out/`)
+- local (`next dev`, or `npm run serve` to look at a build in `out/` with the headers in `vercel.json`)
 - preview (Vercel, a deployment for each pushed branch)
 - production (Vercel, from `main`): `https://song-workshop.amezquita.dk`, a CNAME `song-workshop` at Simply.com, which hosts the `amezquita.dk` DNS. Vercel's default address is `song-workshop.vercel.app`.
 

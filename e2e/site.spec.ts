@@ -1,5 +1,6 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
+import { headersFor, readHeaderRules } from "../scripts/serve-out";
 
 const pages = ["/", "/lessons/nashville-numbers"];
 const modes = ["light", "dark"] as const;
@@ -61,13 +62,48 @@ for (const path of pages) {
   });
 }
 
-test("/ points search engines at the lesson's own address", async ({ page }) => {
-  await page.goto("/");
-  await expect(page.locator('head link[rel="canonical"]')).toHaveAttribute(
-    "href",
-    "https://song-workshop.amezquita.dk/lessons/nashville-numbers",
-  );
-});
+for (const path of pages) {
+  test(`${path} points search engines at the lesson's own address`, async ({ page }) => {
+    await page.goto(path);
+    await expect(page.locator('head link[rel="canonical"]')).toHaveAttribute(
+      "href",
+      "https://song-workshop.amezquita.dk/lessons/nashville-numbers",
+    );
+  });
+}
+
+// The e2e server sends the headers in vercel.json (scripts/serve-out.ts), so these
+// pages run under the production CSP. Anything it blocks fails here, not in production.
+const policy = headersFor(readHeaderRules("vercel.json"), "/")["Content-Security-Policy"];
+
+for (const path of [...pages, "/no-such-lesson"]) {
+  test(`${path} works under the CSP without breaking it`, async ({ page }) => {
+    await page.addInitScript(() => {
+      const w = window as unknown as { violations: string[] };
+      w.violations = [];
+      document.addEventListener(
+        "securitypolicyviolation",
+        (event) => w.violations.push(`${event.effectiveDirective}: ${event.blockedURI}`),
+        true,
+      );
+    });
+    const response = await page.goto(path);
+    expect(response?.headers()["content-security-policy"]).toBe(policy);
+    // The roll-in sets its delays through inline style attributes; let it finish.
+    await page.waitForFunction(() =>
+      document.getAnimations().every((a) => a.playState === "finished"),
+    );
+    if (path !== "/no-such-lesson") {
+      // Proves React started: Play lights a chord.
+      await page.getByRole("button", { name: "Play progression" }).click();
+      await expect(page.locator(".chord-grid__chord[data-lit]")).toHaveCount(1);
+    }
+    const violations = await page.evaluate(
+      () => (window as unknown as { violations: string[] }).violations,
+    );
+    expect(violations).toEqual([]);
+  });
+}
 
 test("a missing page gets a 404 on the page colour, not white", async ({ page }) => {
   const response = await page.goto("/no-such-lesson");
