@@ -1,0 +1,20 @@
+# Generated or kept as-is
+.next/
+out/
+styles/brand/
+playwright-report/
+test-results/
+package-lock.json
+next-env.d.ts
+
+# The starter kit's docs keep their own line wrapping
+docs/
+specs/
+decisions/
+skills/
+guide/
+templates/
+*.md
+
+# The original lesson file's own output, generated once for the port (AME-78)
+lib/music/__fixtures__/

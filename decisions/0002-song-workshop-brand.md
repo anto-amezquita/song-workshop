@@ -2,7 +2,7 @@
 
 ## Status
 
-Accepted (2026-11-22). The brand's direction is decided. Its token values are still proposals in `docs/brand.md`.
+Accepted (2026-11-22). The brand's direction is decided. Its token names and values were settled on 2026-11-23 by the port spec (`specs/2026-11-23-nashville-number-lab-port.md`) and are recorded in `docs/brand.md`.
 
 ## Context
 
@@ -30,9 +30,9 @@ Song Workshop gets its own brand, `song-workshop`, with its tokens in `tokens/br
 
 ### Negative
 
-- The brand check and brand build aren't released yet (`amezquita-brand check/build` and the brand contract came in with design-system PR #207 and aren't in 1.6.7 on npm). The brand can't be built until the design system is released.
-- The brand contract has no slot for a second accent, so minor needs tokens of the brand's own and a switch on the lesson root (`docs/architecture.md` §4, Styling).
-- Some values in the file don't fit the contract as it is and need deciding. They're listed in `docs/brand.md` §11–13 as proposals: the light-mode green and the label opacity on a playing chord and a playing slot (contrast), how the page and panel surfaces map to the contract's surface roles, accent-tinted shadows, and whether the generated font link can request Bricolage's optical-size axis.
+- The brand needed the brand check and brand build, which weren't on npm when this was decided. *Resolved 2026-11-23:* they're in `@amezquita/design-system` 1.7.0 (AME-76).
+- The brand contract has no slot for a second accent, so minor needs tokens of the brand's own, including its hover, pressed and focus states, and a switch on the lesson root (`docs/architecture.md` §4, Styling).
+- Some values in the file didn't fit the contract. *Resolved 2026-11-23* by the port spec, and recorded in `docs/brand.md` §11–13: a slightly darker light-mode green and full-strength labels on a playing chord and slot (contrast), panels on `color-surface-primary` with a page colour of the brand's own, accent-tinted shadows in component CSS, and fonts loaded by the project, because the generated font link can't request Bricolage's optical-size axis (decisions/0005).
 
 ## Related files
 

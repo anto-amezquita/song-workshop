@@ -1,0 +1,5731 @@
+{
+  "$comment": "The original Nashville-Number-Lab.html's own theory output, generated on 2026-11-23 by running its code (AME-78). The file and the script were deleted after the port passed its side-by-side check; both are in git history, last in commit 77df135. Don't edit.",
+  "keys": [
+    "C",
+    "G",
+    "D",
+    "A",
+    "E",
+    "B",
+    "F#",
+    "Db",
+    "Ab",
+    "Eb",
+    "Bb",
+    "F"
+  ],
+  "presets": {
+    "major": [
+      {
+        "id": "pop",
+        "name": "Pop anthem",
+        "deg": [
+          0,
+          4,
+          5,
+          3
+        ]
+      },
+      {
+        "id": "rock",
+        "name": "Rock & folk",
+        "deg": [
+          0,
+          3,
+          4,
+          0
+        ]
+      },
+      {
+        "id": "moody",
+        "name": "Moody pop",
+        "deg": [
+          5,
+          3,
+          0,
+          4
+        ]
+      },
+      {
+        "id": "doowop",
+        "name": "50s doo-wop",
+        "deg": [
+          0,
+          5,
+          3,
+          4
+        ]
+      },
+      {
+        "id": "jazz",
+        "name": "Jazz turnaround",
+        "deg": [
+          1,
+          4,
+          0,
+          0
+        ]
+      }
+    ],
+    "minor": [
+      {
+        "id": "minorpop",
+        "name": "Minor pop",
+        "deg": [
+          0,
+          5,
+          2,
+          6
+        ]
+      },
+      {
+        "id": "descent",
+        "name": "Descending",
+        "deg": [
+          0,
+          6,
+          5,
+          6
+        ]
+      },
+      {
+        "id": "minor145",
+        "name": "Minor 1–4–5",
+        "deg": [
+          0,
+          3,
+          4,
+          0
+        ]
+      },
+      {
+        "id": "cinema",
+        "name": "Cinematic",
+        "deg": [
+          0,
+          5,
+          6,
+          0
+        ]
+      }
+    ]
+  },
+  "cases": [
+    {
+      "key": "C",
+      "mode": "major",
+      "scale": [
+        {
+          "name": "C",
+          "pc": 0,
+          "semis": 0
+        },
+        {
+          "name": "D",
+          "pc": 2,
+          "semis": 2
+        },
+        {
+          "name": "E",
+          "pc": 4,
+          "semis": 4
+        },
+        {
+          "name": "F",
+          "pc": 5,
+          "semis": 5
+        },
+        {
+          "name": "G",
+          "pc": 7,
+          "semis": 7
+        },
+        {
+          "name": "A",
+          "pc": 9,
+          "semis": 9
+        },
+        {
+          "name": "B",
+          "pc": 11,
+          "semis": 11
+        }
+      ],
+      "chords": [
+        {
+          "degree": 0,
+          "quality": "major",
+          "number": "1",
+          "name": "C",
+          "tones": [
+            0,
+            2,
+            4
+          ]
+        },
+        {
+          "degree": 1,
+          "quality": "minor",
+          "number": "2m",
+          "name": "Dm",
+          "tones": [
+            1,
+            3,
+            5
+          ]
+        },
+        {
+          "degree": 2,
+          "quality": "minor",
+          "number": "3m",
+          "name": "Em",
+          "tones": [
+            2,
+            4,
+            6
+          ]
+        },
+        {
+          "degree": 3,
+          "quality": "major",
+          "number": "4",
+          "name": "F",
+          "tones": [
+            3,
+            5,
+            0
+          ]
+        },
+        {
+          "degree": 4,
+          "quality": "major",
+          "number": "5",
+          "name": "G",
+          "tones": [
+            4,
+            6,
+            1
+          ]
+        },
+        {
+          "degree": 5,
+          "quality": "minor",
+          "number": "6m",
+          "name": "Am",
+          "tones": [
+            5,
+            0,
+            2
+          ]
+        },
+        {
+          "degree": 6,
+          "quality": "dim",
+          "number": "7°",
+          "name": "B°",
+          "tones": [
+            6,
+            1,
+            3
+          ]
+        }
+      ],
+      "keyName": "C major",
+      "keySub": "Relative minor: A minor",
+      "steps": [
+        "W",
+        "W",
+        "H",
+        "W",
+        "W",
+        "W",
+        "H"
+      ],
+      "pills": [
+        "C",
+        "G",
+        "D",
+        "A",
+        "E",
+        "B",
+        "F♯",
+        "D♭",
+        "A♭",
+        "E♭",
+        "B♭",
+        "F"
+      ],
+      "baseMidi": 48,
+      "voicings": [
+        {
+          "bass": 48,
+          "triad": [
+            60,
+            64,
+            67
+          ]
+        },
+        {
+          "bass": 50,
+          "triad": [
+            62,
+            65,
+            69
+          ]
+        },
+        {
+          "bass": 52,
+          "triad": [
+            64,
+            67,
+            71
+          ]
+        },
+        {
+          "bass": 53,
+          "triad": [
+            65,
+            69,
+            72
+          ]
+        },
+        {
+          "bass": 55,
+          "triad": [
+            67,
+            71,
+            74
+          ]
+        },
+        {
+          "bass": 57,
+          "triad": [
+            69,
+            72,
+            76
+          ]
+        },
+        {
+          "bass": 59,
+          "triad": [
+            71,
+            74,
+            77
+          ]
+        }
+      ],
+      "scaleMidis": [
+        60,
+        62,
+        64,
+        65,
+        67,
+        69,
+        71,
+        72
+      ],
+      "presetPatterns": [
+        {
+          "id": "pop",
+          "pattern": "1–5–6m–4"
+        },
+        {
+          "id": "rock",
+          "pattern": "1–4–5–1"
+        },
+        {
+          "id": "moody",
+          "pattern": "6m–4–1–5"
+        },
+        {
+          "id": "doowop",
+          "pattern": "1–6m–4–5"
+        },
+        {
+          "id": "jazz",
+          "pattern": "2m–5–1–1"
+        }
+      ]
+    },
+    {
+      "key": "C",
+      "mode": "minor",
+      "scale": [
+        {
+          "name": "A",
+          "pc": 9,
+          "semis": 0
+        },
+        {
+          "name": "B",
+          "pc": 11,
+          "semis": 2
+        },
+        {
+          "name": "C",
+          "pc": 0,
+          "semis": 3
+        },
+        {
+          "name": "D",
+          "pc": 2,
+          "semis": 5
+        },
+        {
+          "name": "E",
+          "pc": 4,
+          "semis": 7
+        },
+        {
+          "name": "F",
+          "pc": 5,
+          "semis": 8
+        },
+        {
+          "name": "G",
+          "pc": 7,
+          "semis": 10
+        }
+      ],
+      "chords": [
+        {
+          "degree": 0,
+          "quality": "minor",
+          "number": "1m",
+          "name": "Am",
+          "tones": [
+            0,
+            2,
+            4
+          ]
+        },
+        {
+          "degree": 1,
+          "quality": "dim",
+          "number": "2°",
+          "name": "B°",
+          "tones": [
+            1,
+            3,
+            5
+          ]
+        },
+        {
+          "degree": 2,
+          "quality": "major",
+          "number": "3",
+          "name": "C",
+          "tones": [
+            2,
+            4,
+            6
+          ]
+        },
+        {
+          "degree": 3,
+          "quality": "minor",
+          "number": "4m",
+          "name": "Dm",
+          "tones": [
+            3,
+            5,
+            0
+          ]
+        },
+        {
+          "degree": 4,
+          "quality": "minor",
+          "number": "5m",
+          "name": "Em",
+          "tones": [
+            4,
+            6,
+            1
+          ]
+        },
+        {
+          "degree": 5,
+          "quality": "major",
+          "number": "6",
+          "name": "F",
+          "tones": [
+            5,
+            0,
+            2
+          ]
+        },
+        {
+          "degree": 6,
+          "quality": "major",
+          "number": "7",
+          "name": "G",
+          "tones": [
+            6,
+            1,
+            3
+          ]
+        }
+      ],
+      "keyName": "A minor",
+      "keySub": "Same notes as C major",
+      "steps": [
+        "W",
+        "H",
+        "W",
+        "W",
+        "H",
+        "W",
+        "W"
+      ],
+      "pills": [
+        "Am",
+        "Em",
+        "Bm",
+        "F♯m",
+        "C♯m",
+        "G♯m",
+        "D♯m",
+        "B♭m",
+        "Fm",
+        "Cm",
+        "Gm",
+        "Dm"
+      ],
+      "baseMidi": 45,
+      "voicings": [
+        {
+          "bass": 45,
+          "triad": [
+            57,
+            60,
+            64
+          ]
+        },
+        {
+          "bass": 47,
+          "triad": [
+            59,
+            62,
+            65
+          ]
+        },
+        {
+          "bass": 48,
+          "triad": [
+            60,
+            64,
+            67
+          ]
+        },
+        {
+          "bass": 50,
+          "triad": [
+            62,
+            65,
+            69
+          ]
+        },
+        {
+          "bass": 52,
+          "triad": [
+            64,
+            67,
+            71
+          ]
+        },
+        {
+          "bass": 53,
+          "triad": [
+            65,
+            69,
+            72
+          ]
+        },
+        {
+          "bass": 55,
+          "triad": [
+            67,
+            71,
+            74
+          ]
+        }
+      ],
+      "scaleMidis": [
+        57,
+        59,
+        60,
+        62,
+        64,
+        65,
+        67,
+        69
+      ],
+      "presetPatterns": [
+        {
+          "id": "minorpop",
+          "pattern": "1m–6–3–7"
+        },
+        {
+          "id": "descent",
+          "pattern": "1m–7–6–7"
+        },
+        {
+          "id": "minor145",
+          "pattern": "1m–4m–5m–1m"
+        },
+        {
+          "id": "cinema",
+          "pattern": "1m–6–7–1m"
+        }
+      ]
+    },
+    {
+      "key": "G",
+      "mode": "major",
+      "scale": [
+        {
+          "name": "G",
+          "pc": 7,
+          "semis": 0
+        },
+        {
+          "name": "A",
+          "pc": 9,
+          "semis": 2
+        },
+        {
+          "name": "B",
+          "pc": 11,
+          "semis": 4
+        },
+        {
+          "name": "C",
+          "pc": 0,
+          "semis": 5
+        },
+        {
+          "name": "D",
+          "pc": 2,
+          "semis": 7
+        },
+        {
+          "name": "E",
+          "pc": 4,
+          "semis": 9
+        },
+        {
+          "name": "F♯",
+          "pc": 6,
+          "semis": 11
+        }
+      ],
+      "chords": [
+        {
+          "degree": 0,
+          "quality": "major",
+          "number": "1",
+          "name": "G",
+          "tones": [
+            0,
+            2,
+            4
+          ]
+        },
+        {
+          "degree": 1,
+          "quality": "minor",
+          "number": "2m",
+          "name": "Am",
+          "tones": [
+            1,
+            3,
+            5
+          ]
+        },
+        {
+          "degree": 2,
+          "quality": "minor",
+          "number": "3m",
+          "name": "Bm",
+          "tones": [
+            2,
+            4,
+            6
+          ]
+        },
+        {
+          "degree": 3,
+          "quality": "major",
+          "number": "4",
+          "name": "C",
+          "tones": [
+            3,
+            5,
+            0
+          ]
+        },
+        {
+          "degree": 4,
+          "quality": "major",
+          "number": "5",
+          "name": "D",
+          "tones": [
+            4,
+            6,
+            1
+          ]
+        },
+        {
+          "degree": 5,
+          "quality": "minor",
+          "number": "6m",
+          "name": "Em",
+          "tones": [
+            5,
+            0,
+            2
+          ]
+        },
+        {
+          "degree": 6,
+          "quality": "dim",
+          "number": "7°",
+          "name": "F♯°",
+          "tones": [
+            6,
+            1,
+            3
+          ]
+        }
+      ],
+      "keyName": "G major",
+      "keySub": "Relative minor: E minor",
+      "steps": [
+        "W",
+        "W",
+        "H",
+        "W",
+        "W",
+        "W",
+        "H"
+      ],
+      "pills": [
+        "C",
+        "G",
+        "D",
+        "A",
+        "E",
+        "B",
+        "F♯",
+        "D♭",
+        "A♭",
+        "E♭",
+        "B♭",
+        "F"
+      ],
+      "baseMidi": 43,
+      "voicings": [
+        {
+          "bass": 43,
+          "triad": [
+            55,
+            59,
+            62
+          ]
+        },
+        {
+          "bass": 45,
+          "triad": [
+            57,
+            60,
+            64
+          ]
+        },
+        {
+          "bass": 47,
+          "triad": [
+            59,
+            62,
+            66
+          ]
+        },
+        {
+          "bass": 48,
+          "triad": [
+            60,
+            64,
+            67
+          ]
+        },
+        {
+          "bass": 50,
+          "triad": [
+            62,
+            66,
+            69
+          ]
+        },
+        {
+          "bass": 52,
+          "triad": [
+            64,
+            67,
+            71
+          ]
+        },
+        {
+          "bass": 54,
+          "triad": [
+            66,
+            69,
+            72
+          ]
+        }
+      ],
+      "scaleMidis": [
+        55,
+        57,
+        59,
+        60,
+        62,
+        64,
+        66,
+        67
+      ],
+      "presetPatterns": [
+        {
+          "id": "pop",
+          "pattern": "1–5–6m–4"
+        },
+        {
+          "id": "rock",
+          "pattern": "1–4–5–1"
+        },
+        {
+          "id": "moody",
+          "pattern": "6m–4–1–5"
+        },
+        {
+          "id": "doowop",
+          "pattern": "1–6m–4–5"
+        },
+        {
+          "id": "jazz",
+          "pattern": "2m–5–1–1"
+        }
+      ]
+    },
+    {
+      "key": "G",
+      "mode": "minor",
+      "scale": [
+        {
+          "name": "E",
+          "pc": 4,
+          "semis": 0
+        },
+        {
+          "name": "F♯",
+          "pc": 6,
+          "semis": 2
+        },
+        {
+          "name": "G",
+          "pc": 7,
+          "semis": 3
+        },
+        {
+          "name": "A",
+          "pc": 9,
+          "semis": 5
+        },
+        {
+          "name": "B",
+          "pc": 11,
+          "semis": 7
+        },
+        {
+          "name": "C",
+          "pc": 0,
+          "semis": 8
+        },
+        {
+          "name": "D",
+          "pc": 2,
+          "semis": 10
+        }
+      ],
+      "chords": [
+        {
+          "degree": 0,
+          "quality": "minor",
+          "number": "1m",
+          "name": "Em",
+          "tones": [
+            0,
+            2,
+            4
+          ]
+        },
+        {
+          "degree": 1,
+          "quality": "dim",
+          "number": "2°",
+          "name": "F♯°",
+          "tones": [
+            1,
+            3,
+            5
+          ]
+        },
+        {
+          "degree": 2,
+          "quality": "major",
+          "number": "3",
+          "name": "G",
+          "tones": [
+            2,
+            4,
+            6
+          ]
+        },
+        {
+          "degree": 3,
+          "quality": "minor",
+          "number": "4m",
+          "name": "Am",
+          "tones": [
+            3,
+            5,
+            0
+          ]
+        },
+        {
+          "degree": 4,
+          "quality": "minor",
+          "number": "5m",
+          "name": "Bm",
+          "tones": [
+            4,
+            6,
+            1
+          ]
+        },
+        {
+          "degree": 5,
+          "quality": "major",
+          "number": "6",
+          "name": "C",
+          "tones": [
+            5,
+            0,
+            2
+          ]
+        },
+        {
+          "degree": 6,
+          "quality": "major",
+          "number": "7",
+          "name": "D",
+          "tones": [
+            6,
+            1,
+            3
+          ]
+        }
+      ],
+      "keyName": "E minor",
+      "keySub": "Same notes as G major",
+      "steps": [
+        "W",
+        "H",
+        "W",
+        "W",
+        "H",
+        "W",
+        "W"
+      ],
+      "pills": [
+        "Am",
+        "Em",
+        "Bm",
+        "F♯m",
+        "C♯m",
+        "G♯m",
+        "D♯m",
+        "B♭m",
+        "Fm",
+        "Cm",
+        "Gm",
+        "Dm"
+      ],
+      "baseMidi": 52,
+      "voicings": [
+        {
+          "bass": 52,
+          "triad": [
+            64,
+            67,
+            71
+          ]
+        },
+        {
+          "bass": 54,
+          "triad": [
+            66,
+            69,
+            72
+          ]
+        },
+        {
+          "bass": 55,
+          "triad": [
+            67,
+            71,
+            74
+          ]
+        },
+        {
+          "bass": 57,
+          "triad": [
+            69,
+            72,
+            76
+          ]
+        },
+        {
+          "bass": 59,
+          "triad": [
+            71,
+            74,
+            78
+          ]
+        },
+        {
+          "bass": 60,
+          "triad": [
+            72,
+            76,
+            79
+          ]
+        },
+        {
+          "bass": 62,
+          "triad": [
+            74,
+            78,
+            81
+          ]
+        }
+      ],
+      "scaleMidis": [
+        64,
+        66,
+        67,
+        69,
+        71,
+        72,
+        74,
+        76
+      ],
+      "presetPatterns": [
+        {
+          "id": "minorpop",
+          "pattern": "1m–6–3–7"
+        },
+        {
+          "id": "descent",
+          "pattern": "1m–7–6–7"
+        },
+        {
+          "id": "minor145",
+          "pattern": "1m–4m–5m–1m"
+        },
+        {
+          "id": "cinema",
+          "pattern": "1m–6–7–1m"
+        }
+      ]
+    },
+    {
+      "key": "D",
+      "mode": "major",
+      "scale": [
+        {
+          "name": "D",
+          "pc": 2,
+          "semis": 0
+        },
+        {
+          "name": "E",
+          "pc": 4,
+          "semis": 2
+        },
+        {
+          "name": "F♯",
+          "pc": 6,
+          "semis": 4
+        },
+        {
+          "name": "G",
+          "pc": 7,
+          "semis": 5
+        },
+        {
+          "name": "A",
+          "pc": 9,
+          "semis": 7
+        },
+        {
+          "name": "B",
+          "pc": 11,
+          "semis": 9
+        },
+        {
+          "name": "C♯",
+          "pc": 1,
+          "semis": 11
+        }
+      ],
+      "chords": [
+        {
+          "degree": 0,
+          "quality": "major",
+          "number": "1",
+          "name": "D",
+          "tones": [
+            0,
+            2,
+            4
+          ]
+        },
+        {
+          "degree": 1,
+          "quality": "minor",
+          "number": "2m",
+          "name": "Em",
+          "tones": [
+            1,
+            3,
+            5
+          ]
+        },
+        {
+          "degree": 2,
+          "quality": "minor",
+          "number": "3m",
+          "name": "F♯m",
+          "tones": [
+            2,
+            4,
+            6
+          ]
+        },
+        {
+          "degree": 3,
+          "quality": "major",
+          "number": "4",
+          "name": "G",
+          "tones": [
+            3,
+            5,
+            0
+          ]
+        },
+        {
+          "degree": 4,
+          "quality": "major",
+          "number": "5",
+          "name": "A",
+          "tones": [
+            4,
+            6,
+            1
+          ]
+        },
+        {
+          "degree": 5,
+          "quality": "minor",
+          "number": "6m",
+          "name": "Bm",
+          "tones": [
+            5,
+            0,
+            2
+          ]
+        },
+        {
+          "degree": 6,
+          "quality": "dim",
+          "number": "7°",
+          "name": "C♯°",
+          "tones": [
+            6,
+            1,
+            3
+          ]
+        }
+      ],
+      "keyName": "D major",
+      "keySub": "Relative minor: B minor",
+      "steps": [
+        "W",
+        "W",
+        "H",
+        "W",
+        "W",
+        "W",
+        "H"
+      ],
+      "pills": [
+        "C",
+        "G",
+        "D",
+        "A",
+        "E",
+        "B",
+        "F♯",
+        "D♭",
+        "A♭",
+        "E♭",
+        "B♭",
+        "F"
+      ],
+      "baseMidi": 50,
+      "voicings": [
+        {
+          "bass": 50,
+          "triad": [
+            62,
+            66,
+            69
+          ]
+        },
+        {
+          "bass": 52,
+          "triad": [
+            64,
+            67,
+            71
+          ]
+        },
+        {
+          "bass": 54,
+          "triad": [
+            66,
+            69,
+            73
+          ]
+        },
+        {
+          "bass": 55,
+          "triad": [
+            67,
+            71,
+            74
+          ]
+        },
+        {
+          "bass": 57,
+          "triad": [
+            69,
+            73,
+            76
+          ]
+        },
+        {
+          "bass": 59,
+          "triad": [
+            71,
+            74,
+            78
+          ]
+        },
+        {
+          "bass": 61,
+          "triad": [
+            73,
+            76,
+            79
+          ]
+        }
+      ],
+      "scaleMidis": [
+        62,
+        64,
+        66,
+        67,
+        69,
+        71,
+        73,
+        74
+      ],
+      "presetPatterns": [
+        {
+          "id": "pop",
+          "pattern": "1–5–6m–4"
+        },
+        {
+          "id": "rock",
+          "pattern": "1–4–5–1"
+        },
+        {
+          "id": "moody",
+          "pattern": "6m–4–1–5"
+        },
+        {
+          "id": "doowop",
+          "pattern": "1–6m–4–5"
+        },
+        {
+          "id": "jazz",
+          "pattern": "2m–5–1–1"
+        }
+      ]
+    },
+    {
+      "key": "D",
+      "mode": "minor",
+      "scale": [
+        {
+          "name": "B",
+          "pc": 11,
+          "semis": 0
+        },
+        {
+          "name": "C♯",
+          "pc": 1,
+          "semis": 2
+        },
+        {
+          "name": "D",
+          "pc": 2,
+          "semis": 3
+        },
+        {
+          "name": "E",
+          "pc": 4,
+          "semis": 5
+        },
+        {
+          "name": "F♯",
+          "pc": 6,
+          "semis": 7
+        },
+        {
+          "name": "G",
+          "pc": 7,
+          "semis": 8
+        },
+        {
+          "name": "A",
+          "pc": 9,
+          "semis": 10
+        }
+      ],
+      "chords": [
+        {
+          "degree": 0,
+          "quality": "minor",
+          "number": "1m",
+          "name": "Bm",
+          "tones": [
+            0,
+            2,
+            4
+          ]
+        },
+        {
+          "degree": 1,
+          "quality": "dim",
+          "number": "2°",
+          "name": "C♯°",
+          "tones": [
+            1,
+            3,
+            5
+          ]
+        },
+        {
+          "degree": 2,
+          "quality": "major",
+          "number": "3",
+          "name": "D",
+          "tones": [
+            2,
+            4,
+            6
+          ]
+        },
+        {
+          "degree": 3,
+          "quality": "minor",
+          "number": "4m",
+          "name": "Em",
+          "tones": [
+            3,
+            5,
+            0
+          ]
+        },
+        {
+          "degree": 4,
+          "quality": "minor",
+          "number": "5m",
+          "name": "F♯m",
+          "tones": [
+            4,
+            6,
+            1
+          ]
+        },
+        {
+          "degree": 5,
+          "quality": "major",
+          "number": "6",
+          "name": "G",
+          "tones": [
+            5,
+            0,
+            2
+          ]
+        },
+        {
+          "degree": 6,
+          "quality": "major",
+          "number": "7",
+          "name": "A",
+          "tones": [
+            6,
+            1,
+            3
+          ]
+        }
+      ],
+      "keyName": "B minor",
+      "keySub": "Same notes as D major",
+      "steps": [
+        "W",
+        "H",
+        "W",
+        "W",
+        "H",
+        "W",
+        "W"
+      ],
+      "pills": [
+        "Am",
+        "Em",
+        "Bm",
+        "F♯m",
+        "C♯m",
+        "G♯m",
+        "D♯m",
+        "B♭m",
+        "Fm",
+        "Cm",
+        "Gm",
+        "Dm"
+      ],
+      "baseMidi": 47,
+      "voicings": [
+        {
+          "bass": 47,
+          "triad": [
+            59,
+            62,
+            66
+          ]
+        },
+        {
+          "bass": 49,
+          "triad": [
+            61,
+            64,
+            67
+          ]
+        },
+        {
+          "bass": 50,
+          "triad": [
+            62,
+            66,
+            69
+          ]
+        },
+        {
+          "bass": 52,
+          "triad": [
+            64,
+            67,
+            71
+          ]
+        },
+        {
+          "bass": 54,
+          "triad": [
+            66,
+            69,
+            73
+          ]
+        },
+        {
+          "bass": 55,
+          "triad": [
+            67,
+            71,
+            74
+          ]
+        },
+        {
+          "bass": 57,
+          "triad": [
+            69,
+            73,
+            76
+          ]
+        }
+      ],
+      "scaleMidis": [
+        59,
+        61,
+        62,
+        64,
+        66,
+        67,
+        69,
+        71
+      ],
+      "presetPatterns": [
+        {
+          "id": "minorpop",
+          "pattern": "1m–6–3–7"
+        },
+        {
+          "id": "descent",
+          "pattern": "1m–7–6–7"
+        },
+        {
+          "id": "minor145",
+          "pattern": "1m–4m–5m–1m"
+        },
+        {
+          "id": "cinema",
+          "pattern": "1m–6–7–1m"
+        }
+      ]
+    },
+    {
+      "key": "A",
+      "mode": "major",
+      "scale": [
+        {
+          "name": "A",
+          "pc": 9,
+          "semis": 0
+        },
+        {
+          "name": "B",
+          "pc": 11,
+          "semis": 2
+        },
+        {
+          "name": "C♯",
+          "pc": 1,
+          "semis": 4
+        },
+        {
+          "name": "D",
+          "pc": 2,
+          "semis": 5
+        },
+        {
+          "name": "E",
+          "pc": 4,
+          "semis": 7
+        },
+        {
+          "name": "F♯",
+          "pc": 6,
+          "semis": 9
+        },
+        {
+          "name": "G♯",
+          "pc": 8,
+          "semis": 11
+        }
+      ],
+      "chords": [
+        {
+          "degree": 0,
+          "quality": "major",
+          "number": "1",
+          "name": "A",
+          "tones": [
+            0,
+            2,
+            4
+          ]
+        },
+        {
+          "degree": 1,
+          "quality": "minor",
+          "number": "2m",
+          "name": "Bm",
+          "tones": [
+            1,
+            3,
+            5
+          ]
+        },
+        {
+          "degree": 2,
+          "quality": "minor",
+          "number": "3m",
+          "name": "C♯m",
+          "tones": [
+            2,
+            4,
+            6
+          ]
+        },
+        {
+          "degree": 3,
+          "quality": "major",
+          "number": "4",
+          "name": "D",
+          "tones": [
+            3,
+            5,
+            0
+          ]
+        },
+        {
+          "degree": 4,
+          "quality": "major",
+          "number": "5",
+          "name": "E",
+          "tones": [
+            4,
+            6,
+            1
+          ]
+        },
+        {
+          "degree": 5,
+          "quality": "minor",
+          "number": "6m",
+          "name": "F♯m",
+          "tones": [
+            5,
+            0,
+            2
+          ]
+        },
+        {
+          "degree": 6,
+          "quality": "dim",
+          "number": "7°",
+          "name": "G♯°",
+          "tones": [
+            6,
+            1,
+            3
+          ]
+        }
+      ],
+      "keyName": "A major",
+      "keySub": "Relative minor: F♯ minor",
+      "steps": [
+        "W",
+        "W",
+        "H",
+        "W",
+        "W",
+        "W",
+        "H"
+      ],
+      "pills": [
+        "C",
+        "G",
+        "D",
+        "A",
+        "E",
+        "B",
+        "F♯",
+        "D♭",
+        "A♭",
+        "E♭",
+        "B♭",
+        "F"
+      ],
+      "baseMidi": 45,
+      "voicings": [
+        {
+          "bass": 45,
+          "triad": [
+            57,
+            61,
+            64
+          ]
+        },
+        {
+          "bass": 47,
+          "triad": [
+            59,
+            62,
+            66
+          ]
+        },
+        {
+          "bass": 49,
+          "triad": [
+            61,
+            64,
+            68
+          ]
+        },
+        {
+          "bass": 50,
+          "triad": [
+            62,
+            66,
+            69
+          ]
+        },
+        {
+          "bass": 52,
+          "triad": [
+            64,
+            68,
+            71
+          ]
+        },
+        {
+          "bass": 54,
+          "triad": [
+            66,
+            69,
+            73
+          ]
+        },
+        {
+          "bass": 56,
+          "triad": [
+            68,
+            71,
+            74
+          ]
+        }
+      ],
+      "scaleMidis": [
+        57,
+        59,
+        61,
+        62,
+        64,
+        66,
+        68,
+        69
+      ],
+      "presetPatterns": [
+        {
+          "id": "pop",
+          "pattern": "1–5–6m–4"
+        },
+        {
+          "id": "rock",
+          "pattern": "1–4–5–1"
+        },
+        {
+          "id": "moody",
+          "pattern": "6m–4–1–5"
+        },
+        {
+          "id": "doowop",
+          "pattern": "1–6m–4–5"
+        },
+        {
+          "id": "jazz",
+          "pattern": "2m–5–1–1"
+        }
+      ]
+    },
+    {
+      "key": "A",
+      "mode": "minor",
+      "scale": [
+        {
+          "name": "F♯",
+          "pc": 6,
+          "semis": 0
+        },
+        {
+          "name": "G♯",
+          "pc": 8,
+          "semis": 2
+        },
+        {
+          "name": "A",
+          "pc": 9,
+          "semis": 3
+        },
+        {
+          "name": "B",
+          "pc": 11,
+          "semis": 5
+        },
+        {
+          "name": "C♯",
+          "pc": 1,
+          "semis": 7
+        },
+        {
+          "name": "D",
+          "pc": 2,
+          "semis": 8
+        },
+        {
+          "name": "E",
+          "pc": 4,
+          "semis": 10
+        }
+      ],
+      "chords": [
+        {
+          "degree": 0,
+          "quality": "minor",
+          "number": "1m",
+          "name": "F♯m",
+          "tones": [
+            0,
+            2,
+            4
+          ]
+        },
+        {
+          "degree": 1,
+          "quality": "dim",
+          "number": "2°",
+          "name": "G♯°",
+          "tones": [
+            1,
+            3,
+            5
+          ]
+        },
+        {
+          "degree": 2,
+          "quality": "major",
+          "number": "3",
+          "name": "A",
+          "tones": [
+            2,
+            4,
+            6
+          ]
+        },
+        {
+          "degree": 3,
+          "quality": "minor",
+          "number": "4m",
+          "name": "Bm",
+          "tones": [
+            3,
+            5,
+            0
+          ]
+        },
+        {
+          "degree": 4,
+          "quality": "minor",
+          "number": "5m",
+          "name": "C♯m",
+          "tones": [
+            4,
+            6,
+            1
+          ]
+        },
+        {
+          "degree": 5,
+          "quality": "major",
+          "number": "6",
+          "name": "D",
+          "tones": [
+            5,
+            0,
+            2
+          ]
+        },
+        {
+          "degree": 6,
+          "quality": "major",
+          "number": "7",
+          "name": "E",
+          "tones": [
+            6,
+            1,
+            3
+          ]
+        }
+      ],
+      "keyName": "F♯ minor",
+      "keySub": "Same notes as A major",
+      "steps": [
+        "W",
+        "H",
+        "W",
+        "W",
+        "H",
+        "W",
+        "W"
+      ],
+      "pills": [
+        "Am",
+        "Em",
+        "Bm",
+        "F♯m",
+        "C♯m",
+        "G♯m",
+        "D♯m",
+        "B♭m",
+        "Fm",
+        "Cm",
+        "Gm",
+        "Dm"
+      ],
+      "baseMidi": 42,
+      "voicings": [
+        {
+          "bass": 42,
+          "triad": [
+            54,
+            57,
+            61
+          ]
+        },
+        {
+          "bass": 44,
+          "triad": [
+            56,
+            59,
+            62
+          ]
+        },
+        {
+          "bass": 45,
+          "triad": [
+            57,
+            61,
+            64
+          ]
+        },
+        {
+          "bass": 47,
+          "triad": [
+            59,
+            62,
+            66
+          ]
+        },
+        {
+          "bass": 49,
+          "triad": [
+            61,
+            64,
+            68
+          ]
+        },
+        {
+          "bass": 50,
+          "triad": [
+            62,
+            66,
+            69
+          ]
+        },
+        {
+          "bass": 52,
+          "triad": [
+            64,
+            68,
+            71
+          ]
+        }
+      ],
+      "scaleMidis": [
+        54,
+        56,
+        57,
+        59,
+        61,
+        62,
+        64,
+        66
+      ],
+      "presetPatterns": [
+        {
+          "id": "minorpop",
+          "pattern": "1m–6–3–7"
+        },
+        {
+          "id": "descent",
+          "pattern": "1m–7–6–7"
+        },
+        {
+          "id": "minor145",
+          "pattern": "1m–4m–5m–1m"
+        },
+        {
+          "id": "cinema",
+          "pattern": "1m–6–7–1m"
+        }
+      ]
+    },
+    {
+      "key": "E",
+      "mode": "major",
+      "scale": [
+        {
+          "name": "E",
+          "pc": 4,
+          "semis": 0
+        },
+        {
+          "name": "F♯",
+          "pc": 6,
+          "semis": 2
+        },
+        {
+          "name": "G♯",
+          "pc": 8,
+          "semis": 4
+        },
+        {
+          "name": "A",
+          "pc": 9,
+          "semis": 5
+        },
+        {
+          "name": "B",
+          "pc": 11,
+          "semis": 7
+        },
+        {
+          "name": "C♯",
+          "pc": 1,
+          "semis": 9
+        },
+        {
+          "name": "D♯",
+          "pc": 3,
+          "semis": 11
+        }
+      ],
+      "chords": [
+        {
+          "degree": 0,
+          "quality": "major",
+          "number": "1",
+          "name": "E",
+          "tones": [
+            0,
+            2,
+            4
+          ]
+        },
+        {
+          "degree": 1,
+          "quality": "minor",
+          "number": "2m",
+          "name": "F♯m",
+          "tones": [
+            1,
+            3,
+            5
+          ]
+        },
+        {
+          "degree": 2,
+          "quality": "minor",
+          "number": "3m",
+          "name": "G♯m",
+          "tones": [
+            2,
+            4,
+            6
+          ]
+        },
+        {
+          "degree": 3,
+          "quality": "major",
+          "number": "4",
+          "name": "A",
+          "tones": [
+            3,
+            5,
+            0
+          ]
+        },
+        {
+          "degree": 4,
+          "quality": "major",
+          "number": "5",
+          "name": "B",
+          "tones": [
+            4,
+            6,
+            1
+          ]
+        },
+        {
+          "degree": 5,
+          "quality": "minor",
+          "number": "6m",
+          "name": "C♯m",
+          "tones": [
+            5,
+            0,
+            2
+          ]
+        },
+        {
+          "degree": 6,
+          "quality": "dim",
+          "number": "7°",
+          "name": "D♯°",
+          "tones": [
+            6,
+            1,
+            3
+          ]
+        }
+      ],
+      "keyName": "E major",
+      "keySub": "Relative minor: C♯ minor",
+      "steps": [
+        "W",
+        "W",
+        "H",
+        "W",
+        "W",
+        "W",
+        "H"
+      ],
+      "pills": [
+        "C",
+        "G",
+        "D",
+        "A",
+        "E",
+        "B",
+        "F♯",
+        "D♭",
+        "A♭",
+        "E♭",
+        "B♭",
+        "F"
+      ],
+      "baseMidi": 52,
+      "voicings": [
+        {
+          "bass": 52,
+          "triad": [
+            64,
+            68,
+            71
+          ]
+        },
+        {
+          "bass": 54,
+          "triad": [
+            66,
+            69,
+            73
+          ]
+        },
+        {
+          "bass": 56,
+          "triad": [
+            68,
+            71,
+            75
+          ]
+        },
+        {
+          "bass": 57,
+          "triad": [
+            69,
+            73,
+            76
+          ]
+        },
+        {
+          "bass": 59,
+          "triad": [
+            71,
+            75,
+            78
+          ]
+        },
+        {
+          "bass": 61,
+          "triad": [
+            73,
+            76,
+            80
+          ]
+        },
+        {
+          "bass": 63,
+          "triad": [
+            75,
+            78,
+            81
+          ]
+        }
+      ],
+      "scaleMidis": [
+        64,
+        66,
+        68,
+        69,
+        71,
+        73,
+        75,
+        76
+      ],
+      "presetPatterns": [
+        {
+          "id": "pop",
+          "pattern": "1–5–6m–4"
+        },
+        {
+          "id": "rock",
+          "pattern": "1–4–5–1"
+        },
+        {
+          "id": "moody",
+          "pattern": "6m–4–1–5"
+        },
+        {
+          "id": "doowop",
+          "pattern": "1–6m–4–5"
+        },
+        {
+          "id": "jazz",
+          "pattern": "2m–5–1–1"
+        }
+      ]
+    },
+    {
+      "key": "E",
+      "mode": "minor",
+      "scale": [
+        {
+          "name": "C♯",
+          "pc": 1,
+          "semis": 0
+        },
+        {
+          "name": "D♯",
+          "pc": 3,
+          "semis": 2
+        },
+        {
+          "name": "E",
+          "pc": 4,
+          "semis": 3
+        },
+        {
+          "name": "F♯",
+          "pc": 6,
+          "semis": 5
+        },
+        {
+          "name": "G♯",
+          "pc": 8,
+          "semis": 7
+        },
+        {
+          "name": "A",
+          "pc": 9,
+          "semis": 8
+        },
+        {
+          "name": "B",
+          "pc": 11,
+          "semis": 10
+        }
+      ],
+      "chords": [
+        {
+          "degree": 0,
+          "quality": "minor",
+          "number": "1m",
+          "name": "C♯m",
+          "tones": [
+            0,
+            2,
+            4
+          ]
+        },
+        {
+          "degree": 1,
+          "quality": "dim",
+          "number": "2°",
+          "name": "D♯°",
+          "tones": [
+            1,
+            3,
+            5
+          ]
+        },
+        {
+          "degree": 2,
+          "quality": "major",
+          "number": "3",
+          "name": "E",
+          "tones": [
+            2,
+            4,
+            6
+          ]
+        },
+        {
+          "degree": 3,
+          "quality": "minor",
+          "number": "4m",
+          "name": "F♯m",
+          "tones": [
+            3,
+            5,
+            0
+          ]
+        },
+        {
+          "degree": 4,
+          "quality": "minor",
+          "number": "5m",
+          "name": "G♯m",
+          "tones": [
+            4,
+            6,
+            1
+          ]
+        },
+        {
+          "degree": 5,
+          "quality": "major",
+          "number": "6",
+          "name": "A",
+          "tones": [
+            5,
+            0,
+            2
+          ]
+        },
+        {
+          "degree": 6,
+          "quality": "major",
+          "number": "7",
+          "name": "B",
+          "tones": [
+            6,
+            1,
+            3
+          ]
+        }
+      ],
+      "keyName": "C♯ minor",
+      "keySub": "Same notes as E major",
+      "steps": [
+        "W",
+        "H",
+        "W",
+        "W",
+        "H",
+        "W",
+        "W"
+      ],
+      "pills": [
+        "Am",
+        "Em",
+        "Bm",
+        "F♯m",
+        "C♯m",
+        "G♯m",
+        "D♯m",
+        "B♭m",
+        "Fm",
+        "Cm",
+        "Gm",
+        "Dm"
+      ],
+      "baseMidi": 49,
+      "voicings": [
+        {
+          "bass": 49,
+          "triad": [
+            61,
+            64,
+            68
+          ]
+        },
+        {
+          "bass": 51,
+          "triad": [
+            63,
+            66,
+            69
+          ]
+        },
+        {
+          "bass": 52,
+          "triad": [
+            64,
+            68,
+            71
+          ]
+        },
+        {
+          "bass": 54,
+          "triad": [
+            66,
+            69,
+            73
+          ]
+        },
+        {
+          "bass": 56,
+          "triad": [
+            68,
+            71,
+            75
+          ]
+        },
+        {
+          "bass": 57,
+          "triad": [
+            69,
+            73,
+            76
+          ]
+        },
+        {
+          "bass": 59,
+          "triad": [
+            71,
+            75,
+            78
+          ]
+        }
+      ],
+      "scaleMidis": [
+        61,
+        63,
+        64,
+        66,
+        68,
+        69,
+        71,
+        73
+      ],
+      "presetPatterns": [
+        {
+          "id": "minorpop",
+          "pattern": "1m–6–3–7"
+        },
+        {
+          "id": "descent",
+          "pattern": "1m–7–6–7"
+        },
+        {
+          "id": "minor145",
+          "pattern": "1m–4m–5m–1m"
+        },
+        {
+          "id": "cinema",
+          "pattern": "1m–6–7–1m"
+        }
+      ]
+    },
+    {
+      "key": "B",
+      "mode": "major",
+      "scale": [
+        {
+          "name": "B",
+          "pc": 11,
+          "semis": 0
+        },
+        {
+          "name": "C♯",
+          "pc": 1,
+          "semis": 2
+        },
+        {
+          "name": "D♯",
+          "pc": 3,
+          "semis": 4
+        },
+        {
+          "name": "E",
+          "pc": 4,
+          "semis": 5
+        },
+        {
+          "name": "F♯",
+          "pc": 6,
+          "semis": 7
+        },
+        {
+          "name": "G♯",
+          "pc": 8,
+          "semis": 9
+        },
+        {
+          "name": "A♯",
+          "pc": 10,
+          "semis": 11
+        }
+      ],
+      "chords": [
+        {
+          "degree": 0,
+          "quality": "major",
+          "number": "1",
+          "name": "B",
+          "tones": [
+            0,
+            2,
+            4
+          ]
+        },
+        {
+          "degree": 1,
+          "quality": "minor",
+          "number": "2m",
+          "name": "C♯m",
+          "tones": [
+            1,
+            3,
+            5
+          ]
+        },
+        {
+          "degree": 2,
+          "quality": "minor",
+          "number": "3m",
+          "name": "D♯m",
+          "tones": [
+            2,
+            4,
+            6
+          ]
+        },
+        {
+          "degree": 3,
+          "quality": "major",
+          "number": "4",
+          "name": "E",
+          "tones": [
+            3,
+            5,
+            0
+          ]
+        },
+        {
+          "degree": 4,
+          "quality": "major",
+          "number": "5",
+          "name": "F♯",
+          "tones": [
+            4,
+            6,
+            1
+          ]
+        },
+        {
+          "degree": 5,
+          "quality": "minor",
+          "number": "6m",
+          "name": "G♯m",
+          "tones": [
+            5,
+            0,
+            2
+          ]
+        },
+        {
+          "degree": 6,
+          "quality": "dim",
+          "number": "7°",
+          "name": "A♯°",
+          "tones": [
+            6,
+            1,
+            3
+          ]
+        }
+      ],
+      "keyName": "B major",
+      "keySub": "Relative minor: G♯ minor",
+      "steps": [
+        "W",
+        "W",
+        "H",
+        "W",
+        "W",
+        "W",
+        "H"
+      ],
+      "pills": [
+        "C",
+        "G",
+        "D",
+        "A",
+        "E",
+        "B",
+        "F♯",
+        "D♭",
+        "A♭",
+        "E♭",
+        "B♭",
+        "F"
+      ],
+      "baseMidi": 47,
+      "voicings": [
+        {
+          "bass": 47,
+          "triad": [
+            59,
+            63,
+            66
+          ]
+        },
+        {
+          "bass": 49,
+          "triad": [
+            61,
+            64,
+            68
+          ]
+        },
+        {
+          "bass": 51,
+          "triad": [
+            63,
+            66,
+            70
+          ]
+        },
+        {
+          "bass": 52,
+          "triad": [
+            64,
+            68,
+            71
+          ]
+        },
+        {
+          "bass": 54,
+          "triad": [
+            66,
+            70,
+            73
+          ]
+        },
+        {
+          "bass": 56,
+          "triad": [
+            68,
+            71,
+            75
+          ]
+        },
+        {
+          "bass": 58,
+          "triad": [
+            70,
+            73,
+            76
+          ]
+        }
+      ],
+      "scaleMidis": [
+        59,
+        61,
+        63,
+        64,
+        66,
+        68,
+        70,
+        71
+      ],
+      "presetPatterns": [
+        {
+          "id": "pop",
+          "pattern": "1–5–6m–4"
+        },
+        {
+          "id": "rock",
+          "pattern": "1–4–5–1"
+        },
+        {
+          "id": "moody",
+          "pattern": "6m–4–1–5"
+        },
+        {
+          "id": "doowop",
+          "pattern": "1–6m–4–5"
+        },
+        {
+          "id": "jazz",
+          "pattern": "2m–5–1–1"
+        }
+      ]
+    },
+    {
+      "key": "B",
+      "mode": "minor",
+      "scale": [
+        {
+          "name": "G♯",
+          "pc": 8,
+          "semis": 0
+        },
+        {
+          "name": "A♯",
+          "pc": 10,
+          "semis": 2
+        },
+        {
+          "name": "B",
+          "pc": 11,
+          "semis": 3
+        },
+        {
+          "name": "C♯",
+          "pc": 1,
+          "semis": 5
+        },
+        {
+          "name": "D♯",
+          "pc": 3,
+          "semis": 7
+        },
+        {
+          "name": "E",
+          "pc": 4,
+          "semis": 8
+        },
+        {
+          "name": "F♯",
+          "pc": 6,
+          "semis": 10
+        }
+      ],
+      "chords": [
+        {
+          "degree": 0,
+          "quality": "minor",
+          "number": "1m",
+          "name": "G♯m",
+          "tones": [
+            0,
+            2,
+            4
+          ]
+        },
+        {
+          "degree": 1,
+          "quality": "dim",
+          "number": "2°",
+          "name": "A♯°",
+          "tones": [
+            1,
+            3,
+            5
+          ]
+        },
+        {
+          "degree": 2,
+          "quality": "major",
+          "number": "3",
+          "name": "B",
+          "tones": [
+            2,
+            4,
+            6
+          ]
+        },
+        {
+          "degree": 3,
+          "quality": "minor",
+          "number": "4m",
+          "name": "C♯m",
+          "tones": [
+            3,
+            5,
+            0
+          ]
+        },
+        {
+          "degree": 4,
+          "quality": "minor",
+          "number": "5m",
+          "name": "D♯m",
+          "tones": [
+            4,
+            6,
+            1
+          ]
+        },
+        {
+          "degree": 5,
+          "quality": "major",
+          "number": "6",
+          "name": "E",
+          "tones": [
+            5,
+            0,
+            2
+          ]
+        },
+        {
+          "degree": 6,
+          "quality": "major",
+          "number": "7",
+          "name": "F♯",
+          "tones": [
+            6,
+            1,
+            3
+          ]
+        }
+      ],
+      "keyName": "G♯ minor",
+      "keySub": "Same notes as B major",
+      "steps": [
+        "W",
+        "H",
+        "W",
+        "W",
+        "H",
+        "W",
+        "W"
+      ],
+      "pills": [
+        "Am",
+        "Em",
+        "Bm",
+        "F♯m",
+        "C♯m",
+        "G♯m",
+        "D♯m",
+        "B♭m",
+        "Fm",
+        "Cm",
+        "Gm",
+        "Dm"
+      ],
+      "baseMidi": 44,
+      "voicings": [
+        {
+          "bass": 44,
+          "triad": [
+            56,
+            59,
+            63
+          ]
+        },
+        {
+          "bass": 46,
+          "triad": [
+            58,
+            61,
+            64
+          ]
+        },
+        {
+          "bass": 47,
+          "triad": [
+            59,
+            63,
+            66
+          ]
+        },
+        {
+          "bass": 49,
+          "triad": [
+            61,
+            64,
+            68
+          ]
+        },
+        {
+          "bass": 51,
+          "triad": [
+            63,
+            66,
+            70
+          ]
+        },
+        {
+          "bass": 52,
+          "triad": [
+            64,
+            68,
+            71
+          ]
+        },
+        {
+          "bass": 54,
+          "triad": [
+            66,
+            70,
+            73
+          ]
+        }
+      ],
+      "scaleMidis": [
+        56,
+        58,
+        59,
+        61,
+        63,
+        64,
+        66,
+        68
+      ],
+      "presetPatterns": [
+        {
+          "id": "minorpop",
+          "pattern": "1m–6–3–7"
+        },
+        {
+          "id": "descent",
+          "pattern": "1m–7–6–7"
+        },
+        {
+          "id": "minor145",
+          "pattern": "1m–4m–5m–1m"
+        },
+        {
+          "id": "cinema",
+          "pattern": "1m–6–7–1m"
+        }
+      ]
+    },
+    {
+      "key": "F#",
+      "mode": "major",
+      "scale": [
+        {
+          "name": "F♯",
+          "pc": 6,
+          "semis": 0
+        },
+        {
+          "name": "G♯",
+          "pc": 8,
+          "semis": 2
+        },
+        {
+          "name": "A♯",
+          "pc": 10,
+          "semis": 4
+        },
+        {
+          "name": "B",
+          "pc": 11,
+          "semis": 5
+        },
+        {
+          "name": "C♯",
+          "pc": 1,
+          "semis": 7
+        },
+        {
+          "name": "D♯",
+          "pc": 3,
+          "semis": 9
+        },
+        {
+          "name": "E♯",
+          "pc": 5,
+          "semis": 11
+        }
+      ],
+      "chords": [
+        {
+          "degree": 0,
+          "quality": "major",
+          "number": "1",
+          "name": "F♯",
+          "tones": [
+            0,
+            2,
+            4
+          ]
+        },
+        {
+          "degree": 1,
+          "quality": "minor",
+          "number": "2m",
+          "name": "G♯m",
+          "tones": [
+            1,
+            3,
+            5
+          ]
+        },
+        {
+          "degree": 2,
+          "quality": "minor",
+          "number": "3m",
+          "name": "A♯m",
+          "tones": [
+            2,
+            4,
+            6
+          ]
+        },
+        {
+          "degree": 3,
+          "quality": "major",
+          "number": "4",
+          "name": "B",
+          "tones": [
+            3,
+            5,
+            0
+          ]
+        },
+        {
+          "degree": 4,
+          "quality": "major",
+          "number": "5",
+          "name": "C♯",
+          "tones": [
+            4,
+            6,
+            1
+          ]
+        },
+        {
+          "degree": 5,
+          "quality": "minor",
+          "number": "6m",
+          "name": "D♯m",
+          "tones": [
+            5,
+            0,
+            2
+          ]
+        },
+        {
+          "degree": 6,
+          "quality": "dim",
+          "number": "7°",
+          "name": "E♯°",
+          "tones": [
+            6,
+            1,
+            3
+          ]
+        }
+      ],
+      "keyName": "F♯ major",
+      "keySub": "Relative minor: D♯ minor",
+      "steps": [
+        "W",
+        "W",
+        "H",
+        "W",
+        "W",
+        "W",
+        "H"
+      ],
+      "pills": [
+        "C",
+        "G",
+        "D",
+        "A",
+        "E",
+        "B",
+        "F♯",
+        "D♭",
+        "A♭",
+        "E♭",
+        "B♭",
+        "F"
+      ],
+      "baseMidi": 42,
+      "voicings": [
+        {
+          "bass": 42,
+          "triad": [
+            54,
+            58,
+            61
+          ]
+        },
+        {
+          "bass": 44,
+          "triad": [
+            56,
+            59,
+            63
+          ]
+        },
+        {
+          "bass": 46,
+          "triad": [
+            58,
+            61,
+            65
+          ]
+        },
+        {
+          "bass": 47,
+          "triad": [
+            59,
+            63,
+            66
+          ]
+        },
+        {
+          "bass": 49,
+          "triad": [
+            61,
+            65,
+            68
+          ]
+        },
+        {
+          "bass": 51,
+          "triad": [
+            63,
+            66,
+            70
+          ]
+        },
+        {
+          "bass": 53,
+          "triad": [
+            65,
+            68,
+            71
+          ]
+        }
+      ],
+      "scaleMidis": [
+        54,
+        56,
+        58,
+        59,
+        61,
+        63,
+        65,
+        66
+      ],
+      "presetPatterns": [
+        {
+          "id": "pop",
+          "pattern": "1–5–6m–4"
+        },
+        {
+          "id": "rock",
+          "pattern": "1–4–5–1"
+        },
+        {
+          "id": "moody",
+          "pattern": "6m–4–1–5"
+        },
+        {
+          "id": "doowop",
+          "pattern": "1–6m–4–5"
+        },
+        {
+          "id": "jazz",
+          "pattern": "2m–5–1–1"
+        }
+      ]
+    },
+    {
+      "key": "F#",
+      "mode": "minor",
+      "scale": [
+        {
+          "name": "D♯",
+          "pc": 3,
+          "semis": 0
+        },
+        {
+          "name": "E♯",
+          "pc": 5,
+          "semis": 2
+        },
+        {
+          "name": "F♯",
+          "pc": 6,
+          "semis": 3
+        },
+        {
+          "name": "G♯",
+          "pc": 8,
+          "semis": 5
+        },
+        {
+          "name": "A♯",
+          "pc": 10,
+          "semis": 7
+        },
+        {
+          "name": "B",
+          "pc": 11,
+          "semis": 8
+        },
+        {
+          "name": "C♯",
+          "pc": 1,
+          "semis": 10
+        }
+      ],
+      "chords": [
+        {
+          "degree": 0,
+          "quality": "minor",
+          "number": "1m",
+          "name": "D♯m",
+          "tones": [
+            0,
+            2,
+            4
+          ]
+        },
+        {
+          "degree": 1,
+          "quality": "dim",
+          "number": "2°",
+          "name": "E♯°",
+          "tones": [
+            1,
+            3,
+            5
+          ]
+        },
+        {
+          "degree": 2,
+          "quality": "major",
+          "number": "3",
+          "name": "F♯",
+          "tones": [
+            2,
+            4,
+            6
+          ]
+        },
+        {
+          "degree": 3,
+          "quality": "minor",
+          "number": "4m",
+          "name": "G♯m",
+          "tones": [
+            3,
+            5,
+            0
+          ]
+        },
+        {
+          "degree": 4,
+          "quality": "minor",
+          "number": "5m",
+          "name": "A♯m",
+          "tones": [
+            4,
+            6,
+            1
+          ]
+        },
+        {
+          "degree": 5,
+          "quality": "major",
+          "number": "6",
+          "name": "B",
+          "tones": [
+            5,
+            0,
+            2
+          ]
+        },
+        {
+          "degree": 6,
+          "quality": "major",
+          "number": "7",
+          "name": "C♯",
+          "tones": [
+            6,
+            1,
+            3
+          ]
+        }
+      ],
+      "keyName": "D♯ minor",
+      "keySub": "Same notes as F♯ major",
+      "steps": [
+        "W",
+        "H",
+        "W",
+        "W",
+        "H",
+        "W",
+        "W"
+      ],
+      "pills": [
+        "Am",
+        "Em",
+        "Bm",
+        "F♯m",
+        "C♯m",
+        "G♯m",
+        "D♯m",
+        "B♭m",
+        "Fm",
+        "Cm",
+        "Gm",
+        "Dm"
+      ],
+      "baseMidi": 51,
+      "voicings": [
+        {
+          "bass": 51,
+          "triad": [
+            63,
+            66,
+            70
+          ]
+        },
+        {
+          "bass": 53,
+          "triad": [
+            65,
+            68,
+            71
+          ]
+        },
+        {
+          "bass": 54,
+          "triad": [
+            66,
+            70,
+            73
+          ]
+        },
+        {
+          "bass": 56,
+          "triad": [
+            68,
+            71,
+            75
+          ]
+        },
+        {
+          "bass": 58,
+          "triad": [
+            70,
+            73,
+            77
+          ]
+        },
+        {
+          "bass": 59,
+          "triad": [
+            71,
+            75,
+            78
+          ]
+        },
+        {
+          "bass": 61,
+          "triad": [
+            73,
+            77,
+            80
+          ]
+        }
+      ],
+      "scaleMidis": [
+        63,
+        65,
+        66,
+        68,
+        70,
+        71,
+        73,
+        75
+      ],
+      "presetPatterns": [
+        {
+          "id": "minorpop",
+          "pattern": "1m–6–3–7"
+        },
+        {
+          "id": "descent",
+          "pattern": "1m–7–6–7"
+        },
+        {
+          "id": "minor145",
+          "pattern": "1m–4m–5m–1m"
+        },
+        {
+          "id": "cinema",
+          "pattern": "1m–6–7–1m"
+        }
+      ]
+    },
+    {
+      "key": "Db",
+      "mode": "major",
+      "scale": [
+        {
+          "name": "D♭",
+          "pc": 1,
+          "semis": 0
+        },
+        {
+          "name": "E♭",
+          "pc": 3,
+          "semis": 2
+        },
+        {
+          "name": "F",
+          "pc": 5,
+          "semis": 4
+        },
+        {
+          "name": "G♭",
+          "pc": 6,
+          "semis": 5
+        },
+        {
+          "name": "A♭",
+          "pc": 8,
+          "semis": 7
+        },
+        {
+          "name": "B♭",
+          "pc": 10,
+          "semis": 9
+        },
+        {
+          "name": "C",
+          "pc": 0,
+          "semis": 11
+        }
+      ],
+      "chords": [
+        {
+          "degree": 0,
+          "quality": "major",
+          "number": "1",
+          "name": "D♭",
+          "tones": [
+            0,
+            2,
+            4
+          ]
+        },
+        {
+          "degree": 1,
+          "quality": "minor",
+          "number": "2m",
+          "name": "E♭m",
+          "tones": [
+            1,
+            3,
+            5
+          ]
+        },
+        {
+          "degree": 2,
+          "quality": "minor",
+          "number": "3m",
+          "name": "Fm",
+          "tones": [
+            2,
+            4,
+            6
+          ]
+        },
+        {
+          "degree": 3,
+          "quality": "major",
+          "number": "4",
+          "name": "G♭",
+          "tones": [
+            3,
+            5,
+            0
+          ]
+        },
+        {
+          "degree": 4,
+          "quality": "major",
+          "number": "5",
+          "name": "A♭",
+          "tones": [
+            4,
+            6,
+            1
+          ]
+        },
+        {
+          "degree": 5,
+          "quality": "minor",
+          "number": "6m",
+          "name": "B♭m",
+          "tones": [
+            5,
+            0,
+            2
+          ]
+        },
+        {
+          "degree": 6,
+          "quality": "dim",
+          "number": "7°",
+          "name": "C°",
+          "tones": [
+            6,
+            1,
+            3
+          ]
+        }
+      ],
+      "keyName": "D♭ major",
+      "keySub": "Relative minor: B♭ minor",
+      "steps": [
+        "W",
+        "W",
+        "H",
+        "W",
+        "W",
+        "W",
+        "H"
+      ],
+      "pills": [
+        "C",
+        "G",
+        "D",
+        "A",
+        "E",
+        "B",
+        "F♯",
+        "D♭",
+        "A♭",
+        "E♭",
+        "B♭",
+        "F"
+      ],
+      "baseMidi": 49,
+      "voicings": [
+        {
+          "bass": 49,
+          "triad": [
+            61,
+            65,
+            68
+          ]
+        },
+        {
+          "bass": 51,
+          "triad": [
+            63,
+            66,
+            70
+          ]
+        },
+        {
+          "bass": 53,
+          "triad": [
+            65,
+            68,
+            72
+          ]
+        },
+        {
+          "bass": 54,
+          "triad": [
+            66,
+            70,
+            73
+          ]
+        },
+        {
+          "bass": 56,
+          "triad": [
+            68,
+            72,
+            75
+          ]
+        },
+        {
+          "bass": 58,
+          "triad": [
+            70,
+            73,
+            77
+          ]
+        },
+        {
+          "bass": 60,
+          "triad": [
+            72,
+            75,
+            78
+          ]
+        }
+      ],
+      "scaleMidis": [
+        61,
+        63,
+        65,
+        66,
+        68,
+        70,
+        72,
+        73
+      ],
+      "presetPatterns": [
+        {
+          "id": "pop",
+          "pattern": "1–5–6m–4"
+        },
+        {
+          "id": "rock",
+          "pattern": "1–4–5–1"
+        },
+        {
+          "id": "moody",
+          "pattern": "6m–4–1–5"
+        },
+        {
+          "id": "doowop",
+          "pattern": "1–6m–4–5"
+        },
+        {
+          "id": "jazz",
+          "pattern": "2m–5–1–1"
+        }
+      ]
+    },
+    {
+      "key": "Db",
+      "mode": "minor",
+      "scale": [
+        {
+          "name": "B♭",
+          "pc": 10,
+          "semis": 0
+        },
+        {
+          "name": "C",
+          "pc": 0,
+          "semis": 2
+        },
+        {
+          "name": "D♭",
+          "pc": 1,
+          "semis": 3
+        },
+        {
+          "name": "E♭",
+          "pc": 3,
+          "semis": 5
+        },
+        {
+          "name": "F",
+          "pc": 5,
+          "semis": 7
+        },
+        {
+          "name": "G♭",
+          "pc": 6,
+          "semis": 8
+        },
+        {
+          "name": "A♭",
+          "pc": 8,
+          "semis": 10
+        }
+      ],
+      "chords": [
+        {
+          "degree": 0,
+          "quality": "minor",
+          "number": "1m",
+          "name": "B♭m",
+          "tones": [
+            0,
+            2,
+            4
+          ]
+        },
+        {
+          "degree": 1,
+          "quality": "dim",
+          "number": "2°",
+          "name": "C°",
+          "tones": [
+            1,
+            3,
+            5
+          ]
+        },
+        {
+          "degree": 2,
+          "quality": "major",
+          "number": "3",
+          "name": "D♭",
+          "tones": [
+            2,
+            4,
+            6
+          ]
+        },
+        {
+          "degree": 3,
+          "quality": "minor",
+          "number": "4m",
+          "name": "E♭m",
+          "tones": [
+            3,
+            5,
+            0
+          ]
+        },
+        {
+          "degree": 4,
+          "quality": "minor",
+          "number": "5m",
+          "name": "Fm",
+          "tones": [
+            4,
+            6,
+            1
+          ]
+        },
+        {
+          "degree": 5,
+          "quality": "major",
+          "number": "6",
+          "name": "G♭",
+          "tones": [
+            5,
+            0,
+            2
+          ]
+        },
+        {
+          "degree": 6,
+          "quality": "major",
+          "number": "7",
+          "name": "A♭",
+          "tones": [
+            6,
+            1,
+            3
+          ]
+        }
+      ],
+      "keyName": "B♭ minor",
+      "keySub": "Same notes as D♭ major",
+      "steps": [
+        "W",
+        "H",
+        "W",
+        "W",
+        "H",
+        "W",
+        "W"
+      ],
+      "pills": [
+        "Am",
+        "Em",
+        "Bm",
+        "F♯m",
+        "C♯m",
+        "G♯m",
+        "D♯m",
+        "B♭m",
+        "Fm",
+        "Cm",
+        "Gm",
+        "Dm"
+      ],
+      "baseMidi": 46,
+      "voicings": [
+        {
+          "bass": 46,
+          "triad": [
+            58,
+            61,
+            65
+          ]
+        },
+        {
+          "bass": 48,
+          "triad": [
+            60,
+            63,
+            66
+          ]
+        },
+        {
+          "bass": 49,
+          "triad": [
+            61,
+            65,
+            68
+          ]
+        },
+        {
+          "bass": 51,
+          "triad": [
+            63,
+            66,
+            70
+          ]
+        },
+        {
+          "bass": 53,
+          "triad": [
+            65,
+            68,
+            72
+          ]
+        },
+        {
+          "bass": 54,
+          "triad": [
+            66,
+            70,
+            73
+          ]
+        },
+        {
+          "bass": 56,
+          "triad": [
+            68,
+            72,
+            75
+          ]
+        }
+      ],
+      "scaleMidis": [
+        58,
+        60,
+        61,
+        63,
+        65,
+        66,
+        68,
+        70
+      ],
+      "presetPatterns": [
+        {
+          "id": "minorpop",
+          "pattern": "1m–6–3–7"
+        },
+        {
+          "id": "descent",
+          "pattern": "1m–7–6–7"
+        },
+        {
+          "id": "minor145",
+          "pattern": "1m–4m–5m–1m"
+        },
+        {
+          "id": "cinema",
+          "pattern": "1m–6–7–1m"
+        }
+      ]
+    },
+    {
+      "key": "Ab",
+      "mode": "major",
+      "scale": [
+        {
+          "name": "A♭",
+          "pc": 8,
+          "semis": 0
+        },
+        {
+          "name": "B♭",
+          "pc": 10,
+          "semis": 2
+        },
+        {
+          "name": "C",
+          "pc": 0,
+          "semis": 4
+        },
+        {
+          "name": "D♭",
+          "pc": 1,
+          "semis": 5
+        },
+        {
+          "name": "E♭",
+          "pc": 3,
+          "semis": 7
+        },
+        {
+          "name": "F",
+          "pc": 5,
+          "semis": 9
+        },
+        {
+          "name": "G",
+          "pc": 7,
+          "semis": 11
+        }
+      ],
+      "chords": [
+        {
+          "degree": 0,
+          "quality": "major",
+          "number": "1",
+          "name": "A♭",
+          "tones": [
+            0,
+            2,
+            4
+          ]
+        },
+        {
+          "degree": 1,
+          "quality": "minor",
+          "number": "2m",
+          "name": "B♭m",
+          "tones": [
+            1,
+            3,
+            5
+          ]
+        },
+        {
+          "degree": 2,
+          "quality": "minor",
+          "number": "3m",
+          "name": "Cm",
+          "tones": [
+            2,
+            4,
+            6
+          ]
+        },
+        {
+          "degree": 3,
+          "quality": "major",
+          "number": "4",
+          "name": "D♭",
+          "tones": [
+            3,
+            5,
+            0
+          ]
+        },
+        {
+          "degree": 4,
+          "quality": "major",
+          "number": "5",
+          "name": "E♭",
+          "tones": [
+            4,
+            6,
+            1
+          ]
+        },
+        {
+          "degree": 5,
+          "quality": "minor",
+          "number": "6m",
+          "name": "Fm",
+          "tones": [
+            5,
+            0,
+            2
+          ]
+        },
+        {
+          "degree": 6,
+          "quality": "dim",
+          "number": "7°",
+          "name": "G°",
+          "tones": [
+            6,
+            1,
+            3
+          ]
+        }
+      ],
+      "keyName": "A♭ major",
+      "keySub": "Relative minor: F minor",
+      "steps": [
+        "W",
+        "W",
+        "H",
+        "W",
+        "W",
+        "W",
+        "H"
+      ],
+      "pills": [
+        "C",
+        "G",
+        "D",
+        "A",
+        "E",
+        "B",
+        "F♯",
+        "D♭",
+        "A♭",
+        "E♭",
+        "B♭",
+        "F"
+      ],
+      "baseMidi": 44,
+      "voicings": [
+        {
+          "bass": 44,
+          "triad": [
+            56,
+            60,
+            63
+          ]
+        },
+        {
+          "bass": 46,
+          "triad": [
+            58,
+            61,
+            65
+          ]
+        },
+        {
+          "bass": 48,
+          "triad": [
+            60,
+            63,
+            67
+          ]
+        },
+        {
+          "bass": 49,
+          "triad": [
+            61,
+            65,
+            68
+          ]
+        },
+        {
+          "bass": 51,
+          "triad": [
+            63,
+            67,
+            70
+          ]
+        },
+        {
+          "bass": 53,
+          "triad": [
+            65,
+            68,
+            72
+          ]
+        },
+        {
+          "bass": 55,
+          "triad": [
+            67,
+            70,
+            73
+          ]
+        }
+      ],
+      "scaleMidis": [
+        56,
+        58,
+        60,
+        61,
+        63,
+        65,
+        67,
+        68
+      ],
+      "presetPatterns": [
+        {
+          "id": "pop",
+          "pattern": "1–5–6m–4"
+        },
+        {
+          "id": "rock",
+          "pattern": "1–4–5–1"
+        },
+        {
+          "id": "moody",
+          "pattern": "6m–4–1–5"
+        },
+        {
+          "id": "doowop",
+          "pattern": "1–6m–4–5"
+        },
+        {
+          "id": "jazz",
+          "pattern": "2m–5–1–1"
+        }
+      ]
+    },
+    {
+      "key": "Ab",
+      "mode": "minor",
+      "scale": [
+        {
+          "name": "F",
+          "pc": 5,
+          "semis": 0
+        },
+        {
+          "name": "G",
+          "pc": 7,
+          "semis": 2
+        },
+        {
+          "name": "A♭",
+          "pc": 8,
+          "semis": 3
+        },
+        {
+          "name": "B♭",
+          "pc": 10,
+          "semis": 5
+        },
+        {
+          "name": "C",
+          "pc": 0,
+          "semis": 7
+        },
+        {
+          "name": "D♭",
+          "pc": 1,
+          "semis": 8
+        },
+        {
+          "name": "E♭",
+          "pc": 3,
+          "semis": 10
+        }
+      ],
+      "chords": [
+        {
+          "degree": 0,
+          "quality": "minor",
+          "number": "1m",
+          "name": "Fm",
+          "tones": [
+            0,
+            2,
+            4
+          ]
+        },
+        {
+          "degree": 1,
+          "quality": "dim",
+          "number": "2°",
+          "name": "G°",
+          "tones": [
+            1,
+            3,
+            5
+          ]
+        },
+        {
+          "degree": 2,
+          "quality": "major",
+          "number": "3",
+          "name": "A♭",
+          "tones": [
+            2,
+            4,
+            6
+          ]
+        },
+        {
+          "degree": 3,
+          "quality": "minor",
+          "number": "4m",
+          "name": "B♭m",
+          "tones": [
+            3,
+            5,
+            0
+          ]
+        },
+        {
+          "degree": 4,
+          "quality": "minor",
+          "number": "5m",
+          "name": "Cm",
+          "tones": [
+            4,
+            6,
+            1
+          ]
+        },
+        {
+          "degree": 5,
+          "quality": "major",
+          "number": "6",
+          "name": "D♭",
+          "tones": [
+            5,
+            0,
+            2
+          ]
+        },
+        {
+          "degree": 6,
+          "quality": "major",
+          "number": "7",
+          "name": "E♭",
+          "tones": [
+            6,
+            1,
+            3
+          ]
+        }
+      ],
+      "keyName": "F minor",
+      "keySub": "Same notes as A♭ major",
+      "steps": [
+        "W",
+        "H",
+        "W",
+        "W",
+        "H",
+        "W",
+        "W"
+      ],
+      "pills": [
+        "Am",
+        "Em",
+        "Bm",
+        "F♯m",
+        "C♯m",
+        "G♯m",
+        "D♯m",
+        "B♭m",
+        "Fm",
+        "Cm",
+        "Gm",
+        "Dm"
+      ],
+      "baseMidi": 53,
+      "voicings": [
+        {
+          "bass": 53,
+          "triad": [
+            65,
+            68,
+            72
+          ]
+        },
+        {
+          "bass": 55,
+          "triad": [
+            67,
+            70,
+            73
+          ]
+        },
+        {
+          "bass": 56,
+          "triad": [
+            68,
+            72,
+            75
+          ]
+        },
+        {
+          "bass": 58,
+          "triad": [
+            70,
+            73,
+            77
+          ]
+        },
+        {
+          "bass": 60,
+          "triad": [
+            72,
+            75,
+            79
+          ]
+        },
+        {
+          "bass": 61,
+          "triad": [
+            73,
+            77,
+            80
+          ]
+        },
+        {
+          "bass": 63,
+          "triad": [
+            75,
+            79,
+            82
+          ]
+        }
+      ],
+      "scaleMidis": [
+        65,
+        67,
+        68,
+        70,
+        72,
+        73,
+        75,
+        77
+      ],
+      "presetPatterns": [
+        {
+          "id": "minorpop",
+          "pattern": "1m–6–3–7"
+        },
+        {
+          "id": "descent",
+          "pattern": "1m–7–6–7"
+        },
+        {
+          "id": "minor145",
+          "pattern": "1m–4m–5m–1m"
+        },
+        {
+          "id": "cinema",
+          "pattern": "1m–6–7–1m"
+        }
+      ]
+    },
+    {
+      "key": "Eb",
+      "mode": "major",
+      "scale": [
+        {
+          "name": "E♭",
+          "pc": 3,
+          "semis": 0
+        },
+        {
+          "name": "F",
+          "pc": 5,
+          "semis": 2
+        },
+        {
+          "name": "G",
+          "pc": 7,
+          "semis": 4
+        },
+        {
+          "name": "A♭",
+          "pc": 8,
+          "semis": 5
+        },
+        {
+          "name": "B♭",
+          "pc": 10,
+          "semis": 7
+        },
+        {
+          "name": "C",
+          "pc": 0,
+          "semis": 9
+        },
+        {
+          "name": "D",
+          "pc": 2,
+          "semis": 11
+        }
+      ],
+      "chords": [
+        {
+          "degree": 0,
+          "quality": "major",
+          "number": "1",
+          "name": "E♭",
+          "tones": [
+            0,
+            2,
+            4
+          ]
+        },
+        {
+          "degree": 1,
+          "quality": "minor",
+          "number": "2m",
+          "name": "Fm",
+          "tones": [
+            1,
+            3,
+            5
+          ]
+        },
+        {
+          "degree": 2,
+          "quality": "minor",
+          "number": "3m",
+          "name": "Gm",
+          "tones": [
+            2,
+            4,
+            6
+          ]
+        },
+        {
+          "degree": 3,
+          "quality": "major",
+          "number": "4",
+          "name": "A♭",
+          "tones": [
+            3,
+            5,
+            0
+          ]
+        },
+        {
+          "degree": 4,
+          "quality": "major",
+          "number": "5",
+          "name": "B♭",
+          "tones": [
+            4,
+            6,
+            1
+          ]
+        },
+        {
+          "degree": 5,
+          "quality": "minor",
+          "number": "6m",
+          "name": "Cm",
+          "tones": [
+            5,
+            0,
+            2
+          ]
+        },
+        {
+          "degree": 6,
+          "quality": "dim",
+          "number": "7°",
+          "name": "D°",
+          "tones": [
+            6,
+            1,
+            3
+          ]
+        }
+      ],
+      "keyName": "E♭ major",
+      "keySub": "Relative minor: C minor",
+      "steps": [
+        "W",
+        "W",
+        "H",
+        "W",
+        "W",
+        "W",
+        "H"
+      ],
+      "pills": [
+        "C",
+        "G",
+        "D",
+        "A",
+        "E",
+        "B",
+        "F♯",
+        "D♭",
+        "A♭",
+        "E♭",
+        "B♭",
+        "F"
+      ],
+      "baseMidi": 51,
+      "voicings": [
+        {
+          "bass": 51,
+          "triad": [
+            63,
+            67,
+            70
+          ]
+        },
+        {
+          "bass": 53,
+          "triad": [
+            65,
+            68,
+            72
+          ]
+        },
+        {
+          "bass": 55,
+          "triad": [
+            67,
+            70,
+            74
+          ]
+        },
+        {
+          "bass": 56,
+          "triad": [
+            68,
+            72,
+            75
+          ]
+        },
+        {
+          "bass": 58,
+          "triad": [
+            70,
+            74,
+            77
+          ]
+        },
+        {
+          "bass": 60,
+          "triad": [
+            72,
+            75,
+            79
+          ]
+        },
+        {
+          "bass": 62,
+          "triad": [
+            74,
+            77,
+            80
+          ]
+        }
+      ],
+      "scaleMidis": [
+        63,
+        65,
+        67,
+        68,
+        70,
+        72,
+        74,
+        75
+      ],
+      "presetPatterns": [
+        {
+          "id": "pop",
+          "pattern": "1–5–6m–4"
+        },
+        {
+          "id": "rock",
+          "pattern": "1–4–5–1"
+        },
+        {
+          "id": "moody",
+          "pattern": "6m–4–1–5"
+        },
+        {
+          "id": "doowop",
+          "pattern": "1–6m–4–5"
+        },
+        {
+          "id": "jazz",
+          "pattern": "2m–5–1–1"
+        }
+      ]
+    },
+    {
+      "key": "Eb",
+      "mode": "minor",
+      "scale": [
+        {
+          "name": "C",
+          "pc": 0,
+          "semis": 0
+        },
+        {
+          "name": "D",
+          "pc": 2,
+          "semis": 2
+        },
+        {
+          "name": "E♭",
+          "pc": 3,
+          "semis": 3
+        },
+        {
+          "name": "F",
+          "pc": 5,
+          "semis": 5
+        },
+        {
+          "name": "G",
+          "pc": 7,
+          "semis": 7
+        },
+        {
+          "name": "A♭",
+          "pc": 8,
+          "semis": 8
+        },
+        {
+          "name": "B♭",
+          "pc": 10,
+          "semis": 10
+        }
+      ],
+      "chords": [
+        {
+          "degree": 0,
+          "quality": "minor",
+          "number": "1m",
+          "name": "Cm",
+          "tones": [
+            0,
+            2,
+            4
+          ]
+        },
+        {
+          "degree": 1,
+          "quality": "dim",
+          "number": "2°",
+          "name": "D°",
+          "tones": [
+            1,
+            3,
+            5
+          ]
+        },
+        {
+          "degree": 2,
+          "quality": "major",
+          "number": "3",
+          "name": "E♭",
+          "tones": [
+            2,
+            4,
+            6
+          ]
+        },
+        {
+          "degree": 3,
+          "quality": "minor",
+          "number": "4m",
+          "name": "Fm",
+          "tones": [
+            3,
+            5,
+            0
+          ]
+        },
+        {
+          "degree": 4,
+          "quality": "minor",
+          "number": "5m",
+          "name": "Gm",
+          "tones": [
+            4,
+            6,
+            1
+          ]
+        },
+        {
+          "degree": 5,
+          "quality": "major",
+          "number": "6",
+          "name": "A♭",
+          "tones": [
+            5,
+            0,
+            2
+          ]
+        },
+        {
+          "degree": 6,
+          "quality": "major",
+          "number": "7",
+          "name": "B♭",
+          "tones": [
+            6,
+            1,
+            3
+          ]
+        }
+      ],
+      "keyName": "C minor",
+      "keySub": "Same notes as E♭ major",
+      "steps": [
+        "W",
+        "H",
+        "W",
+        "W",
+        "H",
+        "W",
+        "W"
+      ],
+      "pills": [
+        "Am",
+        "Em",
+        "Bm",
+        "F♯m",
+        "C♯m",
+        "G♯m",
+        "D♯m",
+        "B♭m",
+        "Fm",
+        "Cm",
+        "Gm",
+        "Dm"
+      ],
+      "baseMidi": 48,
+      "voicings": [
+        {
+          "bass": 48,
+          "triad": [
+            60,
+            63,
+            67
+          ]
+        },
+        {
+          "bass": 50,
+          "triad": [
+            62,
+            65,
+            68
+          ]
+        },
+        {
+          "bass": 51,
+          "triad": [
+            63,
+            67,
+            70
+          ]
+        },
+        {
+          "bass": 53,
+          "triad": [
+            65,
+            68,
+            72
+          ]
+        },
+        {
+          "bass": 55,
+          "triad": [
+            67,
+            70,
+            74
+          ]
+        },
+        {
+          "bass": 56,
+          "triad": [
+            68,
+            72,
+            75
+          ]
+        },
+        {
+          "bass": 58,
+          "triad": [
+            70,
+            74,
+            77
+          ]
+        }
+      ],
+      "scaleMidis": [
+        60,
+        62,
+        63,
+        65,
+        67,
+        68,
+        70,
+        72
+      ],
+      "presetPatterns": [
+        {
+          "id": "minorpop",
+          "pattern": "1m–6–3–7"
+        },
+        {
+          "id": "descent",
+          "pattern": "1m–7–6–7"
+        },
+        {
+          "id": "minor145",
+          "pattern": "1m–4m–5m–1m"
+        },
+        {
+          "id": "cinema",
+          "pattern": "1m–6–7–1m"
+        }
+      ]
+    },
+    {
+      "key": "Bb",
+      "mode": "major",
+      "scale": [
+        {
+          "name": "B♭",
+          "pc": 10,
+          "semis": 0
+        },
+        {
+          "name": "C",
+          "pc": 0,
+          "semis": 2
+        },
+        {
+          "name": "D",
+          "pc": 2,
+          "semis": 4
+        },
+        {
+          "name": "E♭",
+          "pc": 3,
+          "semis": 5
+        },
+        {
+          "name": "F",
+          "pc": 5,
+          "semis": 7
+        },
+        {
+          "name": "G",
+          "pc": 7,
+          "semis": 9
+        },
+        {
+          "name": "A",
+          "pc": 9,
+          "semis": 11
+        }
+      ],
+      "chords": [
+        {
+          "degree": 0,
+          "quality": "major",
+          "number": "1",
+          "name": "B♭",
+          "tones": [
+            0,
+            2,
+            4
+          ]
+        },
+        {
+          "degree": 1,
+          "quality": "minor",
+          "number": "2m",
+          "name": "Cm",
+          "tones": [
+            1,
+            3,
+            5
+          ]
+        },
+        {
+          "degree": 2,
+          "quality": "minor",
+          "number": "3m",
+          "name": "Dm",
+          "tones": [
+            2,
+            4,
+            6
+          ]
+        },
+        {
+          "degree": 3,
+          "quality": "major",
+          "number": "4",
+          "name": "E♭",
+          "tones": [
+            3,
+            5,
+            0
+          ]
+        },
+        {
+          "degree": 4,
+          "quality": "major",
+          "number": "5",
+          "name": "F",
+          "tones": [
+            4,
+            6,
+            1
+          ]
+        },
+        {
+          "degree": 5,
+          "quality": "minor",
+          "number": "6m",
+          "name": "Gm",
+          "tones": [
+            5,
+            0,
+            2
+          ]
+        },
+        {
+          "degree": 6,
+          "quality": "dim",
+          "number": "7°",
+          "name": "A°",
+          "tones": [
+            6,
+            1,
+            3
+          ]
+        }
+      ],
+      "keyName": "B♭ major",
+      "keySub": "Relative minor: G minor",
+      "steps": [
+        "W",
+        "W",
+        "H",
+        "W",
+        "W",
+        "W",
+        "H"
+      ],
+      "pills": [
+        "C",
+        "G",
+        "D",
+        "A",
+        "E",
+        "B",
+        "F♯",
+        "D♭",
+        "A♭",
+        "E♭",
+        "B♭",
+        "F"
+      ],
+      "baseMidi": 46,
+      "voicings": [
+        {
+          "bass": 46,
+          "triad": [
+            58,
+            62,
+            65
+          ]
+        },
+        {
+          "bass": 48,
+          "triad": [
+            60,
+            63,
+            67
+          ]
+        },
+        {
+          "bass": 50,
+          "triad": [
+            62,
+            65,
+            69
+          ]
+        },
+        {
+          "bass": 51,
+          "triad": [
+            63,
+            67,
+            70
+          ]
+        },
+        {
+          "bass": 53,
+          "triad": [
+            65,
+            69,
+            72
+          ]
+        },
+        {
+          "bass": 55,
+          "triad": [
+            67,
+            70,
+            74
+          ]
+        },
+        {
+          "bass": 57,
+          "triad": [
+            69,
+            72,
+            75
+          ]
+        }
+      ],
+      "scaleMidis": [
+        58,
+        60,
+        62,
+        63,
+        65,
+        67,
+        69,
+        70
+      ],
+      "presetPatterns": [
+        {
+          "id": "pop",
+          "pattern": "1–5–6m–4"
+        },
+        {
+          "id": "rock",
+          "pattern": "1–4–5–1"
+        },
+        {
+          "id": "moody",
+          "pattern": "6m–4–1–5"
+        },
+        {
+          "id": "doowop",
+          "pattern": "1–6m–4–5"
+        },
+        {
+          "id": "jazz",
+          "pattern": "2m–5–1–1"
+        }
+      ]
+    },
+    {
+      "key": "Bb",
+      "mode": "minor",
+      "scale": [
+        {
+          "name": "G",
+          "pc": 7,
+          "semis": 0
+        },
+        {
+          "name": "A",
+          "pc": 9,
+          "semis": 2
+        },
+        {
+          "name": "B♭",
+          "pc": 10,
+          "semis": 3
+        },
+        {
+          "name": "C",
+          "pc": 0,
+          "semis": 5
+        },
+        {
+          "name": "D",
+          "pc": 2,
+          "semis": 7
+        },
+        {
+          "name": "E♭",
+          "pc": 3,
+          "semis": 8
+        },
+        {
+          "name": "F",
+          "pc": 5,
+          "semis": 10
+        }
+      ],
+      "chords": [
+        {
+          "degree": 0,
+          "quality": "minor",
+          "number": "1m",
+          "name": "Gm",
+          "tones": [
+            0,
+            2,
+            4
+          ]
+        },
+        {
+          "degree": 1,
+          "quality": "dim",
+          "number": "2°",
+          "name": "A°",
+          "tones": [
+            1,
+            3,
+            5
+          ]
+        },
+        {
+          "degree": 2,
+          "quality": "major",
+          "number": "3",
+          "name": "B♭",
+          "tones": [
+            2,
+            4,
+            6
+          ]
+        },
+        {
+          "degree": 3,
+          "quality": "minor",
+          "number": "4m",
+          "name": "Cm",
+          "tones": [
+            3,
+            5,
+            0
+          ]
+        },
+        {
+          "degree": 4,
+          "quality": "minor",
+          "number": "5m",
+          "name": "Dm",
+          "tones": [
+            4,
+            6,
+            1
+          ]
+        },
+        {
+          "degree": 5,
+          "quality": "major",
+          "number": "6",
+          "name": "E♭",
+          "tones": [
+            5,
+            0,
+            2
+          ]
+        },
+        {
+          "degree": 6,
+          "quality": "major",
+          "number": "7",
+          "name": "F",
+          "tones": [
+            6,
+            1,
+            3
+          ]
+        }
+      ],
+      "keyName": "G minor",
+      "keySub": "Same notes as B♭ major",
+      "steps": [
+        "W",
+        "H",
+        "W",
+        "W",
+        "H",
+        "W",
+        "W"
+      ],
+      "pills": [
+        "Am",
+        "Em",
+        "Bm",
+        "F♯m",
+        "C♯m",
+        "G♯m",
+        "D♯m",
+        "B♭m",
+        "Fm",
+        "Cm",
+        "Gm",
+        "Dm"
+      ],
+      "baseMidi": 43,
+      "voicings": [
+        {
+          "bass": 43,
+          "triad": [
+            55,
+            58,
+            62
+          ]
+        },
+        {
+          "bass": 45,
+          "triad": [
+            57,
+            60,
+            63
+          ]
+        },
+        {
+          "bass": 46,
+          "triad": [
+            58,
+            62,
+            65
+          ]
+        },
+        {
+          "bass": 48,
+          "triad": [
+            60,
+            63,
+            67
+          ]
+        },
+        {
+          "bass": 50,
+          "triad": [
+            62,
+            65,
+            69
+          ]
+        },
+        {
+          "bass": 51,
+          "triad": [
+            63,
+            67,
+            70
+          ]
+        },
+        {
+          "bass": 53,
+          "triad": [
+            65,
+            69,
+            72
+          ]
+        }
+      ],
+      "scaleMidis": [
+        55,
+        57,
+        58,
+        60,
+        62,
+        63,
+        65,
+        67
+      ],
+      "presetPatterns": [
+        {
+          "id": "minorpop",
+          "pattern": "1m–6–3–7"
+        },
+        {
+          "id": "descent",
+          "pattern": "1m–7–6–7"
+        },
+        {
+          "id": "minor145",
+          "pattern": "1m–4m–5m–1m"
+        },
+        {
+          "id": "cinema",
+          "pattern": "1m–6–7–1m"
+        }
+      ]
+    },
+    {
+      "key": "F",
+      "mode": "major",
+      "scale": [
+        {
+          "name": "F",
+          "pc": 5,
+          "semis": 0
+        },
+        {
+          "name": "G",
+          "pc": 7,
+          "semis": 2
+        },
+        {
+          "name": "A",
+          "pc": 9,
+          "semis": 4
+        },
+        {
+          "name": "B♭",
+          "pc": 10,
+          "semis": 5
+        },
+        {
+          "name": "C",
+          "pc": 0,
+          "semis": 7
+        },
+        {
+          "name": "D",
+          "pc": 2,
+          "semis": 9
+        },
+        {
+          "name": "E",
+          "pc": 4,
+          "semis": 11
+        }
+      ],
+      "chords": [
+        {
+          "degree": 0,
+          "quality": "major",
+          "number": "1",
+          "name": "F",
+          "tones": [
+            0,
+            2,
+            4
+          ]
+        },
+        {
+          "degree": 1,
+          "quality": "minor",
+          "number": "2m",
+          "name": "Gm",
+          "tones": [
+            1,
+            3,
+            5
+          ]
+        },
+        {
+          "degree": 2,
+          "quality": "minor",
+          "number": "3m",
+          "name": "Am",
+          "tones": [
+            2,
+            4,
+            6
+          ]
+        },
+        {
+          "degree": 3,
+          "quality": "major",
+          "number": "4",
+          "name": "B♭",
+          "tones": [
+            3,
+            5,
+            0
+          ]
+        },
+        {
+          "degree": 4,
+          "quality": "major",
+          "number": "5",
+          "name": "C",
+          "tones": [
+            4,
+            6,
+            1
+          ]
+        },
+        {
+          "degree": 5,
+          "quality": "minor",
+          "number": "6m",
+          "name": "Dm",
+          "tones": [
+            5,
+            0,
+            2
+          ]
+        },
+        {
+          "degree": 6,
+          "quality": "dim",
+          "number": "7°",
+          "name": "E°",
+          "tones": [
+            6,
+            1,
+            3
+          ]
+        }
+      ],
+      "keyName": "F major",
+      "keySub": "Relative minor: D minor",
+      "steps": [
+        "W",
+        "W",
+        "H",
+        "W",
+        "W",
+        "W",
+        "H"
+      ],
+      "pills": [
+        "C",
+        "G",
+        "D",
+        "A",
+        "E",
+        "B",
+        "F♯",
+        "D♭",
+        "A♭",
+        "E♭",
+        "B♭",
+        "F"
+      ],
+      "baseMidi": 53,
+      "voicings": [
+        {
+          "bass": 53,
+          "triad": [
+            65,
+            69,
+            72
+          ]
+        },
+        {
+          "bass": 55,
+          "triad": [
+            67,
+            70,
+            74
+          ]
+        },
+        {
+          "bass": 57,
+          "triad": [
+            69,
+            72,
+            76
+          ]
+        },
+        {
+          "bass": 58,
+          "triad": [
+            70,
+            74,
+            77
+          ]
+        },
+        {
+          "bass": 60,
+          "triad": [
+            72,
+            76,
+            79
+          ]
+        },
+        {
+          "bass": 62,
+          "triad": [
+            74,
+            77,
+            81
+          ]
+        },
+        {
+          "bass": 64,
+          "triad": [
+            76,
+            79,
+            82
+          ]
+        }
+      ],
+      "scaleMidis": [
+        65,
+        67,
+        69,
+        70,
+        72,
+        74,
+        76,
+        77
+      ],
+      "presetPatterns": [
+        {
+          "id": "pop",
+          "pattern": "1–5–6m–4"
+        },
+        {
+          "id": "rock",
+          "pattern": "1–4–5–1"
+        },
+        {
+          "id": "moody",
+          "pattern": "6m–4–1–5"
+        },
+        {
+          "id": "doowop",
+          "pattern": "1–6m–4–5"
+        },
+        {
+          "id": "jazz",
+          "pattern": "2m–5–1–1"
+        }
+      ]
+    },
+    {
+      "key": "F",
+      "mode": "minor",
+      "scale": [
+        {
+          "name": "D",
+          "pc": 2,
+          "semis": 0
+        },
+        {
+          "name": "E",
+          "pc": 4,
+          "semis": 2
+        },
+        {
+          "name": "F",
+          "pc": 5,
+          "semis": 3
+        },
+        {
+          "name": "G",
+          "pc": 7,
+          "semis": 5
+        },
+        {
+          "name": "A",
+          "pc": 9,
+          "semis": 7
+        },
+        {
+          "name": "B♭",
+          "pc": 10,
+          "semis": 8
+        },
+        {
+          "name": "C",
+          "pc": 0,
+          "semis": 10
+        }
+      ],
+      "chords": [
+        {
+          "degree": 0,
+          "quality": "minor",
+          "number": "1m",
+          "name": "Dm",
+          "tones": [
+            0,
+            2,
+            4
+          ]
+        },
+        {
+          "degree": 1,
+          "quality": "dim",
+          "number": "2°",
+          "name": "E°",
+          "tones": [
+            1,
+            3,
+            5
+          ]
+        },
+        {
+          "degree": 2,
+          "quality": "major",
+          "number": "3",
+          "name": "F",
+          "tones": [
+            2,
+            4,
+            6
+          ]
+        },
+        {
+          "degree": 3,
+          "quality": "minor",
+          "number": "4m",
+          "name": "Gm",
+          "tones": [
+            3,
+            5,
+            0
+          ]
+        },
+        {
+          "degree": 4,
+          "quality": "minor",
+          "number": "5m",
+          "name": "Am",
+          "tones": [
+            4,
+            6,
+            1
+          ]
+        },
+        {
+          "degree": 5,
+          "quality": "major",
+          "number": "6",
+          "name": "B♭",
+          "tones": [
+            5,
+            0,
+            2
+          ]
+        },
+        {
+          "degree": 6,
+          "quality": "major",
+          "number": "7",
+          "name": "C",
+          "tones": [
+            6,
+            1,
+            3
+          ]
+        }
+      ],
+      "keyName": "D minor",
+      "keySub": "Same notes as F major",
+      "steps": [
+        "W",
+        "H",
+        "W",
+        "W",
+        "H",
+        "W",
+        "W"
+      ],
+      "pills": [
+        "Am",
+        "Em",
+        "Bm",
+        "F♯m",
+        "C♯m",
+        "G♯m",
+        "D♯m",
+        "B♭m",
+        "Fm",
+        "Cm",
+        "Gm",
+        "Dm"
+      ],
+      "baseMidi": 50,
+      "voicings": [
+        {
+          "bass": 50,
+          "triad": [
+            62,
+            65,
+            69
+          ]
+        },
+        {
+          "bass": 52,
+          "triad": [
+            64,
+            67,
+            70
+          ]
+        },
+        {
+          "bass": 53,
+          "triad": [
+            65,
+            69,
+            72
+          ]
+        },
+        {
+          "bass": 55,
+          "triad": [
+            67,
+            70,
+            74
+          ]
+        },
+        {
+          "bass": 57,
+          "triad": [
+            69,
+            72,
+            76
+          ]
+        },
+        {
+          "bass": 58,
+          "triad": [
+            70,
+            74,
+            77
+          ]
+        },
+        {
+          "bass": 60,
+          "triad": [
+            72,
+            76,
+            79
+          ]
+        }
+      ],
+      "scaleMidis": [
+        62,
+        64,
+        65,
+        67,
+        69,
+        70,
+        72,
+        74
+      ],
+      "presetPatterns": [
+        {
+          "id": "minorpop",
+          "pattern": "1m–6–3–7"
+        },
+        {
+          "id": "descent",
+          "pattern": "1m–7–6–7"
+        },
+        {
+          "id": "minor145",
+          "pattern": "1m–4m–5m–1m"
+        },
+        {
+          "id": "cinema",
+          "pattern": "1m–6–7–1m"
+        }
+      ]
+    }
+  ]
+}

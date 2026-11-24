@@ -1,0 +1,56 @@
+.key-picker {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  isolation: isolate;
+}
+
+.key-picker__pill {
+  position: relative;
+  z-index: 1;
+  min-width: 52px;
+  border: var(--border-width-default) solid var(--color-border-default);
+  background: transparent;
+  border-radius: var(--border-radius-interactive);
+  padding: 9px 10px;
+  font-family: var(--font-family-heading);
+  font-weight: var(--song-workshop-font-weight-strong);
+  font-size: var(--font-size-base);
+  overflow: hidden;
+  transition:
+    color var(--song-workshop-duration-state) var(--song-workshop-easing-settle),
+    border-color var(--song-workshop-duration-state) var(--song-workshop-easing-settle);
+}
+
+.key-picker__pill:hover {
+  border-color: var(--color-accent-default);
+}
+
+.key-picker__pill[aria-checked="true"] {
+  color: var(--color-accent-foreground);
+  border-color: transparent;
+}
+
+/* Until the indicator has been measured (no JavaScript yet), the chosen pill fills itself (C-14). */
+.key-picker:not([data-measured]) .key-picker__pill[aria-checked="true"] {
+  background-color: var(--color-accent-default);
+}
+
+.key-picker__indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  border-radius: var(--border-radius-interactive);
+  background-color: var(--color-accent-default);
+  transition:
+    transform var(--song-workshop-duration-slide) var(--song-workshop-easing-settle),
+    width var(--song-workshop-duration-slide) var(--song-workshop-easing-settle),
+    height var(--song-workshop-duration-slide) var(--song-workshop-easing-settle),
+    background-color var(--song-workshop-duration-tonality) var(--song-workshop-easing-settle);
+}
+
+.key-picker:not([data-measured]) .key-picker__indicator {
+  visibility: hidden;
+}

@@ -146,7 +146,7 @@ Define the boundaries that protect the product from drift.
 
 - Interactive lessons, one per page, each at its own address
 - Lessons, in the order they're planned:
-  - Nashville Number Lab: built, as one HTML file, now moving into the app
+  - Nashville Number Lab: built as one HTML file, then ported into the app (AME-78, 2026-11-23)
   - Blues, rhythm, melody, lyric writing: planned, each needs a spec (see `docs/backlog.md`)
 - Sound made in the browser, so a lesson works without downloads or a plugin. *Assumption:* most lessons make sound, but not necessarily all of them (see section 11).
 

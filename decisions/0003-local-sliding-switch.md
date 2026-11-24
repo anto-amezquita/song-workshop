@@ -2,7 +2,7 @@
 
 ## Status
 
-Accepted (2026-11-22). Where it's built is decided. How it's built (component names, a shared hook) is a proposal.
+Accepted (2026-11-22). Where it's built is decided. How it's built (component names, a shared hook) was settled on 2026-11-23 by the port spec (`specs/2026-11-23-nashville-number-lab-port.md`).
 
 ## Context
 
@@ -29,7 +29,7 @@ Build the sliding switch in this repo. Don't change the design system from here.
 - One more component to keep in this repo until the design system has it.
 - The local switch has to match the design system's semantics and keyboard handling by hand.
 
-Proposed, not decided: a `SegmentSwitch` component in `components/lesson/`, and a `useSlidingIndicator` hook that the key picker shares for its own sliding indicator (`docs/architecture.md` §2).
+Decided in the port spec: a `SegmentSwitch` component in `components/lesson/`, and a `useSlidingIndicator` hook that the key picker shares for its own sliding indicator (`docs/architecture.md` §2).
 
 ## Related files
 

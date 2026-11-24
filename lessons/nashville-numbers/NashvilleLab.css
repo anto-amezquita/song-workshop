@@ -1,0 +1,75 @@
+/* The lesson root paints the tonality tint over the page (architecture.md §4, Tonality). */
+.nashville-lab {
+  --lesson-tint: var(--song-workshop-tint-major);
+  --lesson-soft: var(--song-workshop-soft-major);
+
+  min-height: 100svh;
+  background-color: var(--lesson-tint);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-base);
+  /* The file's body size; every text in the lesson sets its own rem size (port spec Q16). */
+  font-size: 15px;
+  line-height: 1.5;
+  transition: background-color var(--song-workshop-duration-page) var(--song-workshop-easing-settle);
+}
+
+/* Minor sets all eight, one by one: a custom property that refers to another is
+   worked out where it's declared (:root), so changing the accent here wouldn't
+   reach the hover, pressed and focus colours on its own (port spec R1). */
+.nashville-lab[data-tonality="minor"] {
+  --color-accent-default: var(--song-workshop-minor);
+  --color-accent-hover: var(--song-workshop-minor-hover);
+  --color-accent-pressed: var(--song-workshop-minor-pressed);
+  --color-accent-text: var(--song-workshop-minor-text);
+  --color-accent-text-hover: var(--song-workshop-minor-text-hover);
+  --color-border-focus: var(--song-workshop-minor);
+  --lesson-tint: var(--song-workshop-tint-minor);
+  --lesson-soft: var(--song-workshop-soft-minor);
+}
+
+/* The key panel's header: the key name on the left, the tonality switch on the right. */
+.nashville-lab__key-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.nashville-lab__key-name {
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-display);
+  font-size: clamp(2rem, 6vw, 2.8rem);
+  line-height: 1.05;
+  letter-spacing: var(--letter-spacing-heading);
+  overflow: hidden;
+  padding-block: 2px;
+}
+
+.nashville-lab__key-sub {
+  color: var(--color-text-secondary);
+  font-size: 0.92rem;
+  overflow: hidden;
+}
+
+/* Outline buttons: "Play scale" and "Loop". */
+.nashville-lab__ghost {
+  border: var(--border-width-default) solid var(--color-border-default);
+  background: transparent;
+  border-radius: var(--border-radius-pill);
+  padding: var(--space-2) 14px;
+  font-size: 0.86rem;
+  font-weight: var(--font-weight-control);
+  transition:
+    border-color var(--song-workshop-duration-state) var(--song-workshop-easing-settle),
+    background-color var(--song-workshop-duration-state) var(--song-workshop-easing-settle);
+}
+
+.nashville-lab__ghost:hover {
+  border-color: var(--color-accent-default);
+}
+
+.nashville-lab__ghost[aria-pressed="true"] {
+  background-color: var(--lesson-soft);
+  border-color: var(--color-accent-default);
+}

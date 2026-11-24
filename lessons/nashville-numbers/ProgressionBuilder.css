@@ -1,0 +1,142 @@
+.progression__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.progression__chip {
+  border: var(--border-width-default) solid var(--color-border-default);
+  background: transparent;
+  border-radius: var(--border-radius-pill);
+  padding: 7px 14px;
+  font-size: 0.86rem;
+  display: inline-flex;
+  gap: var(--space-2);
+  align-items: baseline;
+  transition:
+    background-color var(--song-workshop-duration-state) var(--song-workshop-easing-settle),
+    border-color var(--song-workshop-duration-state) var(--song-workshop-easing-settle),
+    color var(--song-workshop-duration-state) var(--song-workshop-easing-settle);
+}
+
+.progression__chip small {
+  color: var(--color-text-secondary);
+  font-variant-numeric: tabular-nums;
+  transition: color var(--song-workshop-duration-state) var(--song-workshop-easing-settle);
+}
+
+.progression__chip:hover {
+  border-color: var(--color-accent-default);
+}
+
+.progression__chip[aria-pressed="true"] {
+  background-color: var(--lesson-soft);
+  border-color: var(--color-accent-default);
+  color: var(--color-text-primary);
+}
+
+.progression__chip[aria-pressed="true"] small {
+  color: var(--color-accent-text);
+}
+
+.progression__chip[data-build] {
+  border-style: dashed;
+}
+
+.progression__slots {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+  gap: 10px;
+  min-height: 96px;
+}
+
+.progression__slot {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--song-workshop-radius-tile);
+  background-color: var(--color-surface-tertiary);
+  border: var(--border-width-default) solid transparent;
+  padding: 26px 6px var(--space-3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  animation: progression-pop var(--song-workshop-duration-move) var(--song-workshop-easing-settle)
+    both;
+  transition:
+    background-color var(--song-workshop-duration-state) var(--song-workshop-easing-settle),
+    color var(--song-workshop-duration-state) var(--song-workshop-easing-settle),
+    transform var(--song-workshop-duration-move) var(--song-workshop-easing-settle);
+}
+
+.progression__primary {
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-display);
+  font-size: 1.7rem;
+  line-height: 1.1;
+  overflow: hidden;
+}
+
+.progression__secondary {
+  font-family: var(--font-family-heading);
+  font-weight: var(--song-workshop-font-weight-strong);
+  font-size: 0.92rem;
+  color: var(--color-text-secondary);
+  overflow: hidden;
+}
+
+.progression__bar {
+  position: absolute;
+  top: 6px;
+  left: 9px;
+  font-size: 0.64rem;
+  letter-spacing: var(--song-workshop-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.progression__slot[data-lit] {
+  background-color: var(--color-accent-default);
+  color: var(--color-accent-foreground);
+  transform: scale(1.04);
+}
+
+/* Full strength, not 85% as in the file, for contrast (C-04). */
+.progression__slot[data-lit] .progression__secondary,
+.progression__slot[data-lit] .progression__bar {
+  color: var(--color-accent-foreground);
+}
+
+/* Building: each slot is a button that removes its bar (R3). */
+.progression__slots[data-building] .progression__slot:hover {
+  border-color: var(--color-accent-default);
+}
+
+.progression__empty {
+  grid-column: 1 / -1;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--song-workshop-radius-tile);
+  border: 1.5px dashed var(--color-border-default);
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  padding: 26px 6px var(--space-3);
+}
+
+@keyframes progression-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

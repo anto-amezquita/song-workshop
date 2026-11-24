@@ -1,0 +1,49 @@
+/* Page-level rules only, loaded after the design system's and the brand's CSS.
+   The design system's reset.css isn't loaded: it's for Storybook, and it would
+   paint body with the white panel colour (port spec R5). */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: var(--song-workshop-page);
+  scroll-padding-top: env(safe-area-inset-top, 0px);
+}
+
+/* The untinted page. A lesson paints its tint on top; pages without a lesson,
+   and the overscroll area, show this (port spec C-10). */
+body {
+  margin: 0;
+  background-color: var(--song-workshop-page);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-base);
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* The focus ring follows tonality, because a lesson in minor points
+   --color-border-focus at its own indigo (port spec R1, C-06). */
+:focus-visible {
+  outline: var(--focus-ring-width) solid var(--color-border-focus);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* Everything finishes at once with reduced motion on (brand.md §16). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

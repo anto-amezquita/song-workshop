@@ -1,2 +1,18 @@
 .claude/settings.local.json
 .DS_Store
+
+# dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+
+# built by `npm run brand:build`, never committed (docs/architecture.md §8)
+styles/brand/
+
+# Playwright
+test-results/
+playwright-report/

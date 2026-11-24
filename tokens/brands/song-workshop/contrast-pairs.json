@@ -1,0 +1,190 @@
+[
+  {
+    "bg": "color-accent-hover",
+    "fg": "color-accent-foreground",
+    "role": "major-fill-hover-label",
+    "minRatio": 4.5
+  },
+  {
+    "bg": "color-surface-primary",
+    "fg": "color-accent-text",
+    "role": "major-text-on-panel: home tag, path buttons",
+    "minRatio": 4.5
+  },
+  {
+    "bg": "song-workshop-tint-major",
+    "fg": "color-accent-text",
+    "role": "major-text-on-tint: eyebrow",
+    "minRatio": 4.5
+  },
+  {
+    "bg": "song-workshop-soft-major",
+    "fg": "color-accent-text",
+    "role": "major-text-on-soft: chosen chip numbers, H labels, current step button",
+    "minRatio": 4.5
+  },
+  {
+    "bg": "color-surface-primary",
+    "fg": "color-accent-text-hover",
+    "role": "major-text-hover-on-panel",
+    "minRatio": 4.5
+  },
+  {
+    "bg": "color-surface-primary",
+    "fg": "color-border-focus",
+    "role": "major-focus-ring-on-panel",
+    "minRatio": 3
+  },
+  {
+    "bg": "song-workshop-tint-major",
+    "fg": "color-border-focus",
+    "role": "major-focus-ring-on-tint",
+    "minRatio": 3
+  },
+  {
+    "bg": "color-surface-tertiary",
+    "fg": "color-accent-default",
+    "role": "major-thumb-on-track",
+    "minRatio": 3
+  },
+
+  {
+    "bg": "song-workshop-minor",
+    "fg": "color-accent-foreground",
+    "role": "minor-fill-label: playing chord and slot, lit notes, chosen pill and switch, step numbers",
+    "minRatio": 4.5
+  },
+  {
+    "bg": "song-workshop-minor-hover",
+    "fg": "color-accent-foreground",
+    "role": "minor-fill-hover-label",
+    "minRatio": 4.5
+  },
+  {
+    "bg": "song-workshop-minor-pressed",
+    "fg": "color-accent-foreground",
+    "role": "minor-fill-pressed-label",
+    "minRatio": 4.5
+  },
+  {
+    "bg": "color-surface-primary",
+    "fg": "song-workshop-minor-text",
+    "role": "minor-text-on-panel",
+    "minRatio": 4.5
+  },
+  {
+    "bg": "song-workshop-tint-minor",
+    "fg": "song-workshop-minor-text",
+    "role": "minor-text-on-tint: eyebrow",
+    "minRatio": 4.5
+  },
+  {
+    "bg": "song-workshop-soft-minor",
+    "fg": "song-workshop-minor-text",
+    "role": "minor-text-on-soft",
+    "minRatio": 4.5
+  },
+  {
+    "bg": "color-surface-primary",
+    "fg": "song-workshop-minor-text-hover",
+    "role": "minor-text-hover-on-panel",
+    "minRatio": 4.5
+  },
+  {
+    "bg": "color-surface-primary",
+    "fg": "song-workshop-minor",
+    "role": "minor-focus-ring-on-panel",
+    "minRatio": 3
+  },
+  {
+    "bg": "song-workshop-tint-minor",
+    "fg": "song-workshop-minor",
+    "role": "minor-focus-ring-on-tint",
+    "minRatio": 3
+  },
+  {
+    "bg": "color-surface-tertiary",
+    "fg": "song-workshop-minor",
+    "role": "minor-thumb-on-track",
+    "minRatio": 3
+  },
+
+  {
+    "bg": "song-workshop-page",
+    "fg": "color-text-primary",
+    "role": "text-on-page",
+    "minRatio": 4.5
+  },
+  {
+    "bg": "song-workshop-page",
+    "fg": "color-text-secondary",
+    "role": "secondary-text-on-page",
+    "minRatio": 4.5
+  },
+  {
+    "bg": "song-workshop-tint-major",
+    "fg": "color-text-primary",
+    "role": "text-on-tint-major: title",
+    "minRatio": 4.5
+  },
+  {
+    "bg": "song-workshop-tint-major",
+    "fg": "color-text-secondary",
+    "role": "secondary-text-on-tint-major: intro, footer",
+    "minRatio": 4.5
+  },
+  {
+    "bg": "song-workshop-tint-minor",
+    "fg": "color-text-primary",
+    "role": "text-on-tint-minor",
+    "minRatio": 4.5
+  },
+  {
+    "bg": "song-workshop-tint-minor",
+    "fg": "color-text-secondary",
+    "role": "secondary-text-on-tint-minor",
+    "minRatio": 4.5
+  },
+  {
+    "bg": "song-workshop-soft-major",
+    "fg": "color-text-primary",
+    "role": "text-on-soft-major: chosen chip, current step title",
+    "minRatio": 4.5
+  },
+  {
+    "bg": "song-workshop-soft-major",
+    "fg": "color-text-secondary",
+    "role": "secondary-text-on-soft-major: current step description",
+    "minRatio": 4.5
+  },
+  {
+    "bg": "song-workshop-soft-minor",
+    "fg": "color-text-primary",
+    "role": "text-on-soft-minor",
+    "minRatio": 4.5
+  },
+  {
+    "bg": "song-workshop-soft-minor",
+    "fg": "color-text-secondary",
+    "role": "secondary-text-on-soft-minor",
+    "minRatio": 4.5
+  },
+  {
+    "bg": "color-surface-tertiary",
+    "fg": "color-text-secondary",
+    "role": "secondary-text-on-tertiary: W/H labels, slot names",
+    "minRatio": 4.5
+  },
+  {
+    "bg": "song-workshop-tint-major",
+    "fg": "color-border-strong",
+    "role": "field-border-on-tint-major",
+    "minRatio": 3
+  },
+  {
+    "bg": "song-workshop-tint-minor",
+    "fg": "color-border-strong",
+    "role": "field-border-on-tint-minor",
+    "minRatio": 3
+  }
+]

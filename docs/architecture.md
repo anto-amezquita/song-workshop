@@ -8,30 +8,32 @@ Feature specs may describe implementation details for one piece of work. This do
 
 The goal is to help contributors and AI agents make technical decisions that fit the system rather than solving each task in isolation.
 
-> **Status (2026-11-22):** First version, written before any code exists. It describes how Nashville Number Lab (today a single HTML file at the repo root) moves into the app, and how later lessons fit beside it.
+> **Status (2026-11-23):** Updated from the approved port spec, `specs/2026-11-23-nashville-number-lab-port.md` (AME-78). It describes how Nashville Number Lab moves into the app, and how later lessons fit beside it.
 >
-> - **Decided**, with records in `/decisions`: Next.js with static export (0001), the `song-workshop` brand (0002), the sliding switch built in this repo (0003), and motion as the brand's own tokens (0004).
-> - **Everything else is a proposal** until the project is set up or the spec decides it. Lines marked *Proposal* or *Assumption* haven't been confirmed.
-> - **Not released yet:** this doc depends on design-system features that aren't on npm. The brand contract, `amezquita-brand check` and `build`, and the colour-mode script (`colorModeScript()`, `useColorMode` and `data-mode`) came in with design-system PR #207 (AME-6), merged 2026-11-20. The latest release, 1.6.7 from 2026-10-28, has none of them. Releasing the design system is its own ticket, AME-76, and the port waits for it.
+> - **Decided**, with records in `/decisions`: Next.js with static export (0001), the `song-workshop` brand (0002), the sliding switch built in this repo (0003), motion as the brand's own tokens (0004), and self-hosted fonts (0005).
+> - **Decided in the port spec:** the stack and tooling (§1), the folder names (§2), which parts are project components (§3), and the answers in §17. The spec's IDs (R1–R6, Q1–Q20, C-01–C-13) are given where they help.
+> - **Released:** the brand contract, `amezquita-brand check` and `build`, and the colour-mode script (`colorModeScript()`, `useColorMode` and `data-mode`) are in `@amezquita/design-system` 1.7.0, on npm since 2026-11-23 (AME-76).
+> - Lines still marked *Assumption* haven't been confirmed.
 
 ---
 
 ## 1. Stack
 
-Only the framework and the static export are decided (decisions/0001). The rest of this section is a proposal, settled when the project is set up.
+The framework and the static export are decided in decisions/0001, the rest in the port spec (Q19). Exact versions are pinned when the project is set up.
 
 ### Frontend
 
-- framework: Next.js, App Router, with `output: 'export'`, so the whole site is static files. *Decided.* Same framework as the portfolio, but not the same config: the portfolio doesn't use static export and relies on `redirects()`, which a static export doesn't support. *Proposal:* Next 16, as in the portfolio.
-- language: TypeScript, strict. *Proposal.*
-- styling: plain CSS files next to each component, using design system tokens as CSS custom properties. No Tailwind, no CSS-in-JS. *Proposal.*
-- component system: `@amezquita/design-system` (React 19), pinned to an exact version. Needs a release newer than 1.6.7 (see Status).
-- animation: CSS transitions and keyframes, timed by the brand's motion tokens (see `brand.md` §16, decisions/0004). *Proposal:* no animation library.
+- framework: Next.js 16, App Router, with `output: 'export'`, so the whole site is static files. Same framework as the portfolio, but not the same config: the portfolio doesn't use static export and relies on `redirects()`, which a static export doesn't support.
+- language: TypeScript, strict.
+- styling: plain CSS files next to each component, using design system tokens as CSS custom properties. No Tailwind, no CSS-in-JS.
+- component system: `@amezquita/design-system` (React 19), pinned to exactly 1.7.0.
+- fonts: self-hosted from Fontsource packages (decisions/0005).
+- animation: CSS transitions and keyframes, timed by the brand's motion tokens (see `brand.md` §16, decisions/0004). No animation library.
 - sound: the Web Audio API. All sound is synthesized in the browser; there are no audio files.
 - forms: none
-- state management: React state inside each lesson's top component (`useReducer`). No global store. *Proposal.*
+- state management: one store per lesson, owned by its top component: a pure reducer behind `getState`/`dispatch`/`subscribe`, read with `useSyncExternalStore` (§4). No global store.
 - data fetching: none. Lesson content lives in code.
-- routing: App Router file routes, one route per lesson. *Proposal:* `/lessons/<slug>` for a lesson and a lesson index at `/` (§4, Routing).
+- routing: App Router file routes, one route per lesson, at `/lessons/<slug>`. `/` shows the first lesson until there's a second (§4, Routing).
 
 ### Backend
 
@@ -39,31 +41,37 @@ None. Every page is prerendered HTML plus the JavaScript its lesson needs. Nothi
 
 ### Tooling
 
-All proposals:
-
 - package manager: npm, as in the portfolio
 - linting: ESLint with Next's config
 - formatting: Prettier
-- testing: Vitest and React Testing Library for unit and component tests, Playwright for end-to-end and axe checks
-- CI/CD: GitHub Actions running typecheck, lint, tests, the brand check and the build. Third-party actions pinned to a full SHA.
-- deployment: any static host. Not chosen yet (§17).
+- testing: Vitest and React Testing Library for unit and component tests, Playwright with axe for end-to-end and accessibility checks
+- brand build: `style-dictionary`, the current 5.x, pinned exactly. `amezquita-brand build` needs it. Versions from 5.7.1 write durations in seconds (`0.5s`, not `500ms`); nothing here reads them as numbers, so that's accepted (port spec Q17, AME-84).
+- CI/CD: GitHub Actions running typecheck, lint, tests, the brand check and the build. Least-privilege `permissions`; third-party actions pinned to a full SHA, with the version in a comment.
+- deployment: any static host. Not chosen yet (AME-87).
 
 ---
 
 ## 2. Repository structure
 
-*Proposal.* The names and folders below, including `SegmentSwitch`, `useSlidingIndicator` and the `nashville-numbers` slug, get confirmed when the project is set up.
+Confirmed by the port spec. Later lessons follow the same shape.
 
 ```txt
 app/
   layout.tsx                        colour-mode script, base + brand CSS, fonts
-  page.tsx                          lesson index, built from lessons/registry.ts
+  page.tsx                          the first lesson until there's a second; then the lesson index (§4)
+  not-found.tsx                     our own 404: Next's paints body white
   lessons/
     nashville-numbers/page.tsx      metadata + <NashvilleLab />
 lessons/
   registry.ts                       one entry per lesson: slug, title, eyebrow, summary
   nashville-numbers/
-    NashvilleLab.tsx                'use client'. Owns the lesson's state
+    NashvilleLab.tsx                'use client'. The lesson root: tonality, panels, live region
+    panels.tsx                      the four panels, memoised, each given only what it shows
+    useNashvilleLab.ts              creates the store, engine and controller once
+    model.ts                        state, the pure reducer, and the store around it
+    lights.ts                       useLit: a card, note or slot reads its own lit state
+    controller.ts                   what people do: dispatches, plays, keeps time. No React
+    copy.ts                         the lesson's words, built from lib/music where they depend on the key
     presets.ts                      named progressions per tonality
     path.ts                         the five lesson-path steps, as data
     KeyPicker.tsx, ScaleRow.tsx, ChordGrid.tsx,
@@ -76,16 +84,19 @@ components/lesson/                  shared by every lesson
   SegmentSwitch                     two-to-five-way switch with a sliding thumb
 hooks/
   useSlidingIndicator.ts            measures the chosen item; moves the thumb or indicator
+  usePanelHighlight.ts              one highlighted panel at a time, scrolled into view if needed
 lib/music/
   theory/                           note spelling, scales, modes, chords
   audio/                            audio context, voices, chord voicing, silence
-  transport/                        tempo, bars, loop, a callback per step
+  transport/                        tempo, bars, loop, a callback per step; one-off sequences
+  __fixtures__/reference.json       the original file's own output, for the tests (generated)
 tokens/brands/song-workshop/        tokens.json, dark.json, contrast-pairs.json
 styles/
   brand/                            output of `amezquita-brand build`
-  global.css                        page-level rules only
-reference/
-  nashville-number-lab.html         the original file, kept until the port matches it
+  global.css                        small reset, page colour, page-level rules
+scripts/
+  serve-out.ts                      serves out/ for Playwright; not for production
+e2e/                                Playwright tests, run against the built out/
 docs/ specs/ decisions/ skills/ guide/ templates/   the starter kit
 ```
 
@@ -97,8 +108,7 @@ docs/ specs/ decisions/ skills/ guide/ templates/   the starter kit
 - `lib/music/audio/` is the only code that touches Web Audio. `transport/` keeps time and calls the lesson back on each step; the lesson decides what to play.
 - Route files stay thin: metadata and one component.
 - A component used by one lesson lives in that lesson's folder. It moves to `components/lesson/` when a second lesson needs it, not before.
-- `reference/` is temporary. It's deleted once the port passes the spec's side-by-side check.
-- The original file is `Nashville-Number-Lab.html` at the repo root today. When the project is set up, it moves to `reference/` and is renamed `nashville-number-lab.html`.
+- The original single-file lesson, `Nashville-Number-Lab.html`, was deleted once the port passed its side-by-side check (AME-78, 2026-11-23). It's in git history. Its theory output lives on as the test fixture `lib/music/__fixtures__/reference.json`.
 
 ---
 
@@ -106,13 +116,13 @@ docs/ specs/ decisions/ skills/ guide/ templates/   the starter kit
 
 #### Design system first
 
-Use a design system component when its documented use fits and it keeps the lesson looking and behaving like the original. Build a project component only when none does, and say why in the spec. The sliding switch is one (decisions/0003). *Proposal:* the 12-key picker, chord cards, scale row, progression slots and the play/stop button are too.
+Use a design system component when its documented use fits and it keeps the lesson looking and behaving like the original. Build a project component only when none does, and say why in the spec. The sliding switch is one (decisions/0003).
 
-Still open, for the spec: the preset chips, Play scale, Loop, the lesson-path buttons and the tempo slider. Design system components (`Button`, `ToggleButton`, `Slider`) would change how these look: design system buttons have a 2px border and a pill shape, and `Slider` replaces the file's native range input. Either they stay project components that match the file, or the spec accepts the change and the side-by-side check expects it.
+In the first lesson, the key picker, scale row, chord cards, preset chips, progression slots, transport (play/stop, Loop, tempo), "Play scale" and the lesson-path buttons are project components too (port spec Q6). Each design system component would change how the lesson looks: `Button` and `ToggleButton` have a 2px border, the pill shape and the design system's motion; `Slider` replaces the native range input, which stays; `Heading` and `Text` bring the design system's sizes. The lesson still uses the design system's tokens, colour-mode script, brand pipeline and `VisuallyHidden`.
 
 #### Don't change the design system from here
 
-This repo consumes `@amezquita/design-system`; it doesn't patch, fork or restyle its internals. A gap goes into `docs/backlog.md` as a design system item (the first: AME-79, the sliding thumb in `SegmentedControl`, decisions/0003).
+This repo consumes `@amezquita/design-system`; it doesn't patch, fork or restyle its internals. A gap becomes an issue in Linear's Design system project, linked from the Song Workshop issue that needs it ("related", or "blocked by" if it blocks). backlog-sync reads only the Song Workshop project, so these issues don't show in `docs/backlog.md`; the link on the Song Workshop issue is how they're found. The first is AME-79, the sliding thumb in `SegmentedControl` (decisions/0003).
 
 #### Keep music logic out of components
 
@@ -136,7 +146,9 @@ Prefer code that is easy to reason about and maintain over code that is merely c
 
 ### Routing
 
-Each lesson has its own route. With static export, each route becomes its own HTML file. *Proposal:* the first is `/lessons/nashville-numbers`, and `/` lists the lessons from `lessons/registry.ts`. The index page is new (the file has nothing like it), so it needs a spec and a design before it's built. Until then, `/` could simply be the first lesson.
+Each lesson has its own route. With static export, each route becomes its own HTML file. The first is `/lessons/nashville-numbers`.
+
+Until there's a second lesson, `/` renders the same lesson, with a canonical link to `/lessons/nashville-numbers`, because a static export can't redirect (port spec Q5). When the second lesson arrives, `/` becomes a lesson index built from `lessons/registry.ts`. The index is new (the file has nothing like it), so it needs a spec and a design first.
 
 ### Rendering model
 
@@ -144,8 +156,8 @@ Static prerendering. The page shell and the lesson's first state (C major, the f
 
 ### State management
 
-- **Lesson state:** in the lesson's top component, through `useReducer`. For Nashville Number Lab that's key, tonality, label mode, progression, chosen preset, building mode, playing, current playback step, loop, tempo, and the lesson path's current step. Steps before the current one show as done, as in the file.
-- **URL state:** none for now (open question, §17).
+- **Lesson state:** a pure reducer, kept in a small store the lesson's top component creates (`lessons/<slug>/model.ts`). Not plain `useReducer`: the transport calls back on its own timer, between renders, and has to read the latest state, which `useReducer` only hands to the next render. React reads the store through `useSyncExternalStore`, in two parts, so a playback step doesn't re-render the lesson (§12): the lesson root reads the view, which is the state without what's lit and stays the same object while only the lights change, and each chord card, scale note and slot reads whether it's lit itself (`useLit`). A controller (`controller.ts`, no React) runs what people do: it dispatches, and drives the audio engine and the transport. For Nashville Number Lab that's key, tonality, label mode, progression, chosen preset, building mode, playing, current playback step, loop, tempo, and the lesson path's current step. Steps before the current one show as done, as in the file.
+- **URL state:** none. A shareable key and progression would be new behaviour (port spec Q3).
 - **Persisted state:** none. Lessons remember nothing between visits, and colour mode follows the system setting, as in the file. *Assumption: nothing asks for saved progress yet.*
 
 ### Data fetching
@@ -165,18 +177,35 @@ Not applicable. The one free value, tempo, comes from a range input with a fixed
 
 ### Styling
 
-- **Load order** in `app/layout.tsx`: the design system's `base-light.css` and `base-dark.css`, then `styles/brand/song-workshop-light.css` and `song-workshop-dark.css`, then `styles/global.css`. This is the order the brand contract sets; it isn't released yet (see Status).
-- **Colour mode:** follows the system setting, with no switch on the page, as in the file. *Proposal:* the design system's `colorModeScript()` in `<head>`, as a plain `<script>`, so dark values apply under `html[data-mode="dark"]` the way the design system expects. It isn't released yet (see Status). A colour-mode picker or a saved preference would be new scope, not part of the port.
-- **Tonality:** the lesson root carries `data-tonality="major"` or `"minor"`. It can't be `data-mode`, because the design system uses that for light and dark. Under `minor`, the lesson's CSS points `--color-accent-default`, `--color-accent-text`, the page tint and the soft fill at the brand's own minor tokens (`song-workshop-minor`, `song-workshop-minor-text`, `song-workshop-tint-minor` and `song-workshop-soft-minor`). `--color-accent-foreground` stays the same in both tonalities, as in the file. *Proposal:* the lesson root fills the viewport and paints the tint, so nothing outside the lesson needs to know about tonality.
-- **Tokens:** colour, type and motion values come from tokens. Spacing uses the design system's space tokens wherever one matches. Measurements that belong to one component's layout (the chord card's minimum height, grid column counts) can stay in that component's CSS. Radius and shadow are open: the file's values don't have tokens yet, and its shadows are tinted with the accent, which the contract's fixed shadow tokens can't do (`brand.md` §13).
+- **Load order** in `app/layout.tsx`: the design system's `base-light.css` and `base-dark.css`, then `styles/brand/song-workshop-light.css` and `song-workshop-dark.css`, then `styles/global.css`. This is the order the brand contract sets.
+- **No design system `reset.css`:** its own header says it exists for Storybook and that apps bring their own. Loading it would paint `body` with `color-surface-primary`, the white panel colour here. `global.css` carries a small reset instead (box-sizing, buttons inherit font and colour, no default margins), and paints `html` and `body` with `song-workshop-page`. `color-scheme` comes from the brand CSS. Pages without a lesson, and the overscroll area, show the untinted page colour (port spec R5).
+- **Colour mode:** follows the system setting, with no switch on the page, as in the file. The design system's `colorModeScript()` goes in `<head>` as a plain `<script>`, so dark values apply under `html[data-mode="dark"]` before first paint. A colour-mode picker or a saved preference would be new scope.
+- **Tonality:** the lesson root carries `data-tonality="major"` or `"minor"`. It can't be `data-mode`, because the design system uses that for light and dark. Under `minor`, the lesson's CSS sets eight properties to the brand's own minor tokens (port spec R1):
+
+  | Property | Minor value |
+  |---|---|
+  | `--color-accent-default` | `song-workshop-minor` |
+  | `--color-accent-hover` | `song-workshop-minor-hover` |
+  | `--color-accent-pressed` | `song-workshop-minor-pressed` |
+  | `--color-accent-text` | `song-workshop-minor-text` |
+  | `--color-accent-text-hover` | `song-workshop-minor-text-hover` |
+  | `--color-border-focus` | `song-workshop-minor` |
+  | page tint | `song-workshop-tint-minor` |
+  | soft fill | `song-workshop-soft-minor` |
+
+  All eight are set one by one. A custom property that refers to another is worked out where it's declared (`:root`), so changing the accent on the lesson root doesn't carry through to the others. `color-border-focus` follows tonality: the focus ring is green in major and indigo in minor, as in the file. `--color-accent-foreground` stays the same in both tonalities. The lesson root fills at least the viewport and paints the tint, so nothing outside the lesson needs to know about tonality.
+- **Tokens:** colour, type and motion values come from tokens. Spacing uses the design system's space tokens wherever one matches. Measurements that belong to one component's layout (the chord card's minimum height, grid column counts) can stay in that component's CSS. Radius uses the contract's tokens and one of the brand's own (`brand.md` §13).
+- **Shadows:** accent-tinted, as in the file. Each is written in its component's CSS with `var(--color-accent-default)` as the colour, so it follows tonality. There are no shadow tokens, because the contract's are fixed colours (port spec Q10).
+- **Font sizes:** the file's `rem` values, in each component's CSS. A size uses a design system token only where it's an exact match (`0.75rem` → `font-size-xs`, `1rem` → `font-size-base`). The design system's body is 18px, with no step between 12px and 14px, where most of the lesson's labels sit (port spec Q16).
 - **Responsive:** two breakpoints, carried over from the file. At 900px and below, the lesson path moves under the lesson and stops being sticky. At 620px and below, the chord row goes from seven columns to four. The design system's only breakpoints are 768 and 1024px, so these two stay the lesson's own values, written as literals (custom properties can't be read inside `@media`). The design system's breakpoint lint checks its own component CSS, not this repo.
 - **Reduced motion:** see `brand.md` §16.
 
 ### Accessibility
 
 - Design system components bring their own semantics and keyboard handling.
-- Project components use native buttons. Choices of one-from-many (the key picker, `SegmentSwitch`) are radio groups with arrow-key movement. In the file today the key pills and both switches (major/minor, numbers/names) say `role="radio"` but have no arrow keys. *Proposal:* the port adds them to all three. That's a deliberate change in behaviour, so the spec lists it and the side-by-side check expects it.
-- How playback is announced to screen readers is decided in the spec.
+- Project components use native buttons. Choices of one-from-many (the key picker, `SegmentSwitch`) are radio groups with arrow-key movement. In the file today the key pills and both switches (major/minor, numbers/names) say `role="radio"` but have no arrow keys. The port adds them to all three, with only the chosen option in the tab order (port spec C-01).
+- In building mode, progression slots are buttons, so a chord can be removed by keyboard. Focus then goes to the slot now in that place, or the one before, or the first chord card if the progression is empty (C-02).
+- Playback isn't announced bar by bar; the play button's name says whether it's playing. A hidden live region announces building changes and the no-sound message (Q7, C-09). The tempo slider announces its own value ("100 BPM"), and the number shown beside it is hidden from screen readers so it isn't announced twice (C-16).
 
 ### Sound
 
@@ -216,11 +245,9 @@ The design system's tokens come in through its CSS. The brand lives in `tokens/b
 
 - `tokens.json` (light), `dark.json`, and `contrast-pairs.json` for the brand's own colour pairs
 - checked with `npx amezquita-brand check tokens/brands/song-workshop --pairs tokens/brands/song-workshop/contrast-pairs.json`
-- built with `npx amezquita-brand build tokens/brands/song-workshop --out styles/brand`, which runs before `dev` and `build`. *Assumption: the built CSS isn't committed (§17).*
+- built with `npx amezquita-brand build tokens/brands/song-workshop --out styles/brand`, which `npm run dev` and `npm run build` call first. Not as `predev`/`prebuild`: with `ignore-scripts=true`, npm skips pre- and post-scripts. The built CSS isn't committed: `styles/brand/` is gitignored, and CI runs the check and the build (port spec Q4).
 
-`amezquita-brand` isn't in the released package yet (see Status). Neither command can run until the design system is released.
-
-Tokens the brand contract doesn't list are the brand's own and start with `song-workshop-`: the minor accent, the tints and soft fills, the motion tokens.
+Tokens the brand contract doesn't list are the brand's own and start with `song-workshop-`: the minor accent and its hover and pressed states, the tints and soft fills, the page colour, the motion tokens, a radius, a weight and a tracking.
 
 ### Components
 
@@ -236,7 +263,7 @@ One brand, `song-workshop`, in light and dark. Tonality (major or minor) is a th
 
 ### Gaps
 
-`SegmentedControl` changes its fill instead of sliding a thumb, so the two lesson switches use a sliding switch built in this repo (decisions/0003). *Proposal:* it's called `SegmentSwitch`, and the key picker shares its `useSlidingIndicator` hook. Bringing the thumb into the design system is AME-79, for the design-system repo.
+`SegmentedControl` changes its fill instead of sliding a thumb, so the two lesson switches use a sliding switch built in this repo (decisions/0003). It's called `SegmentSwitch`, and the key picker shares its `useSlidingIndicator` hook. Bringing the thumb into the design system is AME-79, for the design-system repo.
 
 ---
 
@@ -252,11 +279,11 @@ One brand, `song-workshop`, in light and dark. Tonality (major or minor) is a th
 
 ### Type safety
 
-*Proposal:* TypeScript `strict`, as in §1 and decisions/0001. Music types are unions where the set is closed (`'major' | 'minor'`, `'major' | 'minor' | 'dim'`).
+TypeScript `strict`, as in §1. Music types are unions where the set is closed (`'major' | 'minor'`, `'major' | 'minor' | 'dim'`).
 
 ### Error handling
 
-The only real failure is audio: no Web Audio support, or a context that won't resume. The lesson still works without sound. How that's shown is decided in the spec.
+The only real failure is audio: no Web Audio support, or a context that won't resume. The lesson still works without sound. One line under the transport says so, only when sound can't start (port spec Q8). Only missing Web Audio is final; after a failed resume, the next tap tries again, and the line goes once sound comes back.
 
 ### Logging
 
@@ -276,7 +303,7 @@ No `innerHTML` or `dangerouslySetInnerHTML`. The one exception is the design sys
 
 ### Unit tests
 
-- `lib/music/theory/`: for all 12 keys in major and minor, the same scale spellings, chord names, qualities and numbers as the original file. The expected values are generated from `reference/nashville-number-lab.html` (today `Nashville-Number-Lab.html` at the repo root, §2) before it's deleted.
+- `lib/music/theory/`: for all 12 keys in major and minor, the same scale spellings, chord names, qualities and numbers as the original file. The expected values were generated by running the original file's own code, and are kept in `lib/music/__fixtures__/reference.json`.
 - `lib/music/transport/`: stepping, looping and stopping, with fake timers.
 
 ### Integration tests
@@ -289,7 +316,7 @@ Playwright: each of the five lesson-path steps runs, the lesson can be used by k
 
 ### Visual regression
 
-None automated for now. Transitions and interactions are checked by eye, side by side with `reference/`, against the list in the spec.
+None automated for now. The port of Nashville Number Lab was checked by eye and ear, side by side with the original file, against the list in its spec (AME-78). A new lesson is checked against its own spec.
 
 ### Accessibility testing
 
@@ -303,11 +330,11 @@ Tests don't listen. They check that the audio module was asked to play the right
 
 ## 11. Security and privacy
 
-- No accounts, no personal data, no cookies of our own, and nothing stored in the browser.
+- No accounts, no personal data, no cookies of our own, and nothing stored in the browser. The colour-mode script reads one storage key and writes nothing, since there's no picker.
 - No user-supplied content reaches the page as HTML.
 - Dependencies pinned. A new dependency needs a reason in its PR.
-- Google Fonts: loading fonts from Google sends each visitor's IP address to Google (§17).
-- Security headers depend on the host (§17).
+- Fonts are self-hosted, so no visitor's IP address goes to Google (decisions/0005). Nothing on the page makes a third-party request.
+- Security headers depend on the host (AME-87).
 
 ---
 
@@ -392,11 +419,14 @@ Redeploy the previous build.
 
 ## 17. Open architectural questions
 
-- Which static host? Vercel, like the portfolio, or something else?
-- Google Fonts link, or self-hosted fonts through `next/font`? Self-hosting keeps visitors' IP addresses away from Google.
-- Should a key and progression be shareable by URL (`?key=G&prog=1-5-6m-4`)?
-- Commit the built brand CSS, or build it on every install?
-- A lesson index at `/`, or `/` as the first lesson until there's a second one? An index page needs a spec and a design.
+- Which static host? Vercel, like the portfolio, or something else? Tracked in AME-87.
+
+Answered by the port spec (2026-11-23):
+
+- Fonts: self-hosted from Fontsource packages (decisions/0005).
+- A shareable key and progression in the URL: no, not for now (§4).
+- The built brand CSS: not committed; built before `dev` and `build` (§8).
+- `/`: the first lesson until there's a second one, then a lesson index with its own spec (§4).
 
 ---
 
