@@ -22,15 +22,18 @@ Its job is narrow on purpose: a session should be able to open this file and kno
 
 ## 2. Open items
 
-Generated from Linear project Song Workshop on 2026-11-22 by backlog-sync. Edit in Linear, not here.
+Generated from Linear project Song Workshop on 2026-11-24 by backlog-sync. Edit in Linear, not here.
 
 ### Backlog
 
-- **[AME-78](https://linear.app/amezquita/issue/AME-78/port-nashville-number-lab-into-the-nextjs-site)** Port Nashville Number Lab into the Next.js site — Antonio Amézquita · blocked · blocked by AME-76
+- **[AME-88](https://linear.app/amezquita/issue/AME-88/ame-78-review-follow-ups-no-sound-announcement-e2e-wait-two-stale-doc)** AME-78 review follow-ups: no-sound announcement, e2e wait, two stale doc lines — Antonio Amézquita · revisit
 - **[AME-80](https://linear.app/amezquita/issue/AME-80/spec-needed-blues-lesson)** Spec needed: blues lesson — Antonio Amézquita
 - **[AME-81](https://linear.app/amezquita/issue/AME-81/spec-needed-rhythm-lesson)** Spec needed: rhythm lesson — Antonio Amézquita
 - **[AME-82](https://linear.app/amezquita/issue/AME-82/spec-needed-melody-lesson)** Spec needed: melody lesson — Antonio Amézquita
 - **[AME-83](https://linear.app/amezquita/issue/AME-83/spec-needed-lyric-writing-lesson)** Spec needed: lyric-writing lesson — Antonio Amézquita
+- **[AME-87](https://linear.app/amezquita/issue/AME-87/choose-a-static-host-for-song-workshop-and-set-its-security-headers)** Choose a static host for Song Workshop and set its security headers — Antonio Amézquita
+- **[AME-89](https://linear.app/amezquita/issue/AME-89/clear-the-two-moderate-npm-audit-advisories-in-build-time-tools)** Clear the two moderate npm audit advisories in build-time tools — unassigned · revisit
+- **[AME-90](https://linear.app/amezquita/issue/AME-90/check-nashville-number-lab-with-voiceover)** Check Nashville Number Lab with VoiceOver — unassigned · revisit
 
 ---
 
