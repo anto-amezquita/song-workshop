@@ -1,5 +1,5 @@
 // Serves the static export in out/, for Playwright and for a local look at a build.
-// Not for production: the host serves out/ itself (AME-87).
+// Not for production: Vercel serves out/ itself, with the headers in vercel.json (decisions/0006).
 // Node runs this file directly; it only uses syntax Node can strip types from.
 
 import { createServer } from "node:http";

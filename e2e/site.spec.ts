@@ -65,7 +65,7 @@ test("/ points search engines at the lesson's own address", async ({ page }) => 
   await page.goto("/");
   await expect(page.locator('head link[rel="canonical"]')).toHaveAttribute(
     "href",
-    "/lessons/nashville-numbers",
+    "https://song-workshop.amezquita.dk/lessons/nashville-numbers",
   );
 });
 
