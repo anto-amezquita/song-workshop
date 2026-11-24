@@ -236,7 +236,7 @@ describe("the audio engine", () => {
     expect(seen).toEqual(["running"]);
   });
 
-  it("reports sound as unavailable when the context won't resume, and stays quiet after", async () => {
+  it("reports sound as unavailable when the context won't resume, and skips sounds instead of queueing them", async () => {
     const { ctx, engine } = setup();
     ctx.state = "suspended";
     ctx.resume.mockImplementation(() => Promise.reject(new Error("blocked")));
@@ -246,6 +246,46 @@ describe("the audio engine", () => {
     const before = ctx.oscillators.length;
     engine.playChord(C_MAJOR, 1);
     expect(ctx.oscillators.length).toBe(before);
+  });
+
+  it("tries to resume again on the next sound, and plays once it works", async () => {
+    const { ctx, engine } = setup();
+    ctx.state = "suspended";
+    ctx.resume.mockImplementation(() => Promise.reject(new Error("blocked")));
+    const seen: string[] = [];
+    engine.onStatusChange((s) => seen.push(s));
+    engine.playNote(60);
+    await new Promise((r) => setTimeout(r, 0));
+    expect(seen).toEqual(["unavailable"]);
+
+    // The next tap: this time the browser lets it resume.
+    ctx.resume.mockImplementation(() => {
+      ctx.state = "running";
+      return Promise.resolve();
+    });
+    engine.playNote(60);
+    expect(ctx.resume).toHaveBeenCalledTimes(2);
+    await new Promise((r) => setTimeout(r, 0));
+    expect(seen).toEqual(["unavailable", "running"]);
+
+    const before = ctx.oscillators.length;
+    engine.playChord(C_MAJOR, 1);
+    expect(ctx.oscillators.length).toBeGreaterThan(before);
+  });
+
+  it("goes back to idle when closed after a failed resume, so the next sound tries a new context", async () => {
+    const { ctx, factory, engine } = setup();
+    ctx.state = "suspended";
+    ctx.resume.mockImplementation(() => Promise.reject(new Error("blocked")));
+    engine.playNote(60);
+    await new Promise((r) => setTimeout(r, 0));
+    engine.close();
+    expect(engine.status()).toBe("idle");
+
+    ctx.state = "running";
+    engine.playNote(60);
+    expect(factory).toHaveBeenCalledTimes(2);
+    expect(engine.status()).toBe("running");
   });
 
   it("closes the context, and makes a new one for the next sound", () => {
@@ -280,13 +320,16 @@ describe("the audio engine", () => {
     expect(engine.status()).toBe("idle");
   });
 
-  it("keeps sound unavailable after closing", () => {
-    const engine = createAudioEngine(() => {
+  it("keeps sound unavailable for good when there's no Web Audio, even after closing", () => {
+    const factory = vi.fn(() => {
       throw new Error("Web Audio isn't available");
     });
+    const engine = createAudioEngine(factory);
     engine.playNote(60);
     engine.close();
+    engine.playNote(60);
     expect(engine.status()).toBe("unavailable");
+    expect(factory).toHaveBeenCalledOnce();
   });
 
   it("reports sound as unavailable when there's no Web Audio, without throwing", () => {

@@ -190,7 +190,7 @@ These behave as in the file. Each could become its own issue later, but changing
 - `FR-10` Each lesson-path step marks itself current and earlier steps done, then runs its action from §3.1.
 - `FR-11` The panel highlight lasts 2.6s and scrolls the panel to the centre only when it isn't fully visible.
 - `FR-12` Key pills and both switches are radio groups. Arrow keys move and select, wrap at the ends, and only the chosen option is tabbable.
-- `FR-13` The audio context is created on the first gesture. If Web Audio is missing, or the context can't start, the lesson keeps working and shows the no-sound line.
+- `FR-13` The audio context is created on the first gesture. If Web Audio is missing, or the context can't start, the lesson keeps working and shows the no-sound line. Only missing Web Audio is final: after a failed resume, the next sound tries again, as the file did, and the line goes once one works.
 - `FR-14` Colour mode follows the system setting before first paint, with no flash of the wrong mode.
 
 ---
@@ -375,7 +375,7 @@ That's the file's untinted page. The lesson root fills at least the viewport and
 | Q1 | Which static host? (arch §17) | Not part of this issue. A follow-up issue picks the host and sets security headers |
 | Q2 | Google Fonts or self-hosted? (arch §17, brand §11) | Self-hosted from Fontsource packages (§7.4), so no visitor IP goes to Google. Verified 2026-11-23: `@fontsource-variable/bricolage-grotesque`'s `opsz.css` carries opsz 12–96 and wght 200–800 (read from the font's fvar table), and the brand check passes with the Fontsource family names. Recorded as decisions/0005 |
 | Q3 | Shareable key and progression in the URL? (arch §4, §17) | No. New behaviour, not part of a port |
-| Q4 | Commit the built brand CSS? (arch §8, §17) | No. `styles/brand/` is gitignored and built by `predev`/`prebuild`; CI runs the check and the build |
+| Q4 | Commit the built brand CSS? (arch §8, §17) | No. `styles/brand/` is gitignored, and `npm run dev` and `npm run build` build it first themselves (not as `predev`/`prebuild`, §7.1); CI runs the check and the build |
 | Q5 | Index at `/`, or `/` as the first lesson? (arch §4, §17) | `/` renders the lesson too, with a canonical link to `/lessons/nashville-numbers`. A static export can't redirect. The index gets its own spec when the second lesson does |
 | Q6 | Design-system or project components for chips, Play scale, Loop, path buttons, tempo? (arch §3) | Project components matching the file (§8). The tempo slider stays a native range input |
 | Q7 | How is playback announced? (arch §4) | Not bar by bar: at 100 BPM that's a new announcement every 2.4s. The play button's name says whether it's playing. The live region carries building changes only (C-09) |

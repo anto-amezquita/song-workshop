@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 
 /** How long a panel stays highlighted, as in the file. */
 export const HIGHLIGHT_MS = 2600;
@@ -38,22 +38,30 @@ export function usePanelHighlight<Id extends string>() {
     return { panels, register };
   });
 
-  const highlight = useCallback(
-    (id: Id) => {
-      setHighlighted(id);
-      clearTimeout(timer.current);
-      timer.current = setTimeout(() => setHighlighted(null), HIGHLIGHT_MS);
+  // The panel to scroll to, measured once React has drawn what the same action
+  // changed (a new tonality, a rebuilt row of slots), as the file measured after
+  // its own DOM updates. A new object each time, so highlighting the same panel
+  // twice still measures twice.
+  const [scrollTo, setScrollTo] = useState<{ id: Id } | null>(null);
 
-      const panel = panels.get(id);
-      if (!panel) return;
-      const rect = panel.getBoundingClientRect();
-      if (rect.top < 0 || rect.bottom > window.innerHeight) {
-        const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-        panel.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "center" });
-      }
-    },
-    [panels],
-  );
+  const highlight = useCallback((id: Id) => {
+    setHighlighted(id);
+    clearTimeout(timer.current);
+    timer.current = setTimeout(() => setHighlighted(null), HIGHLIGHT_MS);
+    setScrollTo({ id });
+  }, []);
+
+  // After the DOM has the new state, before paint.
+  useLayoutEffect(() => {
+    if (!scrollTo) return;
+    const panel = panels.get(scrollTo.id);
+    if (!panel) return;
+    const rect = panel.getBoundingClientRect();
+    if (rect.top < 0 || rect.bottom > window.innerHeight) {
+      const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+      panel.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "center" });
+    }
+  }, [scrollTo, panels]);
 
   return { highlighted, highlight, register };
 }

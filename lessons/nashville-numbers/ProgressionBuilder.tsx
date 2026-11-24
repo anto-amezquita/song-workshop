@@ -2,12 +2,17 @@
 
 import { useLayoutEffect, useRef } from "react";
 import { RollText } from "@/components/lesson/RollText";
-import { progressionPattern, type Chord, type Degree, type Scale } from "@/lib/music/theory";
+import {
+  progressionPattern,
+  type Chord,
+  type Degree,
+  type Scale,
+  type Tonality,
+} from "@/lib/music/theory";
 import { EMPTY_PROGRESSION, removeBarName } from "./copy";
 import { useLit } from "./lights";
 import type { Labels } from "./model";
 import { PRESETS, type PresetId } from "./presets";
-import type { Tonality } from "@/lib/music/theory";
 import "./ProgressionBuilder.css";
 
 type Props = {

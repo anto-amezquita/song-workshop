@@ -31,13 +31,13 @@ const LABELS = [
 ] as const satisfies readonly { value: Labels; label: string }[];
 
 type PanelProps = {
-  c: Controller;
+  controller: Controller;
   highlighted: boolean;
   panelRef: Ref<HTMLElement>;
 };
 
 export const KeyPanel = memo(function KeyPanel({
-  c,
+  controller,
   highlighted,
   panelRef,
   keyName,
@@ -60,17 +60,17 @@ export const KeyPanel = memo(function KeyPanel({
           label="Mode"
           options={TONALITIES}
           value={tonality}
-          onChange={c.setTonality}
+          onChange={controller.setTonality}
         />
       </div>
-      <KeyPicker value={keyName} tonality={tonality} onChange={c.setKey} />
+      <KeyPicker value={keyName} tonality={tonality} onChange={controller.setKey} />
       <p className="lesson-panel__hint">{KEY_HINT}</p>
     </LessonPanel>
   );
 });
 
 export const ScalePanel = memo(function ScalePanel({
-  c,
+  controller,
   highlighted,
   panelRef,
   scale,
@@ -80,7 +80,7 @@ export const ScalePanel = memo(function ScalePanel({
     <LessonPanel label="Scale" ref={panelRef} highlighted={highlighted}>
       <div className="lesson-panel__head">
         <h2 className="lesson-panel__heading">The scale, numbered</h2>
-        <button type="button" className="nashville-lab__ghost" onClick={c.playScale}>
+        <button type="button" className="nashville-lab__ghost" onClick={controller.playScale}>
           Play scale
         </button>
       </div>
@@ -91,7 +91,7 @@ export const ScalePanel = memo(function ScalePanel({
 });
 
 export const ChordsPanel = memo(function ChordsPanel({
-  c,
+  controller,
   highlighted,
   panelRef,
   chords,
@@ -113,17 +113,22 @@ export const ChordsPanel = memo(function ChordsPanel({
           size="small"
           options={LABELS}
           value={labels}
-          onChange={c.setLabels}
+          onChange={controller.setLabels}
         />
       </div>
-      <ChordGrid chords={chords} labels={labels} onTap={c.tapChord} firstChordRef={firstChordRef} />
+      <ChordGrid
+        chords={chords}
+        labels={labels}
+        onTap={controller.tapChord}
+        firstChordRef={firstChordRef}
+      />
       <p className="lesson-panel__hint">{chordHint(tonality)}</p>
     </LessonPanel>
   );
 });
 
 export const ProgressionsPanel = memo(function ProgressionsPanel({
-  c,
+  controller,
   highlighted,
   panelRef,
   tonality,
@@ -171,9 +176,9 @@ export const ProgressionsPanel = memo(function ProgressionsPanel({
         preset={preset}
         building={building}
         generation={slotsGeneration}
-        onPreset={c.loadPreset}
-        onBuild={c.startBuilding}
-        onRemove={c.removeBar}
+        onPreset={controller.loadPreset}
+        onBuild={controller.startBuilding}
+        onRemove={controller.removeBar}
         focusFirstChord={focusFirstChord}
       />
       <Transport
@@ -181,9 +186,9 @@ export const ProgressionsPanel = memo(function ProgressionsPanel({
         bpm={bpm}
         loop={loop}
         audioStatus={audioStatus}
-        onTogglePlay={c.togglePlay}
-        onBpm={c.setBpm}
-        onLoop={c.setLoop}
+        onTogglePlay={controller.togglePlay}
+        onBpm={controller.setBpm}
+        onLoop={controller.setLoop}
       />
       <p className="lesson-panel__hint">{PROGRESSION_HINT}</p>
     </LessonPanel>

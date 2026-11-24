@@ -283,7 +283,7 @@ TypeScript `strict`, as in §1. Music types are unions where the set is closed (
 
 ### Error handling
 
-The only real failure is audio: no Web Audio support, or a context that won't resume. The lesson still works without sound. One line under the transport says so, only when sound can't start (port spec Q8).
+The only real failure is audio: no Web Audio support, or a context that won't resume. The lesson still works without sound. One line under the transport says so, only when sound can't start (port spec Q8). Only missing Web Audio is final; after a failed resume, the next tap tries again, and the line goes once sound comes back.
 
 ### Logging
 

@@ -23,15 +23,8 @@ const lesson = getLesson("nashville-numbers");
  * it; the cards, notes and slots read their own lights (lights.ts).
  */
 export function NashvilleLab() {
-  const {
-    store,
-    view,
-    controller: c,
-    audioStatus,
-    message,
-    highlighted,
-    register,
-  } = useNashvilleLab();
+  const { store, view, controller, audioStatus, message, highlighted, register } =
+    useNashvilleLab();
   const scale = useMemo(() => scaleFor(view.key, view.tonality), [view.key, view.tonality]);
   const chords = useMemo(() => chordsFor(scale), [scale]);
 
@@ -46,24 +39,26 @@ export function NashvilleLab() {
           title={lesson.title}
           intro={lesson.summary}
           footer={FOOTER}
-          aside={<LessonPath steps={PATH} current={view.pathStep} onAction={c.runPathStep} />}
+          aside={
+            <LessonPath steps={PATH} current={view.pathStep} onAction={controller.runPathStep} />
+          }
         >
           <KeyPanel
-            c={c}
+            controller={controller}
             highlighted={highlighted === "key"}
             panelRef={register("key")}
             keyName={view.key}
             tonality={view.tonality}
           />
           <ScalePanel
-            c={c}
+            controller={controller}
             highlighted={highlighted === "scale"}
             panelRef={register("scale")}
             scale={scale}
             tonality={view.tonality}
           />
           <ChordsPanel
-            c={c}
+            controller={controller}
             highlighted={highlighted === "chords"}
             panelRef={register("chords")}
             chords={chords}
@@ -72,7 +67,7 @@ export function NashvilleLab() {
             firstChordRef={firstChord}
           />
           <ProgressionsPanel
-            c={c}
+            controller={controller}
             highlighted={highlighted === "progressions"}
             panelRef={register("progressions")}
             tonality={view.tonality}

@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { act, cleanup, render as rtlRender, screen } from "@testing-library/react";
-import { createRef, useImperativeHandle, type Ref } from "react";
+import { createRef, useImperativeHandle, useState, type Ref } from "react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { HIGHLIGHT_MS, usePanelHighlight } from "@/hooks/usePanelHighlight";
 import { LessonPanel } from "./LessonPanel";
@@ -108,6 +108,42 @@ describe("usePanelHighlight", () => {
     const panel = placeChordsPanel(600, 900);
     act(() => api().highlight("chords"));
     expect(panel.scrollIntoView).toHaveBeenCalledWith({ behavior: "smooth", block: "center" });
+  });
+
+  it("measures the panel once the same action's changes are drawn", () => {
+    // Path step 3 from an empty "Build your own": the slots arrive in the same
+    // click that highlights the panel, and push its bottom off screen.
+    type GrowApi = Api & { grow: () => void };
+    function GrowingPanel({ ref }: { ref: Ref<GrowApi> }) {
+      const panels = usePanelHighlight<Id>();
+      const [tall, setTall] = useState(false);
+      useImperativeHandle(ref, () => ({ ...panels, grow: () => setTall(true) }), [panels]);
+      return (
+        <LessonPanel label="Chords" ref={panels.register("chords")}>
+          {tall ? "four slots" : "empty"}
+        </LessonPanel>
+      );
+    }
+    const growRef = createRef<GrowApi>();
+    rtlRender(<GrowingPanel ref={growRef} />);
+    const panel = screen.getByRole("region", { name: "Chords" });
+    panel.getBoundingClientRect = () =>
+      ({ top: 500, bottom: panel.textContent === "four slots" ? 900 : 700 }) as DOMRect;
+    panel.scrollIntoView = vi.fn();
+
+    act(() => {
+      growRef.current!.grow();
+      growRef.current!.highlight("chords");
+    });
+    expect(panel.scrollIntoView).toHaveBeenCalledOnce();
+  });
+
+  it("measures again when the same panel is highlighted again", () => {
+    renderPanels();
+    const panel = placeChordsPanel(600, 900);
+    act(() => api().highlight("chords"));
+    act(() => api().highlight("chords"));
+    expect(panel.scrollIntoView).toHaveBeenCalledTimes(2);
   });
 
   it("jumps instead of gliding with reduced motion on", () => {

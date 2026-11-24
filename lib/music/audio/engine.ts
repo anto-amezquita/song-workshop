@@ -52,6 +52,8 @@ export function createAudioEngine(createContext: ContextFactory = browserContext
   let ctx: AudioContextLike | null = null;
   let master: GainNode | null = null;
   let current: AudioStatus = "idle";
+  /** No Web Audio at all. The only "unavailable" that's final; a failed resume isn't. */
+  let noWebAudio = false;
   const voices = new Set<GainNode>();
   const listeners = new Set<(status: AudioStatus) => void>();
 
@@ -61,9 +63,13 @@ export function createAudioEngine(createContext: ContextFactory = browserContext
     listeners.forEach((l) => l(next));
   }
 
-  /** The context, created on first use. Null once sound has turned out to be unavailable. */
+  /**
+   * The context, created on first use, or null when this sound can't play.
+   * With no Web Audio, that's every sound. After a failed resume, it's only
+   * until a resume works: each call tries again, as the file's ac() did.
+   */
   function context(): AudioContextLike | null {
-    if (current === "unavailable") return null;
+    if (noWebAudio) return null;
     if (!ctx) {
       try {
         ctx = createContext();
@@ -79,25 +85,30 @@ export function createAudioEngine(createContext: ContextFactory = browserContext
         compressor.connect(ctx.destination);
       } catch {
         ctx = null;
+        master = null;
+        noWebAudio = true;
         setStatus("unavailable");
         return null;
       }
     }
-    if (ctx.state === "suspended") {
-      // A context closed in the meantime doesn't get to set the status.
-      const resuming = ctx;
-      resuming.resume().then(
-        () => {
-          if (ctx === resuming) setStatus("running");
-        },
-        () => {
-          if (ctx === resuming) setStatus("unavailable");
-        },
-      );
-    } else {
+    if (ctx.state !== "suspended") {
       setStatus("running");
+      return ctx;
     }
-    return ctx;
+    // A context closed in the meantime doesn't get to set the status.
+    const resuming = ctx;
+    resuming.resume().then(
+      () => {
+        if (ctx === resuming) setStatus("running");
+      },
+      () => {
+        if (ctx === resuming) setStatus("unavailable");
+      },
+    );
+    // While the last resume failed, this sound is skipped rather than queued:
+    // a suspended context's clock stands still, so queued bars would all
+    // sound at once when it comes back.
+    return current === "unavailable" ? null : ctx;
   }
 
   /** One voice: the file's tone(). Two oscillators, the second a sine 7 cents sharp at half level. */
@@ -182,8 +193,8 @@ export function createAudioEngine(createContext: ContextFactory = browserContext
       ctx = null;
       master = null;
       voices.clear();
-      // Back to no context yet. "Unavailable" stays: closing doesn't bring sound back.
-      if (current === "running") setStatus("idle");
+      // Back to no context yet: the next sound makes a new one and tries again.
+      setStatus("idle");
       closing.close().catch(() => {
         // Already closed or closing; either way it's gone.
       });
