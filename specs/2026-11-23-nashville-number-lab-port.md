@@ -372,7 +372,7 @@ That's the file's untinted page. The lesson root fills at least the viewport and
 
 | ID | Question (where) | Proposal |
 |---|---|---|
-| Q1 | Which static host? (arch §17) | Not part of this issue. A follow-up issue picks the host and sets security headers |
+| Q1 | Which static host? (arch §17) | Not part of this issue. A follow-up issue picks the host and sets security headers. Answered in AME-87: Vercel, with the headers in `vercel.json` (decisions/0006) |
 | Q2 | Google Fonts or self-hosted? (arch §17, brand §11) | Self-hosted from Fontsource packages (§7.4), so no visitor IP goes to Google. Verified 2026-11-23: `@fontsource-variable/bricolage-grotesque`'s `opsz.css` carries opsz 12–96 and wght 200–800 (read from the font's fvar table), and the brand check passes with the Fontsource family names. Recorded as decisions/0005 |
 | Q3 | Shareable key and progression in the URL? (arch §4, §17) | No. New behaviour, not part of a port |
 | Q4 | Commit the built brand CSS? (arch §8, §17) | No. `styles/brand/` is gitignored, and `npm run dev` and `npm run build` build it first themselves (not as `predev`/`prebuild`, §7.1); CI runs the check and the build |

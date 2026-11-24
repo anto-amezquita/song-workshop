@@ -396,7 +396,7 @@ None needed. The public address is a constant, `SITE_URL` in `lib/site.ts`. The 
 
 ### Deployment process
 
-Vercel builds each push with `npm run build`, which builds the brand CSS and then runs `next build`. `next build` writes the static site to `out/`, and Vercel serves that folder with the headers in `vercel.json` (§11). A push to `main` goes to production.
+Vercel installs with `npm ci --ignore-scripts`, as CI does (`vercel.json`), on Node 26: `engines` in `package.json` pins Vercel to the major CI uses (`node-version: 26` in `.github/workflows/ci.yml`). Change both together. It builds each push with `npm run build`, which builds the brand CSS and then runs `next build`. `next build` writes the static site to `out/`, and Vercel serves that folder with the headers in `vercel.json` (§11). A push to `main` goes to production.
 
 ### Rollback strategy
 

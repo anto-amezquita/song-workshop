@@ -1,3 +1,4 @@
+import path from "node:path";
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 import { headersFor, readHeaderRules } from "../scripts/serve-out";
@@ -74,7 +75,9 @@ for (const path of pages) {
 
 // The e2e server sends the headers in vercel.json (scripts/serve-out.ts), so these
 // pages run under the production CSP. Anything it blocks fails here, not in production.
-const policy = headersFor(readHeaderRules("vercel.json"), "/")["Content-Security-Policy"];
+const policy = headersFor(readHeaderRules(path.resolve("vercel.json")), "/")[
+  "Content-Security-Policy"
+];
 
 for (const path of [...pages, "/no-such-lesson"]) {
   test(`${path} works under the CSP without breaking it`, async ({ page }) => {

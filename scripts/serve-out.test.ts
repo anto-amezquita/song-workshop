@@ -52,7 +52,7 @@ describe("sourcePattern", () => {
     expect(pattern.test("/lessons/a.b/c")).toBe(false);
   });
 
-  it("refuses patterns it can't match like Vercel does", () => {
+  it("refuses patterns it can't match the way Vercel would", () => {
     expect(() => sourcePattern("/lessons/:slug")).toThrow();
     expect(() => sourcePattern("/(a|b)")).toThrow();
   });
