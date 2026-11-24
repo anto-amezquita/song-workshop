@@ -11,14 +11,10 @@ export const metadata: Metadata = {
   // The root layout's title template only reaches child routes, so / spells it out.
   title: { absolute: `${lesson.title} · Song Workshop` },
   description: lesson.summary,
+  // The root layout's metadataBase makes this the full address.
+  alternates: { canonical: lessonPath("nashville-numbers") },
 };
 
 export default function HomePage() {
-  return (
-    <>
-      {/* Relative until the site has a host (AME-87); React puts it in <head>. */}
-      <link rel="canonical" href={lessonPath("nashville-numbers")} />
-      <NashvilleLab />
-    </>
-  );
+  return <NashvilleLab />;
 }

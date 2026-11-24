@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { colorModeScript } from "@amezquita/design-system/lib/color-mode";
+import { SITE_URL } from "@/lib/site";
 
 // Fonts, self-hosted (decisions/0005). Bricolage's opsz file carries the
 // optical-size axis (12–96) and weights 200–800; Inter is static, as the file loads it.
@@ -17,6 +18,7 @@ import "../styles/brand/song-workshop-dark.css";
 import "../styles/global.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: { default: "Song Workshop", template: "%s · Song Workshop" },
   description: "Short music lessons you play with in the browser.",
 };

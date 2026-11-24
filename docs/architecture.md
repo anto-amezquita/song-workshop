@@ -47,7 +47,7 @@ None. Every page is prerendered HTML plus the JavaScript its lesson needs. Nothi
 - testing: Vitest and React Testing Library for unit and component tests, Playwright with axe for end-to-end and accessibility checks
 - brand build: `style-dictionary`, the current 5.x, pinned exactly. `amezquita-brand build` needs it. Versions from 5.7.1 write durations in seconds (`0.5s`, not `500ms`); nothing here reads them as numbers, so that's accepted (port spec Q17, AME-84).
 - CI/CD: GitHub Actions running typecheck, lint, tests, the brand check and the build. Least-privilege `permissions`; third-party actions pinned to a full SHA, with the version in a comment.
-- deployment: any static host. Not chosen yet (AME-87).
+- deployment: Vercel, serving the static `out/` folder (§14, decisions/0006).
 
 ---
 
@@ -334,7 +334,12 @@ Tests don't listen. They check that the audio module was asked to play the right
 - No user-supplied content reaches the page as HTML.
 - Dependencies pinned. A new dependency needs a reason in its PR.
 - Fonts are self-hosted, so no visitor's IP address goes to Google (decisions/0005). Nothing on the page makes a third-party request.
-- Security headers depend on the host (AME-87).
+- Security headers are set by Vercel from `vercel.json`, on every path, because a static export can't set them from Next.js (decisions/0006):
+  - `Content-Security-Policy`: everything from the site's own origin only. Two exceptions: inline scripts (`script-src 'unsafe-inline'`), which Next writes into every page, and inline `style` attributes (`style-src-attr 'unsafe-inline'`), which `RollText` uses for its animation delay. No plugins (`object-src 'none'`), no framing (`frame-ancestors 'none'`), `base-uri` and `form-action` limited to the site, and `upgrade-insecure-requests`.
+  - `Strict-Transport-Security: max-age=63072000; includeSubDomains`
+  - `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy: strict-origin-when-cross-origin`, `Cross-Origin-Opener-Policy: same-origin`
+  - `Permissions-Policy` turning off camera, microphone, geolocation, payment and USB. Web Audio needs none of them.
+- Anything new the page loads (a third-party script, a `data:` image, a worker) needs the CSP changed in the same PR, or the browser blocks it. The e2e server sends the same headers, and the e2e tests fail on any CSP violation, so CI catches it.
 
 ---
 
@@ -381,20 +386,21 @@ None for now.
 
 ### Environments
 
-- local (`next dev`)
-- production (static host)
+- local (`next dev`, or `npm run serve` to look at a build in `out/` with the headers in `vercel.json`)
+- preview (Vercel, a deployment for each pushed branch)
+- production (Vercel, from `main`): `https://song-workshop.amezquita.dk`, a CNAME `song-workshop` at Simply.com, which hosts the `amezquita.dk` DNS. Vercel's default address is `song-workshop.vercel.app`.
 
 ### Environment variables
 
-None needed.
+None needed. The public address is a constant, `SITE_URL` in `lib/site.ts`. The root layout's `metadataBase` uses it to make the canonical link a full URL.
 
 ### Deployment process
 
-`next build` writes the static site to `out/`, and the host serves that folder.
+Vercel installs with `npm ci --ignore-scripts`, as CI does (`vercel.json`), on Node 26: `engines` in `package.json` pins Vercel to the major CI uses (`node-version: 26` in `.github/workflows/ci.yml`). Change both together. It builds each push with `npm run build`, which builds the brand CSS and then runs `next build`. `next build` writes the static site to `out/`, and Vercel serves that folder with the headers in `vercel.json` (§11). A push to `main` goes to production.
 
 ### Rollback strategy
 
-Redeploy the previous build.
+Promote the previous production deployment in Vercel (Instant Rollback), or revert the commit on `main`.
 
 ---
 
@@ -419,7 +425,11 @@ Redeploy the previous build.
 
 ## 17. Open architectural questions
 
-- Which static host? Vercel, like the portfolio, or something else? Tracked in AME-87.
+None right now.
+
+Answered in AME-87 (2026-11-24):
+
+- The static host: Vercel, like the portfolio, with the security headers in `vercel.json` (§11, §14, decisions/0006).
 
 Answered by the port spec (2026-11-23):
 
