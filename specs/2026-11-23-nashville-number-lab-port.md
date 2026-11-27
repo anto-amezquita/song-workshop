@@ -122,6 +122,7 @@ This is the behaviour to keep. Timings are the file's; §3.4 C-07 says which one
 ### 3.2 Layout
 
 - Main column and a 300px lesson path side by side, 20px apart, max width 1140px. The path is sticky, 16px from the top.
+  - *Since AME-97, the max width is set in `specs/2026-11-27-lesson-navigation.md` (§9, design system review): it's the `size-container-wide` token now, not 1140px.*
 - At 900px and below, the path moves under the lesson and stops being sticky.
 - At 620px and below, the chord row goes from seven columns to four.
 - Safe-area insets on all sides, as the file has them (`viewport-fit=cover`).

@@ -171,6 +171,20 @@ for (const width of [375, 1280, 1600]) {
   });
 }
 
+test("on a wide screen the bar's contents and the lesson column stop at size-container-wide (1280px)", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1600, height: 720 });
+  await page.goto(nashville);
+  const widths = await page.evaluate(() =>
+    [".site-bar__inner", ".lesson-layout"].map(
+      (selector) => document.querySelector<HTMLElement>(selector)!.getBoundingClientRect().width,
+    ),
+  );
+  // A literal, not the token: if the token goes missing, max-width falls back to none and this fails.
+  expect(widths).toEqual([1280, 1280]);
+});
+
 /** Marks the current document, to tell a client-side page change from a full reload. */
 const markDocument = (page: Page) =>
   page.evaluate(() => {
