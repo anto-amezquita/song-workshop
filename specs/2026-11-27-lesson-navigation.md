@@ -158,7 +158,7 @@ The bar, the drawer list (`N-1`), the scroll-lock override (`N-2`), and a helper
 - **Scroll lock → design system issue AME-101**, for a `Drawer` that locks scroll without adding a `<style>` element. Song Workshop drops its override once that ships (decisions/0007, "When to remove it").
 - **Top bar → stays in Song Workshop** for now. No design system issue yet.
 - **Lesson list → swapped for `SideNav` when AME-100 ships**, as decided in `N-1`.
-- **Open: a see-through drawer backdrop.** Antonio asked for one. The design system has no token for it: `Drawer` paints its backdrop with the solid `color-surface-tertiary`, the only overlay opacity token (`opacity-overlay`) is deprecated and goes in 2.0, and `Drawer` has no prop for its backdrop. Nothing is built until Antonio decides how to fill that gap.
+- **See-through backdrop → design system issue AME-102**, for a backdrop token (a colour plus its opacity) that `Drawer` and `Dialog` both use. The design system has none today: `Drawer` paints its backdrop with the solid `color-surface-tertiary`, the only overlay opacity token (`opacity-overlay`) is deprecated and goes in 2.0, and `Drawer` has no prop for its backdrop. The drawer keeps its solid backdrop until AME-102 ships; Song Workshop then gets the new one by upgrading.
 - **Open: a content-width token**, so the bar's contents could line up with the lesson column's 1140px. Until then the bar runs the full width.
 
 ### The choices behind N-1 and N-2
