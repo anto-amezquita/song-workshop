@@ -88,6 +88,21 @@ for (const width of [375, 1280]) {
   });
 }
 
+test("both controls in the bar meet the touch target", async ({ page }) => {
+  await page.goto(nashville);
+  const banner = page.getByRole("banner");
+  const target = await page.evaluate(() =>
+    parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--size-touch-target")),
+  );
+  for (const control of [
+    banner.getByRole("button", { name: "Lessons" }),
+    banner.getByRole("link", { name: "Song Workshop" }),
+  ]) {
+    const box = await control.boundingBox();
+    expect(box?.height).toBeGreaterThanOrEqual(target);
+  }
+});
+
 test("works by keyboard alone: open, land on the first lesson, close, back on Lessons", async ({
   page,
 }) => {

@@ -13,6 +13,10 @@
 }
 
 .site-bar__name {
+  /* As tall as the Lessons button, so it meets the touch target too (spec §5). */
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--size-touch-target);
   font-family: var(--font-family-heading);
   font-weight: var(--font-weight-display);
   font-size: var(--font-size-base);

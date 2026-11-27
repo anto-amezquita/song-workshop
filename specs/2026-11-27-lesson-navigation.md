@@ -209,7 +209,7 @@ What it means:
 - The CSP test opens the drawer on a lesson page and reports no violations.
 - Keyboard-only: Tab reaches Lessons, Enter opens, focus is on the first lesson, Escape closes, focus is back on Lessons.
 - axe passes with the drawer closed and open, in light and dark.
-- Nashville Number Lab's existing e2e and component tests pass unchanged.
+- Nashville Number Lab's existing e2e and component tests pass. The only change is that the keyboard test in `e2e/lesson.spec.ts` now tabs past the bar's two controls, Lessons and Song Workshop, before the lesson's first stop.
 - The rule 3 report lists the bar, the scroll-lock override and the drawer list.
 
 ---
