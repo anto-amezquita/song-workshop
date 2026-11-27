@@ -112,7 +112,13 @@ test("the whole lesson works by keyboard alone", async ({ page }) => {
         document.activeElement?.textContent?.trim(),
     );
 
-  // Tonality switch: the first stop. Arrow keys move the choice (C-01).
+  // The site bar comes first: Lessons, then the site's name (AME-97).
+  await page.keyboard.press("Tab");
+  expect(await focused()).toBe("Lessons");
+  await page.keyboard.press("Tab");
+  expect(await focused()).toBe("Song Workshop");
+
+  // Tonality switch: the lesson's first stop. Arrow keys move the choice (C-01).
   await page.keyboard.press("Tab");
   expect(await focused()).toBe("Major");
   await page.keyboard.press("ArrowRight");

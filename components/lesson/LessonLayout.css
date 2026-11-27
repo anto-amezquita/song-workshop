@@ -1,6 +1,8 @@
 /* One quiet column of panels with a sticky lesson path beside it. */
 .lesson-layout {
-  max-width: 1140px;
+  /* The same width as the site bar's contents (AME-97), so the two line up.
+     Used for its 1280px value, not its media role; a page token is asked for on AME-106. */
+  max-width: var(--size-container-wide);
   margin: 0 auto;
   padding-block: var(--space-8) 56px;
   padding-left: max(var(--space-4), env(safe-area-inset-left, 0px));

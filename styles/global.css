@@ -23,6 +23,14 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* TEMPORARY OVERRIDE (decisions/0007): the page stays put behind the lessons drawer.
+   It replaces the drawer's own scroll-lock CSS, which our CSP blocks. The gutter
+   stays, so the page doesn't shift sideways where scrollbars take up room. */
+html.site-scroll-locked {
+  overflow: hidden;
+  scrollbar-gutter: stable;
+}
+
 button {
   font: inherit;
   color: inherit;

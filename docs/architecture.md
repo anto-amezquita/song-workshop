@@ -10,7 +10,7 @@ The goal is to help contributors and AI agents make technical decisions that fit
 
 > **Status (2026-11-23):** Updated from the approved port spec, `specs/2026-11-23-nashville-number-lab-port.md` (AME-78). It describes how Nashville Number Lab moves into the app, and how later lessons fit beside it.
 >
-> - **Decided**, with records in `/decisions`: Next.js with static export (0001), the `song-workshop` brand (0002), the sliding switch built in this repo (0003), motion as the brand's own tokens (0004), and self-hosted fonts (0005).
+> - **Decided**, with records in `/decisions`: Next.js with static export (0001), the `song-workshop` brand (0002), the sliding switch built in this repo (0003), motion as the brand's own tokens (0004), self-hosted fonts (0005), Vercel and the security headers (0006), and the drawer's scroll lock without an injected `<style>`, a temporary override (0007).
 > - **Decided in the port spec:** the stack and tooling (§1), the folder names (§2), which parts are project components (§3), and the answers in §17. The spec's IDs (R1–R6, Q1–Q20, C-01–C-13) are given where they help.
 > - **Released:** the brand contract, `amezquita-brand check` and `build`, and the colour-mode script (`colorModeScript()`, `useColorMode` and `data-mode`) are in `@amezquita/design-system` 1.7.0, on npm since 2026-11-23 (AME-76).
 > - Lines still marked *Assumption* haven't been confirmed.
@@ -57,7 +57,7 @@ Confirmed by the port spec. Later lessons follow the same shape.
 
 ```txt
 app/
-  layout.tsx                        colour-mode script, base + brand CSS, fonts
+  layout.tsx                        colour-mode script, base + brand CSS, fonts, the site bar
   page.tsx                          the first lesson until there's a second; then the lesson index (§4)
   not-found.tsx                     our own 404: Next's paints body white
   lessons/
@@ -77,11 +77,15 @@ lessons/
     KeyPicker.tsx, ScaleRow.tsx, ChordGrid.tsx,
     ProgressionBuilder.tsx, Transport.tsx  (+ a .css file each)
 components/lesson/                  shared by every lesson
-  LessonLayout                      header, main column, sticky path aside
+  LessonLayout                      lesson intro, main column, sticky path aside
   LessonPanel                       panel with the focus glow and scroll-into-view
   LessonPath                        numbered steps, each with an action button
   RollText                          text that rolls in when it changes
   SegmentSwitch                     two-to-five-way switch with a sliding thumb
+components/site/                    on every page, outside any lesson (AME-97)
+  SiteBar                           the top bar: Lessons button, site name, the lessons drawer
+  LessonList                        the lessons inside the drawer, until SideNav can do it (AME-100)
+  navigation.ts                     which menu link is the current page
 hooks/
   useSlidingIndicator.ts            measures the chosen item; moves the thumb or indicator
   usePanelHighlight.ts              one highlighted panel at a time, scrolled into view if needed
@@ -90,6 +94,8 @@ lib/music/
   audio/                            audio context, voices, chord voicing, silence
   transport/                        tempo, bars, loop, a callback per step; one-off sequences
   __fixtures__/reference.json       the original file's own output, for the tests (generated)
+lib/overrides/
+  react-remove-scroll-bar.ts        TEMPORARY: the drawer's scroll lock without a <style> (decisions/0007)
 tokens/brands/song-workshop/        tokens.json, dark.json, contrast-pairs.json
 styles/
   brand/                            output of `amezquita-brand build`
@@ -104,6 +110,7 @@ docs/ specs/ decisions/ skills/ guide/ templates/   the starter kit
 
 - A lesson is a folder in `lessons/`, one entry in `lessons/registry.ts` and one route in `app/lessons/<slug>/`. Adding a lesson never means editing another lesson.
 - `components/lesson/` never imports from `lessons/` or from `lib/music/`. A lesson with no sound, like lyric writing, uses it unchanged.
+- `components/site/` doesn't import from `lessons/` either. `app/layout.tsx` builds the menu's links from the registry and passes them in.
 - `lib/music/theory/` is pure: no DOM, no audio, no React. The same input always gives the same output, and that's what its tests check.
 - `lib/music/audio/` is the only code that touches Web Audio. `transport/` keeps time and calls the lesson back on each step; the lesson decides what to play.
 - Route files stay thin: metadata and one component.
@@ -149,6 +156,15 @@ Prefer code that is easy to reason about and maintain over code that is merely c
 Each lesson has its own route. With static export, each route becomes its own HTML file. The first is `/lessons/nashville-numbers`.
 
 Until there's a second lesson, `/` renders the same lesson, with a canonical link to `/lessons/nashville-numbers`, because a static export can't redirect (port spec Q5). When the second lesson arrives, `/` becomes a lesson index built from `lessons/registry.ts`. The index is new (the file has nothing like it), so it needs a spec and a design first.
+
+### Navigation
+
+Every page has the site bar (`components/site/SiteBar`), rendered by `app/layout.tsx` above the page: a Lessons button, then the site's name, linking to `/`. The button opens the design system's `Drawer` from the left at every width, listing every lesson in registry order, with the current one marked `aria-current="page"`. The current lesson comes from `usePathname`, and `/` counts as the lesson it shows. There's no permanent sidebar. Spec: `specs/2026-11-27-lesson-navigation.md`.
+
+- **The bar is the page's one `header` (banner).** A lesson's intro in `LessonLayout` is a `div`, so there aren't two.
+- **The list inside the drawer is ours for now.** `SideNav` would draw it, but in 1.7.0 it can only be a drawer below 1024px. AME-100 asks for that in the design system; when it ships, `LessonList` gives way to `SideNav`.
+- **Scroll lock:** see §11 and decisions/0007.
+- **The bar sits outside the lesson's tint**, on the white panel colour, so it looks the same in major and minor.
 
 ### Rendering model
 
@@ -340,6 +356,7 @@ Tests don't listen. They check that the audio module was asked to play the right
   - `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy: strict-origin-when-cross-origin`, `Cross-Origin-Opener-Policy: same-origin`
   - `Permissions-Policy` turning off camera, microphone, geolocation, payment and USB. Web Audio needs none of them.
 - Anything new the page loads (a third-party script, a `data:` image, a worker) needs the CSP changed in the same PR, or the browser blocks it. The e2e server sends the same headers, and the e2e tests fail on any CSP violation, so CI catches it.
+- The design system's `Drawer` would add a `<style>` element to lock page scroll, which the CSP blocks. A temporary override points `react-remove-scroll-bar` at a stand-in that adds none, and the site bar locks scroll with a class instead (decisions/0007). The e2e tests open the drawer under the CSP.
 
 ---
 

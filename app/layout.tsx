@@ -17,6 +17,16 @@ import "../styles/brand/song-workshop-light.css";
 import "../styles/brand/song-workshop-dark.css";
 import "../styles/global.css";
 
+// After the CSS above, so the bar's own CSS loads after the brand's, like a lesson's does.
+import { SiteBar } from "@/components/site/SiteBar";
+import { lessonPath, lessons } from "@/lessons/registry";
+
+// The lessons menu, from the registry: a new lesson needs no edit here.
+const lessonLinks = lessons.map((lesson) => ({
+  href: lessonPath(lesson.slug),
+  label: lesson.title,
+}));
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: { default: "Song Workshop", template: "%s · Song Workshop" },
@@ -38,7 +48,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             system, the one allowed use of dangerouslySetInnerHTML (architecture.md §9). */}
         <script dangerouslySetInnerHTML={{ __html: colorModeScript() }} />
       </head>
-      <body>{children}</body>
+      <body>
+        {/* "/" shows Nashville Number Lab until there's a lesson index (app/page.tsx). */}
+        <SiteBar links={lessonLinks} rootHref={lessonPath("nashville-numbers")} />
+        {children}
+      </body>
     </html>
   );
 }

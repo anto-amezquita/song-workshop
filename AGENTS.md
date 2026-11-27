@@ -36,6 +36,15 @@ Do not:
 - change brand, design, architecture, or quality rules casually
 - hide assumptions or unresolved decisions inside implementation
 
+## Build rules
+
+Agreed on AME-95 (2026-11-27). They apply to every build task in this repo.
+
+1. Use only `@amezquita/design-system` tokens and components: no hard-coded colours, sizes or fonts.
+2. If something is missing from the design system, don't invent it. Stop and flag it, so Antonio can decide whether it belongs in the design system.
+3. At the end of each task, list anything custom that was created, with a short reason.
+4. Motion: use one shared set of motion values (a few durations, one or two easing curves), taken from the existing Nashville Number Lab, so all lessons move the same way. Keep transitions short and smooth for a premium feel, respect `prefers-reduced-motion`, and never invent one-off animations. Those values are the `song-workshop-` motion tokens in `docs/brand.md` §16.
+
 
 ## Available skills
 

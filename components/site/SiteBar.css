@@ -1,0 +1,47 @@
+/* A white band across the top of every page (spec, Design option A). Tokens only.
+   The band runs the full width; its contents sit in the lesson column's width
+   (--size-container-wide, with the same side padding), so "Lessons" starts
+   where the lesson's text does at every screen size. The token is used for its
+   1280px value, not its media role; a page token is asked for on AME-106. */
+.site-bar {
+  background-color: var(--color-surface-primary);
+  border-bottom: var(--border-width-default) solid var(--color-border-default);
+  font-family: var(--font-family-base);
+}
+
+.site-bar__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4); /* Clears the Lessons focus ring (6px out) before the site name. */
+  max-width: var(--size-container-wide);
+  margin: 0 auto;
+  padding-block: var(--space-1);
+  padding-left: max(var(--space-4), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--space-4), env(safe-area-inset-right, 0px));
+}
+
+/* The word "Lessons", not the button's box, starts where the lesson's text does.
+   CUSTOM: the ghost Button's own 24px inline padding is wider than the page's
+   16px side padding, so pulling it back by that much would push its box and
+   focus ring off the screen. This one Button gets the smaller --space-2 inline
+   padding instead, and is pulled left by that plus its border. It stays 44px
+   tall. Approved by Antonio as temporary; remove it when the design system's
+   compact ghost Button ships (AME-104). */
+.site-bar__lessons {
+  --button-padding-x: var(--space-2);
+  margin-inline-start: calc(-1 * (var(--button-padding-x) + var(--button-outline-border-width)));
+}
+
+.site-bar__name {
+  /* As tall as the Lessons button, so it meets the touch target too (spec §5). */
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--size-touch-target);
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-display);
+  font-size: var(--font-size-base);
+  letter-spacing: var(--letter-spacing-heading);
+  color: var(--color-text-primary);
+  text-decoration: none;
+  border-radius: var(--border-radius-interactive);
+}
