@@ -1,7 +1,8 @@
 /* A white band across the top of every page (spec, Design option A). Tokens only.
    The band runs the full width; its contents sit in the lesson column's width
    (--size-container-wide, with the same side padding), so "Lessons" starts
-   where the lesson's text does at every screen size. */
+   where the lesson's text does at every screen size. The token is used for its
+   1280px value, not its media role; a page token is asked for on AME-106. */
 .site-bar {
   background-color: var(--color-surface-primary);
   border-bottom: var(--border-width-default) solid var(--color-border-default);
