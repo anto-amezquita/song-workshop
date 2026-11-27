@@ -66,6 +66,8 @@ Comment on the issue in plain language. This is the history a non-coder reads:
 
 ### 6. After merge
 
+Merge with a merge commit (`gh pr merge <number> --merge --match-head-commit <reviewed SHA>`), not squash or rebase. The commits keep their SHAs on `main`, so the ones named in reviews and on the issue still exist. `--match-head-commit` makes the merge fail if anything was pushed after the review.
+
 When the person confirms the PR is merged:
 
 ```sh
