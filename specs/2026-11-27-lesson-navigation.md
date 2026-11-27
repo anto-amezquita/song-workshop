@@ -135,7 +135,7 @@ The bar, the drawer list (`N-1`), the scroll-lock override (`N-2`), and a helper
 | Part | Source | Custom? |
 |---|---|---|
 | Top bar | Song Workshop, tokens only | Yes, approved (`D-C`). Listed in the rule 3 report, with the question of whether it belongs in the design system. |
-| Lessons button | Design system `Button` | No |
+| Lessons button | Design system `Button` | Its inline padding only: `space-2` instead of `button-padding-x`, so its text lines up with the lesson's (§9, design system review). Listed in the rule 3 report. |
 | Drawer | Design system `Drawer` | No |
 | Lesson list inside the drawer | Song Workshop, tokens only, until AME-100 ships | Yes (`N-1`). Listed in the rule 3 report. |
 | Scroll lock | Song Workshop override | Yes, approved as temporary (`D-A`). Listed in the rule 3 report. |
@@ -147,7 +147,7 @@ The bar, the drawer list (`N-1`), the scroll-lock override (`N-2`), and a helper
 ### Decided (2026-11-27)
 
 - **D-A. CSP stays as it is.** No `'unsafe-inline'` for styles. The drawer's scroll lock is replaced inside Song Workshop by a lock based on a class, marked as a temporary override, so no `<style>` element is added. At the end, it's in the rule 3 report with the question of whether it moves into the design system.
-- **D-B. No permanent left column.** The lessons menu is a drawer at every screen size. The lesson path keeps its current behaviour, and the page keeps its current width.
+- **D-B. No permanent left column.** The lessons menu is a drawer at every screen size. The lesson path keeps its current behaviour. The page keeps its layout; its maximum width moved from 1140px to the `space-layout-max-width` token later (§9, design system review).
 - **D-C. A thin top bar on every page**, with the Song Workshop name and the Lessons button. It's custom, built with design system tokens only, and in the rule 3 report with the question of whether it belongs in the design system.
 
 - **N-1 → option 3.** A short list of links inside the design system's `Drawer` now, and the design system issue AME-100 for a `SideNav` that's a drawer at every width. When AME-100 ships, the list is swapped for `SideNav`.
@@ -159,7 +159,9 @@ The bar, the drawer list (`N-1`), the scroll-lock override (`N-2`), and a helper
 - **Top bar → stays in Song Workshop** for now. No design system issue yet.
 - **Lesson list → swapped for `SideNav` when AME-100 ships**, as decided in `N-1`.
 - **See-through backdrop → design system issue AME-102**, for a backdrop token (a colour plus its opacity) that `Drawer` and `Dialog` both use. The design system has none today: `Drawer` paints its backdrop with the solid `color-surface-tertiary`, the only overlay opacity token (`opacity-overlay`) is deprecated and goes in 2.0, and `Drawer` has no prop for its backdrop. The drawer keeps its solid backdrop until AME-102 ships; Song Workshop then gets the new one by upgrading.
-- **Open: a content-width token**, so the bar's contents could line up with the lesson column's 1140px. Until then the bar runs the full width.
+- **Content width → the design system's `space-layout-max-width` (1200px)** for both the lesson column and the bar's contents (decided 2026-11-27, after the visual check). The lesson column was a hard-coded 1140px, so it's 60px wider on large screens now. The bar's band still runs the full width; its contents sit in that width with the lesson's side padding, so the word "Lessons" starts where the lesson's text does at every screen size.
+- **Drawer padding → AME-100.** The drawer's heading and links start 48px in from its edge. That's `Drawer`'s own `space-container-padding-lg`, not the list's, so Song Workshop doesn't override it. The list itself is already as dense as `SideNav`'s (44px rows, 4px apart). `SideNav`'s drawer uses the same `Drawer`, so the ask for a tighter inset is on AME-100.
+- **Lessons button padding → a local override, with a design system ask.** The ghost `Button`'s 24px inline padding is wider than the page's 16px side padding, so lining up its text by pulling it left would push its box and focus ring off the screen. `Button` has no compact size. This one button sets its `button-padding-x` to `space-2` (8px) and is pulled left by that plus its border. It stays 44px tall.
 
 ### The choices behind N-1 and N-2
 
@@ -210,7 +212,7 @@ What it means:
 - Keyboard-only: Tab reaches Lessons, Enter opens, focus is on the first lesson, Escape closes, focus is back on Lessons.
 - axe passes with the drawer closed and open, in light and dark.
 - Nashville Number Lab's existing e2e and component tests pass. The only change is that the keyboard test in `e2e/lesson.spec.ts` now tabs past the bar's two controls, Lessons and Song Workshop, before the lesson's first stop.
-- The rule 3 report lists the bar, the scroll-lock override and the drawer list.
+- The rule 3 report lists the bar, the scroll-lock override, the drawer list and the Lessons button's padding.
 
 ---
 

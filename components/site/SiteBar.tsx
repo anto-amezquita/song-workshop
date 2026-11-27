@@ -47,23 +47,29 @@ export function SiteBar({ links, rootHref }: Props) {
 
   return (
     <header className="site-bar">
-      <Drawer
-        open={open}
-        onOpenChange={setOpen}
-        side="left"
-        size="sm"
-        title="Lessons"
-        trigger={<Button variant="ghost">Lessons</Button>}
-      >
-        <LessonList
-          links={links}
-          currentHref={currentHref}
-          onChooseCurrent={() => setOpen(false)}
-        />
-      </Drawer>
-      <NextLink href="/" className="site-bar__name">
-        Song Workshop
-      </NextLink>
+      <div className="site-bar__inner">
+        <Drawer
+          open={open}
+          onOpenChange={setOpen}
+          side="left"
+          size="sm"
+          title="Lessons"
+          trigger={
+            <Button variant="ghost" className="site-bar__lessons">
+              Lessons
+            </Button>
+          }
+        >
+          <LessonList
+            links={links}
+            currentHref={currentHref}
+            onChooseCurrent={() => setOpen(false)}
+          />
+        </Drawer>
+        <NextLink href="/" className="site-bar__name">
+          Song Workshop
+        </NextLink>
+      </div>
     </header>
   );
 }

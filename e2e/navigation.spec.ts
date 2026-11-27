@@ -150,6 +150,27 @@ test("both controls in the bar meet the touch target", async ({ page }) => {
   }
 });
 
+for (const width of [375, 1280, 1600]) {
+  test(`at ${width}px the word Lessons starts where the lesson's text does, with its button on screen`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width, height: 720 });
+    await page.goto(nashville);
+    const x = await page.evaluate(() => {
+      const button = document.querySelector<HTMLElement>(".site-bar__lessons")!;
+      const text = document.createRange();
+      text.selectNodeContents(button.querySelector(".button__label") ?? button);
+      return {
+        text: text.getBoundingClientRect().left,
+        box: button.getBoundingClientRect().left,
+        title: document.querySelector("h1")!.getBoundingClientRect().left,
+      };
+    });
+    expect(Math.abs(x.text - x.title)).toBeLessThanOrEqual(1);
+    expect(x.box).toBeGreaterThanOrEqual(0);
+  });
+}
+
 /** Marks the current document, to tell a client-side page change from a full reload. */
 const markDocument = (page: Page) =>
   page.evaluate(() => {
