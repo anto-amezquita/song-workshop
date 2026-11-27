@@ -69,7 +69,7 @@ From any page, one tap on Lessons shows every lesson, with the current one marke
 |---|---|
 | One lesson (today) | The drawer lists one lesson, marked as current. That's accepted: the menu is needed before the second lesson goes live. |
 | `/` | Shows Nashville Number Lab, so Nashville is marked as current. |
-| 404 page | The bar and drawer work; no lesson is marked. This is the page's only way back to a lesson. |
+| 404 page | The bar and drawer work; no lesson is marked. The page's own text already links to Nashville Number Lab (`app/not-found.tsx`); the drawer adds a way to every other lesson. |
 | Drawer open, window resized | It stays open and usable at any width (`D-B`). |
 | Reduced motion | The drawer appears and disappears without sliding (`AGENTS.md` build rule 4). |
 | No JavaScript | The bar shows, and the Song Workshop name still links to `/`. The Lessons button does nothing. *Assumption:* fine, since the lessons themselves need JavaScript. |
