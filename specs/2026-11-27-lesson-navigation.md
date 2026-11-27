@@ -153,6 +153,14 @@ The bar, the drawer list (`N-1`), the scroll-lock override (`N-2`), and a helper
 - **N-1 → option 3.** A short list of links inside the design system's `Drawer` now, and the design system issue AME-100 for a `SideNav` that's a drawer at every width. When AME-100 ships, the list is swapped for `SideNav`.
 - **N-2 → option 1.** A bundler alias, with a decision record marked temporary.
 
+### Design system review (2026-11-27)
+
+- **Scroll lock → design system issue AME-101**, for a `Drawer` that locks scroll without adding a `<style>` element. Song Workshop drops its override once that ships (decisions/0007, "When to remove it").
+- **Top bar → stays in Song Workshop** for now. No design system issue yet.
+- **Lesson list → swapped for `SideNav` when AME-100 ships**, as decided in `N-1`.
+- **Open: a see-through drawer backdrop.** Antonio asked for one. The design system has no token for it: `Drawer` paints its backdrop with the solid `color-surface-tertiary`, the only overlay opacity token (`opacity-overlay`) is deprecated and goes in 2.0, and `Drawer` has no prop for its backdrop. Nothing is built until Antonio decides how to fill that gap.
+- **Open: a content-width token**, so the bar's contents could line up with the lesson column's 1140px. Until then the bar runs the full width.
+
 ### The choices behind N-1 and N-2
 
 - **N-1. `SideNav` can't be a drawer at every width.** In 1.7.0, `SideNavProvider` closes the drawer as soon as the viewport is 1024px or wider, and `SideNavTrigger` hides itself from 1024px. Its `drawer-only` layout is for sites whose desktop navigation is a header menu, so the drawer still exists only below 1024px. Neither can be changed from here without patching the design system. Options:
@@ -185,7 +193,7 @@ What it means:
 
 ### Risks
 
-- **The override can outlive its reason.** A temporary scroll-lock override is easy to forget. It's marked in code, listed in the rule 3 report, and linked to a design system issue if one is filed.
+- **The override can outlive its reason.** A temporary scroll-lock override is easy to forget. It's marked in code, listed in the rule 3 report, and linked to the design system issue AME-101.
 - **The bar adds height above a lesson that fills the viewport** (`min-height: 100svh`), so every lesson page scrolls by the bar's height. Checked in the Design step.
 
 ### Assumptions

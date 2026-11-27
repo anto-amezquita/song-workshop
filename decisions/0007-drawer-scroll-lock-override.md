@@ -2,7 +2,7 @@
 
 ## Status
 
-Accepted (2026-11-27), as a temporary override. Issue: AME-97. Spec: `specs/2026-11-27-lesson-navigation.md` (D-A, N-2, §9.1).
+Accepted (2026-11-27), as a temporary override. Issue: AME-97. Design system issue: AME-101. Spec: `specs/2026-11-27-lesson-navigation.md` (D-A, N-2, §9.1).
 
 ## Context
 
@@ -38,7 +38,7 @@ It's marked temporary in each place.
 
 ## When to remove it
 
-When the design system's `Drawer` locks scroll without adding a `<style>` element. At the end of AME-97, Antonio decides whether that becomes a design system issue. Then delete the stand-in, the alias, the class and its CSS rule, and mark this record superseded.
+When the design system's `Drawer` locks scroll without adding a `<style>` element. Antonio asked for that in the design system issue AME-101 (2026-11-27). Once a release with it is installed, delete the stand-in, the alias, the class and its CSS rule, and mark this record superseded.
 
 ## Related files
 

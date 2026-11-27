@@ -12,7 +12,7 @@
  * with its own event handlers; only the injected CSS is gone.
  *
  * Remove this file, the alias and the class lock once the design system's
- * Drawer locks scroll without adding a `<style>` element.
+ * Drawer locks scroll without adding a `<style>` element (AME-101).
  */
 
 // The class names are the real ones, so anything that marks fixed elements with them keeps working.
