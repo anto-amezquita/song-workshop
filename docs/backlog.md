@@ -22,7 +22,7 @@ Its job is narrow on purpose: a session should be able to open this file and kno
 
 ## 2. Open items
 
-Generated from Linear project Song Workshop on 2026-11-24 by backlog-sync. Edit in Linear, not here.
+Generated from Linear project Song Workshop on 2026-11-27 by backlog-sync. Edit in Linear, not here.
 
 ### Backlog
 
@@ -34,6 +34,14 @@ Generated from Linear project Song Workshop on 2026-11-24 by backlog-sync. Edit 
 - **[AME-89](https://linear.app/amezquita/issue/AME-89/clear-the-two-moderate-npm-audit-advisories-in-build-time-tools)** Clear the two moderate npm audit advisories in build-time tools — unassigned · revisit
 - **[AME-90](https://linear.app/amezquita/issue/AME-90/check-nashville-number-lab-with-voiceover)** Check Nashville Number Lab with VoiceOver — unassigned · revisit
 - **[AME-91](https://linear.app/amezquita/issue/AME-91/tighten-the-csp-with-script-hashes-generated-on-each-build)** Tighten the CSP with script hashes generated on each build — unassigned · revisit
+- **[AME-92](https://linear.app/amezquita/issue/AME-92/upgrade-eslint-from-9-to-10)** Upgrade ESLint from 9 to 10 — unassigned · revisit
+- **[AME-94](https://linear.app/amezquita/issue/AME-94/spec-needed-chord-substitution-lesson)** Spec needed: chord substitution lesson — Antonio Amézquita
+- **[AME-95](https://linear.app/amezquita/issue/AME-95/interactive-melody-building-lesson)** Interactive melody-building lesson — unassigned
+- **[AME-96](https://linear.app/amezquita/issue/AME-96/lessons-from-songwriters-hall-of-fame-writers)** Lessons from Songwriters Hall of Fame writers — unassigned
+- **[AME-98](https://linear.app/amezquita/issue/AME-98/move-nashville-number-lab-to-the-shared-tonejs-sound-engine)** Move Nashville Number Lab to the shared Tone.js sound engine — unassigned
+- **[AME-99](https://linear.app/amezquita/issue/AME-99/add-your-own-motive-to-the-melody-lesson)** Add your own motive to the melody lesson — unassigned
+- **[AME-103](https://linear.app/amezquita/issue/AME-103/check-on-windows-does-the-lessons-drawer-shift-short-pages-sideways)** Check on Windows: does the lessons drawer shift short pages sideways? — unassigned
+- **[AME-105](https://linear.app/amezquita/issue/AME-105/e2e-tests-can-run-against-a-stale-build)** E2E tests can run against a stale build — unassigned
 
 ---
 
