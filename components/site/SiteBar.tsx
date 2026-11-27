@@ -26,7 +26,17 @@ type Props = {
  */
 export function SiteBar({ links, rootHref }: Props) {
   const [open, setOpen] = useState(false);
-  const currentHref = currentLinkHref(usePathname(), links, rootHref);
+  const pathname = usePathname();
+  const currentHref = currentLinkHref(pathname, links, rootHref);
+
+  // Close whenever the page changes, however it changed: a lesson chosen in the
+  // drawer, the Back button, or anything else. Adjusted during render, not in an
+  // effect, so the drawer never paints open on the new page.
+  const [shownPathname, setShownPathname] = useState(pathname);
+  if (pathname !== shownPathname) {
+    setShownPathname(pathname);
+    setOpen(false);
+  }
 
   useEffect(() => {
     if (!open) return;
@@ -45,7 +55,11 @@ export function SiteBar({ links, rootHref }: Props) {
         title="Lessons"
         trigger={<Button variant="ghost">Lessons</Button>}
       >
-        <LessonList links={links} currentHref={currentHref} onNavigate={() => setOpen(false)} />
+        <LessonList
+          links={links}
+          currentHref={currentHref}
+          onChooseCurrent={() => setOpen(false)}
+        />
       </Drawer>
       <NextLink href="/" className="site-bar__name">
         Song Workshop

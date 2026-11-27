@@ -1,21 +1,29 @@
 import NextLink from "next/link";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type MouseEvent } from "react";
 import type { SiteLink } from "./navigation";
 import "./LessonList.css";
 
 type Props = {
   links: readonly SiteLink[];
   currentHref: string | undefined;
-  /** Called when a link is chosen, so the drawer closes as the page changes. */
-  onNavigate: () => void;
+  /**
+   * Called when the current lesson is chosen. The page doesn't change then, so
+   * the drawer has to close itself. Every other link closes it by changing the
+   * page (SiteBar closes the drawer on any pathname change).
+   */
+  onChooseCurrent: () => void;
 };
+
+/** A click that opens the link somewhere else (new tab or window), not here. */
+const opensElsewhere = (e: MouseEvent) =>
+  e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey;
 
 /**
  * The lessons inside the site bar's drawer. CUSTOM until AME-100: the design
  * system's SideNav would draw this list, but it can't be a drawer at 1024px and
  * wider yet (spec N-1). Its look follows SideNav's links.
  */
-export function LessonList({ links, currentHref, onNavigate }: Props) {
+export function LessonList({ links, currentHref, onChooseCurrent }: Props) {
   const ref = useRef<HTMLElement>(null);
 
   // The drawer would put focus on its close button; the first lesson is what
@@ -28,18 +36,23 @@ export function LessonList({ links, currentHref, onNavigate }: Props) {
   return (
     <nav ref={ref} aria-label="Lessons" className="lesson-list">
       <ul className="lesson-list__items">
-        {links.map((link) => (
-          <li key={link.href}>
-            <NextLink
-              href={link.href}
-              className="lesson-list__link"
-              aria-current={link.href === currentHref ? "page" : undefined}
-              onClick={onNavigate}
-            >
-              {link.label}
-            </NextLink>
-          </li>
-        ))}
+        {links.map((link) => {
+          const isCurrent = link.href === currentHref;
+          return (
+            <li key={link.href}>
+              <NextLink
+                href={link.href}
+                className="lesson-list__link"
+                aria-current={isCurrent ? "page" : undefined}
+                onClick={(e) => {
+                  if (isCurrent && !opensElsewhere(e)) onChooseCurrent();
+                }}
+              >
+                {link.label}
+              </NextLink>
+            </li>
+          );
+        })}
       </ul>
     </nav>
   );

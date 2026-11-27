@@ -39,52 +39,99 @@ async function openLessons(page: Page) {
   return dialog;
 }
 
-const cases = [
+const pages = [
   { path: "/", current: lessons[0].title },
   { path: nashville, current: lessons[0].title },
   { path: "/no-such-lesson", current: null },
 ];
 
-for (const { path, current } of cases) {
-  test(`${path}: the bar opens a drawer of every lesson, with the current one marked`, async ({
-    page,
-  }) => {
-    await page.goto(path);
-    const banner = page.getByRole("banner");
-    await expect(banner).toHaveCount(1);
-    await expect(banner.getByRole("link", { name: "Song Workshop" })).toHaveAttribute("href", "/");
+const lessonsButton = (page: Page) =>
+  page.getByRole("banner").getByRole("button", { name: "Lessons" });
 
-    const dialog = await openLessons(page);
-    const links = dialog.getByRole("navigation", { name: "Lessons" }).getByRole("link");
-    await expect(links).toHaveText(lessonTitles);
-    const marked = dialog.locator('a[aria-current="page"]');
-    if (current) await expect(marked).toHaveText(current);
-    else await expect(marked).toHaveCount(0);
-  });
-}
+// F1–F7 on each of the three pages (spec §10).
+for (const { path, current } of pages) {
+  test.describe(`on ${path}`, () => {
+    test("the bar opens a drawer of every lesson, with the current one marked", async ({
+      page,
+    }) => {
+      await page.goto(path);
+      const banner = page.getByRole("banner");
+      await expect(banner).toHaveCount(1);
+      await expect(banner.getByRole("link", { name: "Song Workshop" })).toHaveAttribute(
+        "href",
+        "/",
+      );
 
-for (const width of [375, 1280]) {
-  test(`at ${width}px the drawer opens under the CSP, adds no <style> and holds the page still`, async ({
-    page,
-  }) => {
-    await page.setViewportSize({ width, height: 720 });
-    await watchPage(page);
-    await page.goto(nashville);
-    await openLessons(page);
+      const dialog = await openLessons(page);
+      const links = dialog.getByRole("navigation", { name: "Lessons" }).getByRole("link");
+      await expect(links).toHaveText(lessonTitles);
+      const marked = dialog.locator('a[aria-current="page"]');
+      if (current) await expect(marked).toHaveText(current);
+      else await expect(marked).toHaveCount(0);
+    });
 
-    const overflow = await page.evaluate(() => getComputedStyle(document.documentElement).overflow);
-    expect(overflow).toBe("hidden");
-    await page.mouse.move(width - 5, 400);
-    await page.mouse.wheel(0, 800);
-    await page.keyboard.press("PageDown");
-    await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
+    for (const width of [375, 1280]) {
+      test(`at ${width}px the drawer opens under the CSP, adds no <style> and holds the page still`, async ({
+        page,
+      }) => {
+        await page.setViewportSize({ width, height: 720 });
+        await watchPage(page);
+        await page.goto(path);
+        await openLessons(page);
 
-    await page.keyboard.press("Escape");
-    await expect(page.getByRole("dialog")).toHaveCount(0);
-    expect(await page.evaluate(() => getComputedStyle(document.documentElement).overflow)).not.toBe(
-      "hidden",
-    );
-    expect(await watched(page)).toEqual({ violations: [], addedStyles: 0 });
+        const overflow = await page.evaluate(
+          () => getComputedStyle(document.documentElement).overflow,
+        );
+        expect(overflow).toBe("hidden");
+        await page.mouse.move(width - 5, 400);
+        await page.mouse.wheel(0, 800);
+        await page.keyboard.press("PageDown");
+        await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
+
+        await page.keyboard.press("Escape");
+        await expect(page.getByRole("dialog")).toHaveCount(0);
+        expect(
+          await page.evaluate(() => getComputedStyle(document.documentElement).overflow),
+        ).not.toBe("hidden");
+        expect(await watched(page)).toEqual({ violations: [], addedStyles: 0 });
+      });
+    }
+
+    test("works by keyboard alone: open, land on the first lesson, close, back on Lessons", async ({
+      page,
+    }) => {
+      await page.goto(path);
+      // The bar comes first on the page: Lessons, then the site's name.
+      await page.keyboard.press("Tab");
+      await expect(lessonsButton(page)).toBeFocused();
+      await page.keyboard.press("Enter");
+      await expect(page.getByRole("link", { name: lessonTitles[0] })).toBeFocused();
+      await page.keyboard.press("Escape");
+      await expect(page.getByRole("dialog")).toHaveCount(0);
+      await expect(lessonsButton(page)).toBeFocused();
+    });
+
+    test("the close button closes it, and focus goes back to Lessons", async ({ page }) => {
+      await page.goto(path);
+      const dialog = await openLessons(page);
+      await dialog.getByRole("button", { name: "Close drawer" }).click();
+      await expect(page.getByRole("dialog")).toHaveCount(0);
+      await expect(lessonsButton(page)).toBeFocused();
+    });
+
+    test.describe("on a touch screen", () => {
+      test.use({ hasTouch: true });
+
+      test("tapping outside closes it, and focus goes back to Lessons", async ({ page }) => {
+        await page.goto(path);
+        await openLessons(page);
+        // The drawer opens from the left, so the right edge is the backdrop.
+        const { width, height } = page.viewportSize()!;
+        await page.touchscreen.tap(width - 40, height / 2);
+        await expect(page.getByRole("dialog")).toHaveCount(0);
+        await expect(lessonsButton(page)).toBeFocused();
+      });
+    });
   });
 }
 
@@ -103,19 +150,28 @@ test("both controls in the bar meet the touch target", async ({ page }) => {
   }
 });
 
-test("works by keyboard alone: open, land on the first lesson, close, back on Lessons", async ({
-  page,
-}) => {
-  await page.goto("/no-such-lesson");
-  // The bar comes first on the page: Lessons, then the site's name.
-  await page.keyboard.press("Tab");
-  const button = page.getByRole("banner").getByRole("button", { name: "Lessons" });
-  await expect(button).toBeFocused();
-  await page.keyboard.press("Enter");
-  await expect(page.getByRole("link", { name: lessonTitles[0] })).toBeFocused();
-  await page.keyboard.press("Escape");
+/** Marks the current document, to tell a client-side page change from a full reload. */
+const markDocument = (page: Page) =>
+  page.evaluate(() => {
+    (window as unknown as { marked: boolean }).marked = true;
+  });
+const sameDocument = (page: Page) =>
+  page.evaluate(() => (window as unknown as { marked?: boolean }).marked === true);
+
+test("the Back button closes the drawer", async ({ page }) => {
+  await page.goto("/");
+  await markDocument(page);
+  const dialog = await openLessons(page);
+  await dialog.getByRole("link", { name: lessonTitles[0] }).click();
+  await expect(page).toHaveURL(nashville);
   await expect(page.getByRole("dialog")).toHaveCount(0);
-  await expect(button).toBeFocused();
+
+  await openLessons(page);
+  await page.goBack();
+  await expect(page).toHaveURL("/");
+  await expect(page.getByRole("dialog")).toHaveCount(0);
+  // Still the same document: the page changed on the client, and that closed the drawer.
+  expect(await sameDocument(page)).toBe(true);
 });
 
 test("choosing a lesson goes there and closes the drawer", async ({ page }) => {

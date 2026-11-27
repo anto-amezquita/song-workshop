@@ -88,7 +88,7 @@ From any page, one tap on Lessons shows every lesson, with the current one marke
 - **F3.** The drawer lists one link per entry in `lessons/registry.ts`, in registry order, labelled with the lesson's title and linking to `/lessons/<slug>`.
 - **F4.** The link to the current lesson has `aria-current="page"`. On `/`, that's Nashville Number Lab.
 - **F5.** On open, focus moves to the first link. On close, focus goes back to the Lessons button.
-- **F6.** Escape, the close button and a tap outside close the drawer. Choosing a link closes it.
+- **F6.** Escape, the close button and a tap outside close the drawer. So does any change of page, whether from choosing a lesson or the Back button. Choosing the current lesson closes it too. A link opened in a new tab or window, with a modifier key held, leaves it open.
 - **F7.** While the drawer is open, the page behind doesn't scroll, and no `<style>` element is added to the page (`D-A`).
 
 ---

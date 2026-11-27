@@ -70,11 +70,35 @@ describe("SiteBar", () => {
     expect(root.classList.contains(SCROLL_LOCK_CLASS)).toBe(false);
   });
 
-  it("closes when a lesson is chosen", async () => {
-    renderBar();
+  it("closes when the page changes, not when another lesson is clicked", async () => {
+    const { rerender } = renderBar();
     await userEvent.click(screen.getByRole("button", { name: "Lessons" }));
-    // jsdom doesn't navigate; the click still closes the drawer.
+    // jsdom doesn't navigate, so the click alone changes nothing.
     await userEvent.click(screen.getByRole("link", { name: "Melody" }));
+    expect(screen.getByRole("dialog", { name: "Lessons" })).toBeTruthy();
+    // The page changing is what closes it: a chosen lesson, Back, or anything else.
+    pathname.current = "/lessons/melody";
+    rerender(<SiteBar links={links} rootHref="/lessons/nashville-numbers" />);
     expect(screen.queryByRole("dialog")).toBeNull();
   });
+
+  it("closes when the current lesson is chosen, since the page doesn't change", async () => {
+    renderBar();
+    await userEvent.click(screen.getByRole("button", { name: "Lessons" }));
+    await userEvent.click(screen.getByRole("link", { name: "Nashville Number Lab" }));
+    expect(screen.queryByRole("dialog")).toBeNull();
+  });
+
+  it.each(["Control", "Meta", "Shift", "Alt"])(
+    "stays open when the current lesson is clicked with %s held (it opens elsewhere)",
+    async (key) => {
+      renderBar();
+      await userEvent.click(screen.getByRole("button", { name: "Lessons" }));
+      const user = userEvent.setup();
+      await user.keyboard(`{${key}>}`);
+      await user.click(screen.getByRole("link", { name: "Nashville Number Lab" }));
+      await user.keyboard(`{/${key}}`);
+      expect(screen.getByRole("dialog", { name: "Lessons" })).toBeTruthy();
+    },
+  );
 });
