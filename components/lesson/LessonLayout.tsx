@@ -19,11 +19,12 @@ type Props = {
 export function LessonLayout({ eyebrow, title, intro, children, aside, footer }: Props) {
   return (
     <div className="lesson-layout">
-      <header className="lesson-layout__header">
+      {/* A div, not <header>: the site bar is the page's one banner landmark (AME-97). */}
+      <div className="lesson-layout__header">
         <span className="lesson-layout__eyebrow">{eyebrow}</span>
         <h1 className="lesson-layout__title">{title}</h1>
         <p className="lesson-layout__intro">{intro}</p>
-      </header>
+      </div>
       <div className="lesson-layout__grid">
         <main className="lesson-layout__main">{children}</main>
         {aside ? <div className="lesson-layout__aside">{aside}</div> : null}

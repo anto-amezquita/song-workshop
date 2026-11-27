@@ -1,0 +1,23 @@
+/* A white band across the top of every page (spec, Design option A). Tokens only.
+   It runs the full width: the lesson column's 1140px has no token to line up with. */
+.site-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding-block: var(--space-1);
+  padding-left: max(var(--space-4), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--space-4), env(safe-area-inset-right, 0px));
+  background-color: var(--color-surface-primary);
+  border-bottom: var(--border-width-default) solid var(--color-border-default);
+  font-family: var(--font-family-base);
+}
+
+.site-bar__name {
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-display);
+  font-size: var(--font-size-base);
+  letter-spacing: var(--letter-spacing-heading);
+  color: var(--color-text-primary);
+  text-decoration: none;
+  border-radius: var(--border-radius-interactive);
+}
